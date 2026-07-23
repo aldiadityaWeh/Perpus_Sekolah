@@ -69,11 +69,11 @@ Route::prefix('admin')->group(function () {
     })->name('admin.kelas.create');
 
      // TAMBAH KLASIFIKASI DDC
-   
+
     Route::get('/ddc', function () {
         return view('admin.ddc.index'); // resources/views/admin/ddc/index.blade.php
     })->name('admin.ddc.index');
-    
+
     Route::get('/ddc/create', function () {
         return view('admin.ddc.create'); // resources/views/admin/ddc/create.blade.php
     })->name('admin.ddc.create');
@@ -82,28 +82,28 @@ Route::prefix('admin')->group(function () {
     Route::get('/sumber-buku', function () {
         return view('admin.sumber_buku.index'); // resources/views/admin/sumber_buku/index.blade.php
     })->name('admin.sumber_buku.index');
-    
+
     Route::get('/sumber-buku/create', function () {
         return view('admin.sumber_buku.create'); // resources/views/admin/sumber_buku/create.blade.php
     })->name('admin.sumber_buku.create');
 
     // Jenis Buku
- 
+
     Route::get('/jenis-buku', function () {
-        return view('admin.jenis_buku.index'); 
+        return view('admin.jenis_buku.index');
     })->name('admin.jenis_buku.index');
-    
+
     Route::get('/jenis-buku/create', function () {
-        return view('admin.jenis_buku.create'); 
+        return view('admin.jenis_buku.create');
     })->name('admin.jenis_buku.create');
 
     // Kategori Buku
     Route::get('/kategori-buku', function () {
-        return view('admin.kategori_buku.index'); 
+        return view('admin.kategori_buku.index');
     })->name('admin.kategori_buku.index');
-    
+
     Route::get('/kategori-buku/create', function () {
-        return view('admin.kategori_buku.create'); 
+        return view('admin.kategori_buku.create');
     })->name('admin.kategori_buku.create');
 
     // Data Buku
@@ -152,5 +152,31 @@ Route::prefix('admin')->group(function () {
         return view('admin.laporan.denda'); // resources/views/admin/laporan/denda.blade.php
     })->name('admin.laporan.denda');
 
+
+    // LAPORAN
+    // -------------------------
+    Route::prefix('laporan')->name('laporan.')->group(function () {
+
+        // Laporan Anggota (Cetak Kartu)
+        Route::get('/anggota', function () {
+            return view('admin.laporan.laporan_anggota.index');
+        })->name('anggota.index');
+
+        // Laporan Buku
+        Route::get('/buku', function () {
+            return view('admin.laporan.laporan_buku.index');
+        })->name('buku.index');
+
+        // Laporan Kas (Denda/Pemasukan)
+        Route::get('/kas', function () {
+            return view('admin.laporan.laporan_kas.index');
+        })->name('kas.index');
+
+        // Laporan Pengunjung (Buku Tamu)
+        Route::get('/pengunjung', function () {
+            return view('admin.laporan.laporan_pengunjung.index');
+        })->name('pengunjung.index');
+
+    });
 
 });

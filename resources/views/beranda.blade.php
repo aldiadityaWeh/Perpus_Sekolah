@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda - SMARTPERPUS Sekolah Smart</title>
+    <title>Beranda - PERPUS SDN 6 CISEUREUH</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -34,10 +34,13 @@
         <div class="max-w-7xl mx-auto flex items-center justify-between">
 
             <!-- Logo Kiri -->
-            <div class="flex-shrink-0 flex items-center cursor-pointer group">
-                <i class="fa-solid fa-book-open-reader text-blue-400 text-3xl mr-3 group-hover:scale-110 transition-transform"></i>
-                <span class="font-bold text-xl tracking-wider text-slate-200 group-hover:text-white transition-colors">SMART<span class="text-blue-400">PERPUS</span></span>
-            </div>
+            <a href="/" class="flex-shrink-0 flex items-center cursor-pointer group">
+                <img src="{{ asset('images/logo-sd.png') }}" alt="Logo SD" class="h-10 w-auto mr-3 bg-white rounded-full p-1">
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg tracking-wide text-white leading-tight">PERPUS <span class="text-blue-400">SDN 6</span></span>
+                    <span class="text-[10px] text-slate-300 font-medium tracking-widest uppercase">Ciseureuh - Purwakarta</span>
+                </div>
+            </a>
 
             <!-- Menu Navigasi (Desktop) -->
             <div class="hidden md:flex items-center gap-2 lg:gap-4">
@@ -87,7 +90,7 @@
     </nav>
 
     <!-- HERO SECTION (Tampilan Layar Penuh dengan Background) -->
-    <header class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+    <header class="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-12">
 
         <!-- Gambar Background (dari Unsplash - Tema Perpustakaan) -->
         <div class="absolute inset-0 z-0">
@@ -98,32 +101,13 @@
         <div class="absolute inset-0 bg-slate-900/75 mix-blend-multiply z-10"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-slate-900/40 z-10"></div>
 
-        <!-- Tombol Slider Kiri -->
-        <button class="absolute left-4 md:left-10 z-30 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-all hover:scale-110">
-            <i class="fa-solid fa-chevron-left text-xl"></i>
-        </button>
-
         <!-- Konten Utama Tengah -->
-        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center mt-4 md:mt-8">
 
-            <!-- Logo Bulat Kustom (Mirip Referensi Gambar) -->
-            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-blue-400/50 flex flex-col items-center justify-center bg-slate-900/40 backdrop-blur-md mb-8 animate-float shadow-[0_0_30px_rgba(59,130,246,0.3)] relative">
-                <!-- Bintang di atas buku -->
-                <div class="absolute top-4 md:top-6 flex gap-1 text-amber-400 text-xs md:text-sm">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star transform -translate-y-1"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <!-- Ikon Buku -->
-                <i class="fa-solid fa-book-open text-5xl md:text-6xl text-blue-400 mt-2"></i>
-                <!-- Ikon Tangan Menopang (Opsional/Pendukung) -->
-                <div class="absolute bottom-4 md:bottom-5 flex gap-6 text-blue-300 text-sm md:text-base opacity-80">
-                    <i class="fa-solid fa-hand-holding transform scale-x-[-1]"></i>
-                    <i class="fa-solid fa-hand-holding"></i>
-                </div>
-                <!-- Hiasan Daun / Padi di samping -->
-                <i class="fa-solid fa-leaf absolute left-2 text-amber-500/80 -rotate-45 text-xs md:text-sm"></i>
-                <i class="fa-solid fa-leaf absolute right-2 text-amber-500/80 rotate-45 text-xs md:text-sm"></i>
+            <!-- Logo Bulat Kustom (Diperbaiki agar pas dengan bulatan) -->
+            <div class="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-white/20 flex flex-col items-center justify-center bg-white mb-8 animate-float shadow-[0_0_30px_rgba(255,255,255,0.3)] relative p-4 md:p-6 overflow-hidden">
+               <!-- KODE BARU (Pakai Gambar Logo Anda) -->
+               <img src="{{ asset('images/logo-sd.png') }}" alt="Logo SD" class="w-full h-full object-contain filter drop-shadow-md">
             </div>
 
             <!-- Tipografi Utama -->
@@ -131,22 +115,17 @@
                 Selamat Datang
             </h1>
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 drop-shadow-lg">
-                Di SMARTPERPUS Sekolah Smart
+                Di PERPUS SDN 6 CISEUREUH
             </h2>
 
             <p class="text-sm md:text-base lg:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-                SMARTPERPUS Sekolah Smart merupakan layanan yang diberikan khususnya kepada siswa/i untuk memperoleh informasi seperti buku teks pelajaran, buku bacaan, kamus umum, sampai ensiklopedia.
+                PERPUS SDN 6 CISEUREUH merupakan layanan yang diberikan khususnya kepada siswa/i untuk memperoleh informasi seperti buku teks pelajaran, buku bacaan, kamus umum, sampai ensiklopedia.
             </p>
 
             <a href="#tentang" class="mt-12 animate-bounce w-12 h-12 rounded-full border border-white/30 text-white flex items-center justify-center text-xl hover:bg-white/10 transition-colors">
                 <i class="fa-solid fa-arrow-down"></i>
             </a>
         </div>
-
-        <!-- Tombol Slider Kanan -->
-        <button class="absolute right-4 md:right-10 z-30 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-all hover:scale-110">
-            <i class="fa-solid fa-chevron-right text-xl"></i>
-        </button>
     </header>
 
     <!-- SECTION: TENTANG SEKOLAH & PERPUSTAKAAN -->
@@ -155,7 +134,7 @@
 
             <div class="text-center mb-16">
                 <span class="text-blue-600 font-bold tracking-wider uppercase text-sm">Tentang Kami</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-2 mb-4">Profil SMARTPERPUS</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-2 mb-4">Profil PERPUS SDN 6 CISEUREUH</h2>
                 <div class="w-20 h-1.5 bg-blue-500 mx-auto rounded-full"></div>
             </div>
 
@@ -181,7 +160,7 @@
                 <div>
                     <h3 class="text-2xl font-bold text-slate-800 mb-4">Membangun Generasi Cerdas Melalui Literasi</h3>
                     <p class="text-slate-600 mb-6 leading-relaxed">
-                        Perpustakaan kami didesain dengan konsep modern yang mengintegrasikan teknologi digital dan kenyamanan ruang baca konvensional. Kami berkomitmen untuk menyediakan sumber daya literasi terbaik bagi seluruh siswa dan staf pengajar.
+                        Perpustakaan SDN 6 Ciseureuh didesain dengan konsep yang mengintegrasikan teknologi digital dan kenyamanan ruang baca. Kami berkomitmen untuk menyediakan sumber daya literasi terbaik bagi seluruh siswa dan staf pengajar di lingkungan Ciseureuh, Purwakarta.
                     </p>
 
                     <div class="space-y-6">
@@ -191,7 +170,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-800">Fasilitas Digital & Wi-Fi</h4>
-                                <p class="text-sm text-slate-500 mt-1">Akses internet cepat dan e-library untuk mendukung riset digital siswa.</p>
+                                <p class="text-sm text-slate-500 mt-1">Akses internet untuk mendukung riset digital siswa dan sistem peminjaman terintegrasi.</p>
                             </div>
                         </div>
 
@@ -201,7 +180,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-800">Ruang Baca Nyaman</h4>
-                                <p class="text-sm text-slate-500 mt-1">Area baca yang tenang, ber-AC, dan dilengkapi kursi sofa yang nyaman.</p>
+                                <p class="text-sm text-slate-500 mt-1">Area baca yang tertata rapi dan bersih, memberikan kenyamanan maksimal bagi pemustaka.</p>
                             </div>
                         </div>
                     </div>
@@ -230,7 +209,7 @@
                 <div class="p-6">
                     <i class="fa-solid fa-id-card-clip text-4xl text-emerald-400 mb-4"></i>
                     <h3 class="text-xl font-bold mb-2">Syarat Keanggotaan</h3>
-                    <p class="text-slate-400 text-sm">Siswa aktif yang terdaftar, membawa kartu pelajar, dan mengisi formulir anggota perpustakaan.</p>
+                    <p class="text-slate-400 text-sm">Siswa aktif SDN 6 Ciseureuh yang terdaftar, membawa kartu identitas, dan mengisi formulir.</p>
                 </div>
 
                 <div class="p-6">
@@ -255,7 +234,10 @@
 
                 <!-- Info Kontak Kiri -->
                 <div class="p-8 md:p-12 flex flex-col justify-center">
-                    <h3 class="text-2xl font-bold text-slate-800 mb-6">Sekolah Dasar Negeri Smart 01</h3>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                        <img src="logo-sd.png" alt="Logo SD" class="h-8 w-auto" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
+                        SD Negeri 6 Ciseureuh
+                    </h3>
 
                     <ul class="space-y-6">
                         <li class="flex gap-4">
@@ -264,7 +246,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-800 text-sm">Alamat Lengkap</h4>
-                                <p class="text-sm text-slate-500 mt-1">Jl. Pendidikan No. 123, Komplek Pelajar, Kota Jakarta Selatan, DKI Jakarta 12345</p>
+                                <p class="text-sm text-slate-500 mt-1">Jl. Dian Anyar No.2, RW.1, Ciseureuh, Kec. Purwakarta, Kabupaten Purwakarta, Jawa Barat 41118</p>
                             </div>
                         </li>
 
@@ -274,7 +256,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-800 text-sm">Telepon / WhatsApp</h4>
-                                <p class="text-sm text-slate-500 mt-1">(021) 555-1234 / +62 812-3456-7890</p>
+                                <p class="text-sm text-slate-500 mt-1">(0264) 200XXX / +62 812-XXXX-XXXX</p>
                             </div>
                         </li>
 
@@ -284,7 +266,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-800 text-sm">Email Resmi</h4>
-                                <p class="text-sm text-slate-500 mt-1">perpus@sdnsmart01.sch.id</p>
+                                <p class="text-sm text-slate-500 mt-1">perpus@sdn6ciseureuh.sch.id</p>
                             </div>
                         </li>
                     </ul>
@@ -302,10 +284,10 @@
                     </div>
                 </div>
 
-                <!-- Kolom Peta (Iframe Google Maps Dummy) -->
+                <!-- Kolom Peta (Iframe Google Maps untuk SDN 6 Ciseureuh) -->
                 <div class="h-64 lg:h-auto bg-slate-200 relative w-full">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1d126917.18565138137!2d106.75877894236962!3d-6.229728035225211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x100c5e82dd4b820!2sJakarta%20Selatan%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1699999999999!5m2!1sid!2sid"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1d3962.138760086022!2d107.4589945!3d-6.5245842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e690ea50989f647%3A0xc6deef4b09ecfb3c!2sSekolah%20dasar%20negeri%206%20ciseureuh!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
                         class="absolute inset-0 w-full h-full border-0"
                         allowfullscreen=""
                         loading="lazy"
@@ -320,7 +302,7 @@
     <!-- FOOTER -->
     <footer class="bg-[#0b1120] border-t border-slate-800 text-slate-400 py-8 text-center text-sm">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>&copy; 2023 SMARTPERPUS - SD Negeri Smart 01. All rights reserved.</p>
+            <p>&copy; 2026 PERPUS - SDN 6 CISEUREUH. All rights reserved.</p>
             <div class="flex gap-6 text-xs font-semibold">
                 <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
                 <a href="#" class="hover:text-white transition-colors">Syarat Ketentuan</a>
