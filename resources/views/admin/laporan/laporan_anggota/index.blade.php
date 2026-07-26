@@ -28,8 +28,10 @@
 
     <!-- SIDEBAR -->
     <aside class="w-64 bg-[#0f172a] text-slate-300 flex flex-col h-full shadow-2xl shrink-0 transition-all duration-300 z-20">
+
+        <!-- Logo Area -->
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
-            <i class="fa-solid fa-book-open-reader text-blue-400 text-2xl mr-3 drop-shadow-md"></i>
+            <img src="logo-sd.png" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
             <span class="font-bold text-lg tracking-wider text-white">SMART<span class="text-blue-400">PERPUS</span></span>
         </div>
 
@@ -42,6 +44,7 @@
                 </li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Master Data</li>
+
                 <li>
                     <a href="/admin/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-book w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Buku
@@ -79,25 +82,24 @@
                 </li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Transaksi</li>
+
                 <li>
                     <a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-barcode w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Scan Peminjaman
                     </a>
                 </li>
+
                 <li>
                     <a href="/admin/transaksi/pengembalian" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between">
                         <div class="flex items-center">
                             <i class="fa-solid fa-clipboard-check w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Verifikasi Kembali
                         </div>
+                        <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">3</span>
                     </a>
                 </li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Laporan</li>
-                <li>
-                    <a href="/admin/laporan/bulanan" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-chart-pie w-6 text-center mr-2 group-hover:text-purple-400 transition-colors"></i> Laporan Bulanan
-                    </a>
-                </li>
+
                 <!-- Laporan Anggota Active -->
                 <li>
                     <a href="/admin/laporan/anggota" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
@@ -105,21 +107,36 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/laporan/denda" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2 group-hover:text-rose-400 transition-colors"></i> Laporan Denda
+                    <a href="/admin/laporan/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-book-open w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Laporan Buku
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/laporan/kas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2 group-hover:text-rose-400 transition-colors"></i> Laporan Kas (Denda)
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/laporan/pengunjung" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-users-viewfinder w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Laporan Pengunjung
                     </a>
                 </li>
             </ul>
         </nav>
     </aside>
 
-    <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative">
+    <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative bg-[#f4f7f6]">
 
         <!-- HEADER -->
         <header class="h-20 bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center justify-between px-8 z-10 shrink-0">
             <div>
-                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Laporan Anggota</h2>
-                <p class="text-sm text-slate-500 font-medium mt-0.5">Cetak kartu dan laporan data anggota perpustakaan.</p>
+                <!-- Breadcrumb -->
+                <div class="flex items-center text-sm text-slate-500 mb-1 font-semibold gap-2">
+                    <span class="hover:text-blue-600 cursor-pointer transition-colors">Laporan</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    <span class="text-slate-800">Laporan Anggota</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight leading-none">Laporan & Kartu Anggota</h2>
             </div>
 
             <div class="flex items-center gap-4 md:gap-6">
@@ -142,77 +159,77 @@
             <div class="max-w-[1400px] mx-auto space-y-6">
 
                 <!-- Info Banner -->
-                <div class="bg-[#4eb4f5] text-white rounded p-4 shadow-sm border border-[#3ba0de]">
-                    <div class="flex items-center gap-2 mb-1">
+                <div class="bg-[#4eb4f5] text-white rounded-lg p-5 shadow-sm border border-[#3ba0de] flex flex-col justify-center">
+                    <div class="flex items-center gap-2 mb-1.5">
                         <i class="fa-solid fa-circle-info text-xl opacity-90"></i>
-                        <h3 class="font-bold text-lg">Informasi</h3>
+                        <h3 class="font-bold text-xl">Informasi</h3>
                     </div>
-                    <p class="text-[13px] text-white/90">Berikut ini adalah data <strong>LAPORAN ANGGOTA</strong>. Silahkan pilih bentuk laporan yang anda inginkan.</p>
+                    <p class="text-sm text-white/90">Berikut ini adalah data rekapitulasi <strong>ANGGOTA PERPUSTAKAAN</strong>. Anda dapat mencetak laporan data maupun mencetak desain kartu perpustakaan siswa dari sini.</p>
                 </div>
 
                 <!-- Grid Cetak Card -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
                     <!-- Card 1: Cetak Kartu Anggota -->
-                    <div class="bg-white rounded border border-slate-200 shadow-sm flex flex-col">
-                        <div class="px-5 py-4 border-b border-slate-100 flex justify-between items-center bg-white">
+                    <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                        <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-white">
                             <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-id-card text-slate-800 text-lg"></i>
+                                <i class="fa-solid fa-id-card text-slate-700 text-lg"></i>
                                 <h3 class="font-bold text-slate-800">Cetak Kartu Anggota</h3>
                             </div>
-                            <!-- Tombol Cetak Semua di Header -->
                             <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center text-sm shadow-sm transition-colors cursor-pointer" title="Cetak Semua Kartu">
                                 <i class="fa-solid fa-file-pdf"></i>
                             </button>
                         </div>
-                        <div class="p-5 flex-1 flex flex-col justify-center space-y-3">
+                        <div class="p-6 flex-1 flex flex-col justify-center space-y-4 bg-slate-50/30">
                             <!-- Dropdown Utama -->
                             <div class="relative w-full">
-                                <select id="filterKriteriaKartu" onchange="toggleSubFilterKartu()" class="w-full bg-white border border-slate-300 rounded py-2 px-3 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm">
-                                    <option value="" disabled selected>Pilih Berdasarkan</option>
+                                <label class="text-xs font-semibold text-slate-500 mb-1.5 block">Kriteria Cetak Kartu</label>
+                                <select id="filterKriteriaKartu" onchange="toggleSubFilterKartu()" class="w-full bg-white border border-slate-300 rounded py-2.5 px-4 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm">
+                                    <option value="" disabled selected>- Pilih Berdasarkan -</option>
                                     <option value="semua">Semua Anggota</option>
-                                    <option value="kelas">Kelas</option>
-                                    <option value="angkatan">Angkatan</option>
+                                    <option value="kelas">Pilih Per Kelas</option>
+                                    <option value="angkatan">Pilih Per Tahun Angkatan</option>
                                 </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-400">
+                                <div class="absolute inset-y-0 right-0 top-[22px] flex items-center px-4 pointer-events-none text-slate-400">
                                     <i class="fa-solid fa-chevron-down text-xs"></i>
                                 </div>
                             </div>
 
-                            <!-- Dropdown Sub: Pilih Kelas (Muncul jika 'Kelas' dipilih) -->
+                            <!-- Dropdown Sub: Pilih Kelas -->
                             <div id="subFilterKelasKartu" class="relative w-full hidden">
-                                <select class="w-full bg-white border border-blue-300 rounded py-2 px-3 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm ring-2 ring-blue-500/20">
-                                    <option value="" disabled selected>Pilih Disini</option>
+                                <select class="w-full bg-blue-50/50 border border-blue-300 rounded py-2.5 px-4 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm">
+                                    <option value="" disabled selected>- Pilih Kelas -</option>
                                     <option value="semua_kelas">Semua Kelas</option>
-                                    <option value="x_ipa_1">X IPA 1</option>
-                                    <option value="x_ips_2">X IPS 2</option>
-                                    <option value="xi_ips_1">XI IPS 1</option>
-                                    <option value="xi_ti_1">XI Teknologi Informasi 1</option>
-                                    <option value="xi_to_2">XI Teknik Otomotif 2</option>
-                                    <option value="x_ipa_2">X IPA 2</option>
-                                    <option value="x_ps_1">X Pariwisata & Seni 1</option>
+                                    <option value="1a">Kelas 1 A</option>
+                                    <option value="1b">Kelas 1 B</option>
+                                    <option value="2a">Kelas 2 A</option>
+                                    <option value="3a">Kelas 3 A</option>
+                                    <option value="4a">Kelas 4 A</option>
+                                    <option value="5a">Kelas 5 A</option>
+                                    <option value="6a">Kelas 6 A</option>
                                 </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-400">
+                                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-400">
                                     <i class="fa-solid fa-chevron-down text-xs"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-[#f8f9fc] border-t border-slate-100 px-5 py-3 flex gap-2">
-                            <button class="bg-[#dc3545] hover:bg-[#c82333] text-white px-4 py-2 rounded text-sm font-medium shadow-sm transition-colors flex items-center gap-2">
-                                <i class="fa-solid fa-file-pdf"></i> PDF
+                        <div class="px-6 py-4 bg-white border-t border-slate-100 flex gap-2 justify-end">
+                            <button class="bg-[#198754] hover:bg-[#157347] text-white px-5 py-2 rounded shadow-sm transition-colors flex items-center gap-2 font-medium text-sm">
+                                <i class="fa-solid fa-print"></i> Generate Kartu
                             </button>
                         </div>
                     </div>
 
                     <!-- Card 2: Cetak Laporan Anggota -->
-                    <div class="bg-white rounded border border-slate-200 shadow-sm flex flex-col">
-                        <div class="px-5 py-4 border-b border-slate-100 flex justify-between items-center bg-white">
+                    <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                        <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-white">
                             <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-file-lines text-slate-800 text-lg"></i>
-                                <h3 class="font-bold text-slate-800">Cetak Laporan Anggota</h3>
+                                <i class="fa-solid fa-file-lines text-slate-700 text-lg"></i>
+                                <h3 class="font-bold text-slate-800">Cetak Laporan Data Anggota</h3>
                             </div>
                             <!-- Tombol Cetak Semua di Header -->
-                            <div class="flex gap-1.5">
+                            <div class="flex gap-2">
                                 <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center text-sm shadow-sm transition-colors cursor-pointer" title="Cetak Semua Laporan (PDF)">
                                     <i class="fa-solid fa-file-pdf"></i>
                                 </button>
@@ -221,44 +238,45 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="p-5 flex-1 flex flex-col justify-center space-y-3">
+                        <div class="p-6 flex-1 flex flex-col justify-center space-y-4 bg-slate-50/30">
                             <!-- Dropdown Utama -->
                             <div class="relative w-full">
-                                <select id="filterKriteriaLaporan" onchange="toggleSubFilterLaporan()" class="w-full bg-white border border-slate-300 rounded py-2 px-3 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm">
-                                    <option value="" disabled selected>Pilih Berdasarkan</option>
+                                <label class="text-xs font-semibold text-slate-500 mb-1.5 block">Kriteria Laporan</label>
+                                <select id="filterKriteriaLaporan" onchange="toggleSubFilterLaporan()" class="w-full bg-white border border-slate-300 rounded py-2.5 px-4 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm">
+                                    <option value="" disabled selected>- Pilih Berdasarkan -</option>
                                     <option value="semua">Semua Anggota</option>
-                                    <option value="kelas">Kelas</option>
-                                    <option value="angkatan">Angkatan</option>
+                                    <option value="kelas">Pilih Per Kelas</option>
+                                    <option value="angkatan">Pilih Per Tahun Angkatan</option>
                                 </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-400">
+                                <div class="absolute inset-y-0 right-0 top-[22px] flex items-center px-4 pointer-events-none text-slate-400">
                                     <i class="fa-solid fa-chevron-down text-xs"></i>
                                 </div>
                             </div>
 
-                            <!-- Dropdown Sub: Pilih Kelas (Muncul jika 'Kelas' dipilih) -->
+                            <!-- Dropdown Sub: Pilih Kelas -->
                             <div id="subFilterKelasLaporan" class="relative w-full hidden">
-                                <select class="w-full bg-white border border-blue-300 rounded py-2 px-3 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm ring-2 ring-blue-500/20">
-                                    <option value="" disabled selected>Pilih Disini</option>
+                                <select class="w-full bg-blue-50/50 border border-blue-300 rounded py-2.5 px-4 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm">
+                                    <option value="" disabled selected>- Pilih Kelas -</option>
                                     <option value="semua_kelas">Semua Kelas</option>
-                                    <option value="x_ipa_1">X IPA 1</option>
-                                    <option value="x_ips_2">X IPS 2</option>
-                                    <option value="xi_ips_1">XI IPS 1</option>
-                                    <option value="xi_ti_1">XI Teknologi Informasi 1</option>
-                                    <option value="xi_to_2">XI Teknik Otomotif 2</option>
-                                    <option value="x_ipa_2">X IPA 2</option>
-                                    <option value="x_ps_1">X Pariwisata & Seni 1</option>
+                                    <option value="1a">Kelas 1 A</option>
+                                    <option value="1b">Kelas 1 B</option>
+                                    <option value="2a">Kelas 2 A</option>
+                                    <option value="3a">Kelas 3 A</option>
+                                    <option value="4a">Kelas 4 A</option>
+                                    <option value="5a">Kelas 5 A</option>
+                                    <option value="6a">Kelas 6 A</option>
                                 </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-400">
+                                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-400">
                                     <i class="fa-solid fa-chevron-down text-xs"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-[#f8f9fc] border-t border-slate-100 px-5 py-3 flex gap-2">
-                            <button class="bg-[#dc3545] hover:bg-[#c82333] text-white px-4 py-2 rounded text-sm font-medium shadow-sm transition-colors flex items-center gap-2">
-                                <i class="fa-solid fa-file-pdf"></i> PDF
+                        <div class="px-6 py-4 bg-white border-t border-slate-100 flex gap-2 justify-end">
+                            <button class="bg-[#dc3545] hover:bg-[#c82333] text-white px-5 py-2 rounded shadow-sm transition-colors flex items-center gap-2 font-medium text-sm">
+                                <i class="fa-solid fa-file-pdf"></i> Export PDF
                             </button>
-                            <button class="bg-[#198754] hover:bg-[#157347] text-white px-4 py-2 rounded text-sm font-medium shadow-sm transition-colors flex items-center gap-2">
-                                <i class="fa-solid fa-file-excel"></i> Excel
+                            <button class="bg-[#198754] hover:bg-[#157347] text-white px-5 py-2 rounded shadow-sm transition-colors flex items-center gap-2 font-medium text-sm">
+                                <i class="fa-solid fa-file-excel"></i> Export Excel
                             </button>
                         </div>
                     </div>
@@ -266,17 +284,18 @@
                 </div>
 
                 <!-- MAIN CARD TABEL -->
-                <div class="bg-white rounded border border-slate-200 overflow-hidden">
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden mt-6">
 
-                    <div class="px-5 py-4 border-b border-slate-100 flex items-center gap-2 bg-white">
-                        <i class="fa-solid fa-database text-slate-800 text-lg"></i>
-                        <h3 class="font-bold text-slate-800 text-lg">Data</h3>
-                    </div>
+                    <div class="px-6 py-4 flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 bg-white gap-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-database text-slate-800 text-lg"></i>
+                            <h3 class="font-bold text-slate-800 text-lg">Data Rekapitulasi Anggota</h3>
+                        </div>
 
-                    <!-- Search Bar -->
-                    <div class="px-5 py-3 bg-white flex justify-end">
-                        <div class="relative w-full md:w-64">
-                            <input type="text" placeholder="Cari NISN / Nama / Kelas..." class="w-full bg-white border border-slate-300 rounded py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 shadow-sm placeholder:text-slate-400">
+                        <!-- Search Bar -->
+                        <div class="relative w-full md:w-80">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input type="text" placeholder="Cari NISN / Nama / Kelas..." class="w-full bg-slate-50 border border-slate-300 rounded py-2 pl-9 pr-3 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm placeholder:text-slate-400">
                         </div>
                     </div>
 
@@ -284,55 +303,55 @@
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-200/80 text-slate-800 text-[13px] border-y border-slate-300">
-                                    <th class="px-5 py-3 font-bold w-16">No</th>
-                                    <th class="px-5 py-3 font-bold">NISN</th>
-                                    <th class="px-5 py-3 font-bold">Nama Anggota</th>
-                                    <th class="px-5 py-3 font-bold">Jenis Kelamin</th>
-                                    <th class="px-5 py-3 font-bold">Kelas</th>
-                                    <th class="px-5 py-3 font-bold w-24 text-center">Aksi</th>
+                                <tr class="bg-slate-100/80 text-slate-500 text-[11px] uppercase tracking-widest border-b border-slate-200">
+                                    <th class="px-6 py-4 font-bold text-center w-16">No</th>
+                                    <th class="px-6 py-4 font-bold">NISN</th>
+                                    <th class="px-6 py-4 font-bold">Nama Anggota</th>
+                                    <th class="px-6 py-4 font-bold">Jenis Kelamin</th>
+                                    <th class="px-6 py-4 font-bold">Kelas</th>
+                                    <th class="px-6 py-4 font-bold text-center w-28">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="text-slate-700 text-[13px] divide-y divide-slate-100">
 
                                 <!-- Baris 1 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors">
-                                    <td class="px-5 py-3 text-slate-600 font-medium">1</td>
-                                    <td class="px-5 py-3">121212</td>
-                                    <td class="px-5 py-3">kasep</td>
-                                    <td class="px-5 py-3">Laki-Laki</td>
-                                    <td class="px-5 py-3">X IPS 2</td>
-                                    <td class="px-5 py-3 text-center">
-                                        <button class="w-8 h-7 rounded bg-[#0dcaf0] hover:bg-[#0bacce] text-white flex items-center justify-center mx-auto transition-colors shadow-sm" title="Cetak Kartu">
-                                            <i class="fa-solid fa-id-badge text-[11px]"></i>
+                                <tr class="hover:bg-slate-50 transition-colors group">
+                                    <td class="px-6 py-4 text-center font-medium text-slate-500">1</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">010141414</td>
+                                    <td class="px-6 py-4 font-bold text-slate-800">Ahmad Fauzi</td>
+                                    <td class="px-6 py-4 text-slate-600">Laki-Laki</td>
+                                    <td class="px-6 py-4 text-slate-600">Kelas 5 A</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-[#0dcaf0] hover:bg-[#0bacce] text-white w-9 h-8 rounded flex items-center justify-center mx-auto transition-colors shadow-sm" title="Cetak Kartu Member">
+                                            <i class="fa-solid fa-id-badge"></i>
                                         </button>
                                     </td>
                                 </tr>
 
                                 <!-- Baris 2 -->
-                                <tr class="bg-slate-100/50 hover:bg-slate-100 transition-colors">
-                                    <td class="px-5 py-3 text-slate-600 font-medium">2</td>
-                                    <td class="px-5 py-3">131313</td>
-                                    <td class="px-5 py-3">Rahayu</td>
-                                    <td class="px-5 py-3">Perempuan</td>
-                                    <td class="px-5 py-3">XI Teknologi Informasi 1</td>
-                                    <td class="px-5 py-3 text-center">
-                                        <button class="w-8 h-7 rounded bg-[#0dcaf0] hover:bg-[#0bacce] text-white flex items-center justify-center mx-auto transition-colors shadow-sm" title="Cetak Kartu">
-                                            <i class="fa-solid fa-id-badge text-[11px]"></i>
+                                <tr class="hover:bg-slate-50 transition-colors group">
+                                    <td class="px-6 py-4 text-center font-medium text-slate-500">2</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">020252525</td>
+                                    <td class="px-6 py-4 font-bold text-slate-800">Siti Aminah</td>
+                                    <td class="px-6 py-4 text-slate-600">Perempuan</td>
+                                    <td class="px-6 py-4 text-slate-600">Kelas 3 A</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-[#0dcaf0] hover:bg-[#0bacce] text-white w-9 h-8 rounded flex items-center justify-center mx-auto transition-colors shadow-sm" title="Cetak Kartu Member">
+                                            <i class="fa-solid fa-id-badge"></i>
                                         </button>
                                     </td>
                                 </tr>
 
                                 <!-- Baris 3 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors">
-                                    <td class="px-5 py-3 text-slate-600 font-medium">3</td>
-                                    <td class="px-5 py-3">141414</td>
-                                    <td class="px-5 py-3">anitas</td>
-                                    <td class="px-5 py-3">Perempuan</td>
-                                    <td class="px-5 py-3">X Pariwisata & Seni 1</td>
-                                    <td class="px-5 py-3 text-center">
-                                        <button class="w-8 h-7 rounded bg-[#0dcaf0] hover:bg-[#0bacce] text-white flex items-center justify-center mx-auto transition-colors shadow-sm" title="Cetak Kartu">
-                                            <i class="fa-solid fa-id-badge text-[11px]"></i>
+                                <tr class="hover:bg-slate-50 transition-colors group">
+                                    <td class="px-6 py-4 text-center font-medium text-slate-500">3</td>
+                                    <td class="px-6 py-4 font-mono text-slate-600">141414</td>
+                                    <td class="px-6 py-4 font-bold text-slate-800">Anitas</td>
+                                    <td class="px-6 py-4 text-slate-600">Perempuan</td>
+                                    <td class="px-6 py-4 text-slate-600">Kelas 1 A</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-[#0dcaf0] hover:bg-[#0bacce] text-white w-9 h-8 rounded flex items-center justify-center mx-auto transition-colors shadow-sm" title="Cetak Kartu Member">
+                                            <i class="fa-solid fa-id-badge"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -340,10 +359,36 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Pagination -->
+                    <div class="px-6 py-4 border-t border-slate-100 bg-white flex justify-center">
+                        <ul class="flex items-center -space-x-px shadow-sm rounded-md">
+                            <li>
+                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-l-md font-bold text-lg">
+                                    &laquo;
+                                </button>
+                            </li>
+                            <li>
+                                <button class="w-9 h-9 flex items-center justify-center border border-blue-600 bg-blue-600 text-white font-medium text-sm z-10 relative">
+                                    1
+                                </button>
+                            </li>
+                            <li>
+                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 transition-colors font-medium text-sm">
+                                    2
+                                </button>
+                            </li>
+                            <li>
+                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-r-md font-bold text-lg">
+                                    &raquo;
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="pt-2 pb-6">
-                    <p class="text-[13px] font-semibold text-slate-400">2026 &copy; Perpustakaan Online</p>
+                <div class="pt-2 pb-6 text-center md:text-left">
+                    <p class="text-[13px] font-semibold text-slate-400">2026 &copy; SMARTPERPUS System. All rights reserved.</p>
                 </div>
 
             </div>
@@ -352,7 +397,7 @@
 
     <!-- Script Interaksi Form Dropdown -->
     <script>
-        // Fungsi untuk form Cetak Kartu Anggota
+        // Fungsi untuk filter Cetak Kartu Anggota
         function toggleSubFilterKartu() {
             const kriteria = document.getElementById('filterKriteriaKartu').value;
             const subFilterKelas = document.getElementById('subFilterKelasKartu');
@@ -364,7 +409,7 @@
             }
         }
 
-        // Fungsi untuk form Cetak Laporan Anggota
+        // Fungsi untuk filter Cetak Laporan Anggota
         function toggleSubFilterLaporan() {
             const kriteria = document.getElementById('filterKriteriaLaporan').value;
             const subFilterKelas = document.getElementById('subFilterKelasLaporan');

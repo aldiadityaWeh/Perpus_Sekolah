@@ -2,9 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-// ==========================================
 // 1. ROUTE PUBLIK (FRONT-END)
-// ==========================================
+
 
 // Halaman Beranda
 Route::get('/', function () {
@@ -27,26 +26,21 @@ Route::get('/koleksi', function () {
 })->name('koleksi');
 
 
-// ==========================================
 // 2. ROUTE AUTENTIKASI (LOGIN & REGISTER)
-// ==========================================
 
-// Halaman Login Admin
+// Halaman Login Admin (Mencari ke resources/views/auth/login.blade.php)
 Route::get('/login', function () {
-    return view('login'); // Merujuk ke resources/views/login.blade.php
+    return view('auth.login');
 })->name('login');
 
-// Halaman Register Admin
+// Halaman Register Admin (Mencari ke resources/views/auth/register.blade.php)
 Route::get('/register', function () {
-    return view('register'); // Merujuk ke resources/views/register.blade.php
+    return view('auth.register');
 })->name('register');
 
 
-// ==========================================
+
 // 3. ROUTE PANEL ADMIN (BACK-END)
-// ==========================================
-// Prefix 'admin' membuat semua URL di dalam grup ini diawali dengan /admin/...
-// Catatan: Nanti Anda bisa tambahkan middleware(['auth']) di sini jika fungsi login backend sudah jadi.
 
 Route::prefix('admin')->group(function () {
 

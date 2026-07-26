@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* Animasi muncul dari bawah */
         @keyframes fade-in-up {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -17,8 +18,7 @@
         .animate-fade-in-up {
             animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
+        /* Efek fokus pada ikon input */
         .input-group:focus-within i { color: #2563eb; }
     </style>
 </head>
@@ -42,6 +42,7 @@
         <div class="text-center mb-8">
             <div class="w-16 h-16 rounded-2xl bg-slate-900 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-slate-900/20 relative overflow-hidden">
                 <div class="absolute inset-0 bg-blue-500/20 blur-xl"></div>
+                <!-- Jika ada logo SD, Anda bisa mengganti tag <i> ini dengan tag <img> -->
                 <i class="fa-solid fa-book-open-reader text-blue-400 text-2xl relative z-10"></i>
             </div>
             <h1 class="font-bold text-2xl tracking-wider text-slate-900 mb-1">SMART<span class="text-blue-600">PERPUS</span></h1>
@@ -49,22 +50,23 @@
         </div>
 
         <!-- Notifikasi Error (Disembunyikan default) -->
-        <div id="errorAlert" class="hidden bg-rose-50 border-l-4 border-rose-500 text-rose-700 p-4 rounded-r-lg mb-6 text-sm font-medium items-center gap-3">
+        <div id="errorAlert" class="hidden bg-rose-50 border-l-4 border-rose-500 text-rose-700 p-4 rounded-r-lg mb-6 text-sm font-medium flex items-center gap-3 shadow-sm">
             <i class="fa-solid fa-circle-exclamation text-lg"></i>
             <span>Email atau kata sandi tidak valid.</span>
         </div>
 
         <!-- Form Login -->
-        <form id="loginForm" class="space-y-5">
+        <form id="loginForm" action="/admin/dashboard" method="GET" class="space-y-5">
 
             <!-- Input Email/Username -->
             <div class="space-y-2">
-                <label for="email" class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Email atau Username</label>
+                <label for="email" class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Email Admin</label>
                 <div class="relative input-group">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <i class="fa-solid fa-at text-slate-400 transition-colors"></i>
                     </div>
-                    <input type="text" id="email" name="email" placeholder="admin@sekolah.sch.id" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all shadow-sm" required autofocus>
+                    <!-- Di Laravel: tambahkan name="email" -->
+                    <input type="email" id="email" name="email" placeholder="admin@sdn6ciseureuh.sch.id" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all shadow-sm" required autofocus>
                 </div>
             </div>
 
@@ -78,6 +80,7 @@
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <i class="fa-solid fa-lock text-slate-400 transition-colors"></i>
                     </div>
+                    <!-- Di Laravel: tambahkan name="password" -->
                     <input type="password" id="password" name="password" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-11 pr-12 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all shadow-sm font-medium tracking-wider" required>
 
                     <!-- Toggle Show/Hide Password -->
@@ -89,6 +92,7 @@
 
             <!-- Remember Me -->
             <div class="flex items-center">
+                <!-- Di Laravel: tambahkan name="remember" -->
                 <input type="checkbox" id="remember" name="remember" class="w-4 h-4 text-blue-600 bg-slate-100 border-slate-300 rounded focus:ring-blue-500 cursor-pointer">
                 <label for="remember" class="ml-2 text-sm font-medium text-slate-600 cursor-pointer select-none">Ingat saya di perangkat ini</label>
             </div>
@@ -98,7 +102,7 @@
                 <span id="btnText">Masuk ke Sistem</span>
                 <i id="btnIcon" class="fa-solid fa-arrow-right-to-bracket text-sm group-hover:translate-x-1 transition-transform"></i>
 
-                <!-- Loading Spinner -->
+                <!-- Loading Spinner (Muncul saat di klik) -->
                 <div id="btnSpinner" class="hidden absolute inset-0 bg-blue-700 flex items-center justify-center">
                     <i class="fa-solid fa-circle-notch animate-spin text-xl"></i>
                 </div>
@@ -106,21 +110,13 @@
 
         </form>
 
-        <!-- Tautan Register di Bawah -->
-        <div class="mt-6 text-center">
-            <p class="text-sm text-slate-500 font-medium">
-                Belum punya akun admin?
-                <!-- Jika pakai laravel, ganti menjadi href="register" -->
-                <a href="/register" class="text-blue-600 font-bold hover:underline transition-colors">Register di sini</a>
-            </p>
-        </div>
-
-        <div class="mt-6 text-center border-t border-slate-100 pt-5">
-            <p class="text-xs text-slate-400 font-medium">&copy; 2023 SMARTPERPUS System.</p>
+        <div class="mt-8 text-center border-t border-slate-100 pt-5">
+            <p class="text-xs text-slate-400 font-medium">&copy; 2026 SMARTPERPUS System.</p>
         </div>
 
     </div>
 
+    <!-- SCRIPT INTERAKSI FORM -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const togglePassword = document.getElementById('togglePassword');
@@ -131,13 +127,14 @@
             const btnText = document.getElementById('btnText');
             const btnIcon = document.getElementById('btnIcon');
             const btnSpinner = document.getElementById('btnSpinner');
-            const errorAlert = document.getElementById('errorAlert');
 
-            // Fitur mata pengintip kata sandi
+            // 1. Fitur Toggle Mata (Lihat Kata Sandi)
             togglePassword.addEventListener('click', () => {
+                // Cek tipe saat ini, jika password ubah ke text, jika text ubah ke password
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
 
+                // Ubah ikon Font Awesome
                 if (type === 'text') {
                     eyeIcon.classList.remove('fa-eye');
                     eyeIcon.classList.add('fa-eye-slash');
@@ -147,41 +144,21 @@
                 }
             });
 
-            // Simulasi loading dan login
+            // 2. Simulasi Loading saat Tombol Submit di klik
+            // CATATAN: Hapus kode event listener ini jika Anda sudah mengimplementasikan Auth Laravel yang asli (karena form akan otomatis memproses request ke server).
             loginForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                errorAlert.classList.add('hidden');
+                // e.preventDefault(); // Jangan cegah default agar form bisa berpindah ke /admin/dashboard
 
-                // Animasi Loading
+                // Sembunyikan text dan ikon pada tombol
                 btnText.classList.add('invisible');
                 btnIcon.classList.add('invisible');
+
+                // Tampilkan ikon loading berputar
                 btnSpinner.classList.remove('hidden');
+
+                // Nonaktifkan tombol agar tidak diklik dua kali
                 btnSubmit.classList.add('cursor-not-allowed', 'opacity-90');
                 btnSubmit.disabled = true;
-
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-
-                // Proses pengecekan simulasi selama 1.5 detik
-                setTimeout(() => {
-                    if(email === 'admin@sekolah.sch.id' || password.length >= 6) {
-                        // Jika berhasil (Nanti pakai backend Laravel)
-                        window.location.href = '/admin/dashboard';
-                    } else {
-                        // Jika gagal
-                        errorAlert.classList.remove('hidden');
-                        errorAlert.style.display = 'flex';
-
-                        btnText.classList.remove('invisible');
-                        btnIcon.classList.remove('invisible');
-                        btnSpinner.classList.add('hidden');
-                        btnSubmit.classList.remove('cursor-not-allowed', 'opacity-90');
-                        btnSubmit.disabled = false;
-
-                        passwordInput.value = '';
-                        passwordInput.focus();
-                    }
-                }, 1500);
             });
         });
     </script>

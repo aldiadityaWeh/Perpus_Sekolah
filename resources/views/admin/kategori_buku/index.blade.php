@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         /* Kustomisasi scrollbar */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -22,11 +22,14 @@
 
     <!-- SIDEBAR -->
     <aside class="w-64 bg-[#0f172a] text-slate-300 flex flex-col h-full shadow-2xl shrink-0 transition-all duration-300 z-20">
+
+        <!-- Logo Area (Logo SD) -->
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
-            <i class="fa-solid fa-book-open-reader text-blue-400 text-2xl mr-3 drop-shadow-md"></i>
+            <img src="logo-sd.png" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
             <span class="font-bold text-lg tracking-wider text-white">SMART<span class="text-blue-400">PERPUS</span></span>
         </div>
 
+        <!-- Menu Navigasi Lengkap -->
         <nav class="flex-1 overflow-y-auto py-6 custom-scrollbar">
             <ul class="space-y-1.5 px-3">
                 <li>
@@ -34,8 +37,10 @@
                         <i class="fa-solid fa-gauge-high w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Dashboard
                     </a>
                 </li>
-                
+
+                <!-- Section: Master Data -->
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Master Data</li>
+
                 <li>
                     <a href="/admin/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-book w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Buku
@@ -72,11 +77,43 @@
                         <i class="fa-solid fa-school w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Kelas
                     </a>
                 </li>
-                
+
+                <!-- Section: Transaksi -->
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Transaksi</li>
                 <li>
                     <a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-barcode w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Scan Peminjaman
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/transaksi/pengembalian" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-clipboard-check w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Verifikasi Kembali
+                        </div>
+                        <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">3</span>
+                    </a>
+                </li>
+
+                <!-- Section: Laporan -->
+                <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Laporan</li>
+                <li>
+                    <a href="/admin/laporan/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-address-card w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Laporan Anggota
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/laporan/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-book-open w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Laporan Buku
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/laporan/kas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2 group-hover:text-rose-400 transition-colors"></i> Laporan Kas (Denda)
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/laporan/pengunjung" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-users-viewfinder w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Laporan Pengunjung
                     </a>
                 </li>
             </ul>
@@ -84,14 +121,19 @@
     </aside>
 
     <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative bg-[#f4f7f6]">
-        
+
         <!-- Header Atas -->
         <header class="h-20 bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center justify-between px-8 z-10 shrink-0">
             <div>
+                <!-- Breadcrumb -->
+                <div class="flex items-center text-sm text-slate-500 mb-1 font-semibold gap-2">
+                    <span class="hover:text-blue-600 cursor-pointer transition-colors">Master Data</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    <span class="text-slate-800">Kategori Buku</span>
+                </div>
                 <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Manajemen Kategori Buku</h2>
-                <p class="text-sm text-slate-500 font-medium mt-0.5">Kelola data kategori spesifik dari koleksi perpustakaan.</p>
             </div>
-            
+
             <div class="flex items-center gap-4 md:gap-6">
                 <!-- User Profile -->
                 <div class="flex items-center gap-3 cursor-pointer group">
@@ -108,7 +150,7 @@
         </header>
 
         <main class="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6 custom-scrollbar">
-            
+
             <div class="max-w-[1400px] mx-auto space-y-5">
 
                 <!-- Info Banner -->
@@ -122,23 +164,24 @@
 
                 <!-- MAIN CARD TABEL -->
                 <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
-                    
+
                     <!-- Card Header -->
                     <div class="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-database text-slate-800 text-lg"></i>
-                            <h3 class="font-bold text-slate-800 text-lg">Data</h3>
+                            <h3 class="font-bold text-slate-800 text-lg">Data Kategori</h3>
                         </div>
-                        <!-- Tombol Tambah (+) -->
-                        <a href="/admin/kategori-buku/create" class="bg-[#3b5998] hover:bg-[#2d4373] text-white w-8 h-8 rounded flex items-center justify-center transition-colors shadow-sm text-sm">
+                        <!-- Tombol Tambah (+) Biru Solid -->
+                        <a href="/admin/kategori-buku/create" class="bg-[#3b5998] hover:bg-[#2d4373] text-white w-8 h-8 rounded flex items-center justify-center transition-colors shadow-sm text-sm" title="Tambah Data">
                             <i class="fa-solid fa-plus"></i>
                         </a>
                     </div>
 
                     <!-- Search Bar Area -->
-                    <div class="px-6 py-4 bg-white flex justify-end">
+                    <div class="px-6 py-4 bg-slate-50/50 flex justify-end border-b border-slate-100">
                         <div class="relative w-full md:w-72">
-                            <input type="text" placeholder="Cari Nama Kategori..." class="w-full bg-white border border-slate-300 rounded py-2 px-3 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm placeholder:text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input type="text" placeholder="Cari Nama Kategori..." class="w-full bg-white border border-slate-300 rounded py-2 pl-9 pr-3 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm placeholder:text-slate-400">
                         </div>
                     </div>
 
@@ -146,89 +189,89 @@
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-200/80 text-slate-800 text-[13px] border-y border-slate-300">
-                                    <th class="px-6 py-3.5 font-bold w-16">No</th>
+                                <tr class="bg-slate-200/80 text-slate-800 text-[13px] border-b border-slate-300">
+                                    <th class="px-6 py-3.5 font-bold w-16 text-center">No</th>
                                     <th class="px-6 py-3.5 font-bold">Nama Kategori</th>
                                     <th class="px-6 py-3.5 font-bold w-32 text-center">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-slate-700 text-[13px]">
-                                
+                            <tbody class="text-slate-700 text-[13px] divide-y divide-slate-100">
+
                                 <!-- Baris 1 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">1</td>
-                                    <td class="px-6 py-3 text-slate-600">Umum</td>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="px-6 py-3 font-medium text-slate-500 text-center">1</td>
+                                    <td class="px-6 py-3 font-semibold text-slate-800">Umum</td>
                                     <td class="px-6 py-3">
                                         <div class="flex justify-center gap-1.5">
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm" title="Edit Data">
+                                                <i class="fa-solid fa-pen-to-square text-[13px]"></i>
                                             </button>
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm" title="Hapus Data">
+                                                <i class="fa-solid fa-trash-can text-[13px]"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
 
                                 <!-- Baris 2 -->
-                                <tr class="bg-slate-100/50 hover:bg-slate-100 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">2</td>
-                                    <td class="px-6 py-3 text-slate-600">Buku Pelajaran Pokok</td>
+                                <tr class="bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                                    <td class="px-6 py-3 font-medium text-slate-500 text-center">2</td>
+                                    <td class="px-6 py-3 font-semibold text-slate-800">Buku Pelajaran Pokok</td>
                                     <td class="px-6 py-3">
                                         <div class="flex justify-center gap-1.5">
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm" title="Edit Data">
+                                                <i class="fa-solid fa-pen-to-square text-[13px]"></i>
                                             </button>
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm" title="Hapus Data">
+                                                <i class="fa-solid fa-trash-can text-[13px]"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
 
                                 <!-- Baris 3 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">3</td>
-                                    <td class="px-6 py-3 text-slate-600">Filsafat dan Psikologi</td>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="px-6 py-3 font-medium text-slate-500 text-center">3</td>
+                                    <td class="px-6 py-3 font-semibold text-slate-800">Filsafat dan Psikologi</td>
                                     <td class="px-6 py-3">
                                         <div class="flex justify-center gap-1.5">
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm" title="Edit Data">
+                                                <i class="fa-solid fa-pen-to-square text-[13px]"></i>
                                             </button>
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm" title="Hapus Data">
+                                                <i class="fa-solid fa-trash-can text-[13px]"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
 
                                 <!-- Baris 4 -->
-                                <tr class="bg-slate-100/50 hover:bg-slate-100 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">4</td>
-                                    <td class="px-6 py-3 text-slate-600">Agama</td>
+                                <tr class="bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                                    <td class="px-6 py-3 font-medium text-slate-500 text-center">4</td>
+                                    <td class="px-6 py-3 font-semibold text-slate-800">Agama</td>
                                     <td class="px-6 py-3">
                                         <div class="flex justify-center gap-1.5">
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm" title="Edit Data">
+                                                <i class="fa-solid fa-pen-to-square text-[13px]"></i>
                                             </button>
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm" title="Hapus Data">
+                                                <i class="fa-solid fa-trash-can text-[13px]"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
 
                                 <!-- Baris 5 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">5</td>
-                                    <td class="px-6 py-3 text-slate-600">Sosial</td>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="px-6 py-3 font-medium text-slate-500 text-center">5</td>
+                                    <td class="px-6 py-3 font-semibold text-slate-800">Sosial</td>
                                     <td class="px-6 py-3">
                                         <div class="flex justify-center gap-1.5">
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm" title="Edit Data">
+                                                <i class="fa-solid fa-pen-to-square text-[13px]"></i>
                                             </button>
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
+                                            <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm" title="Hapus Data">
+                                                <i class="fa-solid fa-trash-can text-[13px]"></i>
                                             </button>
                                         </div>
                                     </td>
@@ -238,9 +281,10 @@
                         </table>
                     </div>
                 </div>
-                
-                <div class="pt-2 pb-6">
-                    <p class="text-[13px] font-semibold text-slate-400">2026 &copy; Perpustakaan Online</p>
+
+                <!-- Footer Text -->
+                <div class="pt-2 pb-6 text-center md:text-left">
+                    <p class="text-[13px] font-semibold text-slate-400">2026 &copy; SMARTPERPUS System. All rights reserved.</p>
                 </div>
 
             </div>

@@ -15,13 +15,23 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+
+        /* Menghilangkan panah default pada select dropdown */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
     </style>
 </head>
 <body class="bg-[#f4f7f6] font-sans antialiased text-slate-800 flex h-screen overflow-hidden selection:bg-blue-200 selection:text-blue-900">
 
+    <!-- SIDEBAR -->
     <aside class="w-64 bg-[#0f172a] text-slate-300 flex flex-col h-full shadow-2xl shrink-0 transition-all duration-300 z-20">
+
+        <!-- Logo Area -->
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
-            <i class="fa-solid fa-book-open-reader text-blue-400 text-2xl mr-3 drop-shadow-md"></i>
+            <img src="logo-sd.png" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
             <span class="font-bold text-lg tracking-wider text-white">SMART<span class="text-blue-400">PERPUS</span></span>
         </div>
 
@@ -34,6 +44,7 @@
                 </li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Master Data</li>
+
                 <li>
                     <a href="/admin/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-book w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Buku
@@ -71,32 +82,37 @@
                 </li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Transaksi</li>
+
                 <li>
                     <a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-barcode w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Scan Peminjaman
                     </a>
                 </li>
+
                 <li>
                     <a href="/admin/transaksi/pengembalian" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between">
                         <div class="flex items-center">
                             <i class="fa-solid fa-clipboard-check w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Verifikasi Kembali
                         </div>
+                        <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">3</span>
                     </a>
                 </li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Laporan</li>
-                <!-- Laporan Anggota -->
+
                 <li>
                     <a href="/admin/laporan/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-address-card w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Laporan Anggota
                     </a>
                 </li>
+
                 <!-- Laporan Buku Active -->
                 <li>
                     <a href="/admin/laporan/buku" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
                         <i class="fa-solid fa-book-open w-6 text-center mr-2"></i> Laporan Buku
                     </a>
                 </li>
+
                 <li>
                     <a href="/admin/laporan/kas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2 group-hover:text-rose-400 transition-colors"></i> Laporan Kas (Denda)
@@ -111,20 +127,18 @@
         </nav>
     </aside>
 
-    <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative">
+    <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative bg-[#f4f7f6]">
 
-        <!-- HEADER (Konsisten: Judul di kiri, Profil di kanan tanpa notif/logout) -->
+        <!-- HEADER -->
         <header class="h-20 bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center justify-between px-8 z-10 shrink-0">
             <div>
-                <!-- Judul dan Breadcrumb menyesuaikan referensi -->
+                <!-- Breadcrumb -->
                 <div class="flex items-center text-sm text-slate-500 mb-1 font-semibold gap-2">
-                    <span class="hover:text-blue-600 cursor-pointer transition-colors">Dashboard</span>
+                    <span class="hover:text-blue-600 cursor-pointer transition-colors">Laporan</span>
                     <i class="fa-solid fa-chevron-right text-[10px]"></i>
                     <span class="text-slate-800">Laporan Buku</span>
                 </div>
-                <h2 class="text-2xl font-bold text-slate-800 tracking-tight leading-none">
-                    <i class="fa-solid fa-book-open mr-1"></i> Laporan Buku
-                </h2>
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight leading-none">Laporan & Katalog Buku</h2>
             </div>
 
             <div class="flex items-center gap-4 md:gap-6">
@@ -147,39 +161,133 @@
             <div class="max-w-[1400px] mx-auto space-y-6">
 
                 <!-- Info Banner -->
-                <div class="bg-[#4eb4f5] text-white rounded p-4 shadow-sm border border-[#3ba0de]">
-                    <div class="flex items-center gap-2 mb-1">
+                <div class="bg-[#4eb4f5] text-white rounded-lg p-5 shadow-sm border border-[#3ba0de] flex flex-col justify-center">
+                    <div class="flex items-center gap-2 mb-1.5">
                         <i class="fa-solid fa-circle-info text-xl opacity-90"></i>
-                        <h3 class="font-bold text-lg">Informasi</h3>
+                        <h3 class="font-bold text-xl">Informasi</h3>
                     </div>
-                    <p class="text-[13px] text-white/90">Berikut ini adalah data <strong>LAPORAN BUKU</strong> yang sudah tersimpan dalam database.</p>
+                    <p class="text-sm text-white/90">Berikut ini adalah data rekapitulasi <strong>KATALOG BUKU PERPUSTAKAAN</strong>. Anda dapat mencetak rekap data koleksi maupun mencetak label/barcode punggung buku secara massal.</p>
                 </div>
 
-                <!-- Card Cetak Label -->
-                <div class="bg-white rounded border border-slate-200 shadow-sm flex flex-col">
-                    <div class="px-5 py-4 border-b border-slate-100 flex items-center gap-2 bg-white">
-                        <i class="fa-solid fa-file-lines text-slate-800 text-lg"></i>
-                        <h3 class="font-bold text-slate-800">Cetak</h3>
+                <!-- Grid Cetak Card -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- Card 1: Cetak Barcode/Label Buku -->
+                    <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                        <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-white">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-barcode text-slate-700 text-lg"></i>
+                                <h3 class="font-bold text-slate-800">Cetak Label Barcode Buku</h3>
+                            </div>
+                            <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center text-sm shadow-sm transition-colors cursor-pointer" title="Cetak Semua Barcode">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </button>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-center space-y-4 bg-slate-50/30">
+                            <!-- Dropdown Utama -->
+                            <div class="relative w-full">
+                                <label class="text-xs font-semibold text-slate-500 mb-1.5 block">Kriteria Cetak Label</label>
+                                <select id="filterKriteriaLabel" onchange="toggleSubFilterLabel()" class="w-full bg-white border border-slate-300 rounded py-2.5 px-4 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm">
+                                    <option value="" disabled selected>- Pilih Berdasarkan -</option>
+                                    <option value="semua">Seluruh Koleksi Buku</option>
+                                    <option value="kategori">Pilih Per Kategori Buku</option>
+                                    <option value="ddc">Pilih Per Klasifikasi DDC</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 top-[22px] flex items-center px-4 pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+
+                            <!-- Dropdown Sub: Pilih Kategori -->
+                            <div id="subFilterKategoriLabel" class="relative w-full hidden">
+                                <select class="w-full bg-emerald-50/50 border border-emerald-300 rounded py-2.5 px-4 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer shadow-sm">
+                                    <option value="" disabled selected>- Pilih Kategori -</option>
+                                    <option value="umum">Buku Teks Umum</option>
+                                    <option value="pelajaran">Buku Pelajaran Pokok</option>
+                                    <option value="referensi">Referensi (Kamus, Ensiklopedia)</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-6 py-4 bg-white border-t border-slate-100 flex gap-2 justify-end">
+                            <button class="bg-[#198754] hover:bg-[#157347] text-white px-5 py-2 rounded shadow-sm transition-colors flex items-center gap-2 font-medium text-sm">
+                                <i class="fa-solid fa-print"></i> Generate Label
+                            </button>
+                        </div>
                     </div>
-                    <div class="p-5 flex items-center">
-                        <button class="bg-[#198754] hover:bg-[#157347] text-white px-4 py-2 rounded text-sm font-medium shadow-sm transition-colors flex items-center gap-2">
-                            <i class="fa-solid fa-tags"></i> Cetak Label Buku Keseluruhan
-                        </button>
+
+                    <!-- Card 2: Cetak Laporan Rekap Buku -->
+                    <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                        <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-white">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-file-lines text-slate-700 text-lg"></i>
+                                <h3 class="font-bold text-slate-800">Cetak Laporan Inventaris Buku</h3>
+                            </div>
+                            <!-- Tombol Cetak Semua di Header -->
+                            <div class="flex gap-2">
+                                <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center text-sm shadow-sm transition-colors cursor-pointer" title="Cetak Semua Laporan (PDF)">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                </button>
+                                <button class="w-8 h-8 rounded bg-[#198754] hover:bg-[#157347] text-white flex items-center justify-center text-sm shadow-sm transition-colors cursor-pointer" title="Cetak Semua Laporan (Excel)">
+                                    <i class="fa-solid fa-file-excel"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-center space-y-4 bg-slate-50/30">
+                            <!-- Dropdown Utama -->
+                            <div class="relative w-full">
+                                <label class="text-xs font-semibold text-slate-500 mb-1.5 block">Kriteria Laporan Buku</label>
+                                <select id="filterKriteriaLaporan" onchange="toggleSubFilterLaporan()" class="w-full bg-white border border-slate-300 rounded py-2.5 px-4 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer shadow-sm">
+                                    <option value="" disabled selected>- Pilih Berdasarkan -</option>
+                                    <option value="semua">Semua Inventaris</option>
+                                    <option value="kategori">Pilih Per Kategori Buku</option>
+                                    <option value="sumber">Pilih Per Sumber (Asal Buku)</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 top-[22px] flex items-center px-4 pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+
+                            <!-- Dropdown Sub: Pilih Kategori -->
+                            <div id="subFilterKategoriLaporan" class="relative w-full hidden">
+                                <select class="w-full bg-emerald-50/50 border border-emerald-300 rounded py-2.5 px-4 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer shadow-sm">
+                                    <option value="" disabled selected>- Pilih Kategori Laporan -</option>
+                                    <option value="umum">Buku Teks Umum</option>
+                                    <option value="pelajaran">Buku Pelajaran Pokok</option>
+                                    <option value="referensi">Referensi</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-6 py-4 bg-white border-t border-slate-100 flex gap-2 justify-end">
+                            <button class="bg-[#dc3545] hover:bg-[#c82333] text-white px-5 py-2 rounded shadow-sm transition-colors flex items-center gap-2 font-medium text-sm">
+                                <i class="fa-solid fa-file-pdf"></i> Export PDF
+                            </button>
+                            <button class="bg-[#198754] hover:bg-[#157347] text-white px-5 py-2 rounded shadow-sm transition-colors flex items-center gap-2 font-medium text-sm">
+                                <i class="fa-solid fa-file-excel"></i> Export Excel
+                            </button>
+                        </div>
                     </div>
+
                 </div>
 
                 <!-- MAIN CARD TABEL -->
-                <div class="bg-white rounded border border-slate-200 overflow-hidden">
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden mt-6">
 
-                    <div class="px-5 py-4 flex items-center justify-between border-b border-slate-100 bg-white">
-                        <div class="flex items-center gap-2">
+                    <div class="px-6 py-4 flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 bg-white gap-4">
+                        <div class="flex items-center gap-3">
                             <i class="fa-solid fa-database text-slate-800 text-lg"></i>
-                            <h3 class="font-bold text-slate-800 text-lg">Data Buku</h3>
+                            <h3 class="font-bold text-slate-800 text-lg">Data Katalog & Inventaris Buku</h3>
                         </div>
 
-                        <!-- Search Bar (Sesuai Referensi, di kanan header tabel) -->
-                        <div class="relative w-full md:w-64">
-                            <input type="text" value="ge" class="w-full bg-white border border-blue-300 rounded py-1.5 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 shadow-[0_0_0_2px_rgba(59,130,246,0.1)]">
+                        <!-- Search Bar -->
+                        <div class="relative w-full md:w-80">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input type="text" placeholder="Cari Kode / Judul Buku..." class="w-full bg-slate-50 border border-slate-300 rounded py-2 pl-9 pr-3 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm placeholder:text-slate-400">
                         </div>
                     </div>
 
@@ -187,39 +295,79 @@
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-slate-200/80 text-slate-800 text-[13px] border-y border-slate-300">
-                                    <th class="px-5 py-3 font-bold w-12 text-center">No</th>
-                                    <th class="px-5 py-3 font-bold text-center">QR<br>Code</th>
-                                    <th class="px-5 py-3 font-bold w-1/3">Judul Buku</th>
-                                    <th class="px-5 py-3 font-bold">Pengarang</th>
-                                    <th class="px-5 py-3 font-bold">Penerbit</th>
-                                    <th class="px-5 py-3 font-bold text-center">Tahun</th>
-                                    <th class="px-5 py-3 font-bold text-center">Gambar</th>
-                                    <th class="px-5 py-3 font-bold text-center">Aksi</th>
+                                <tr class="bg-slate-100/80 text-slate-500 text-[11px] uppercase tracking-widest border-b border-slate-200">
+                                    <th class="px-6 py-4 font-bold text-center w-16">No</th>
+                                    <th class="px-6 py-4 font-bold">Kode / QR</th>
+                                    <th class="px-6 py-4 font-bold">Judul Buku</th>
+                                    <th class="px-6 py-4 font-bold">Kategori</th>
+                                    <th class="px-6 py-4 font-bold text-center">Stok</th>
+                                    <th class="px-6 py-4 font-bold text-center w-28">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="text-slate-700 text-[13px] divide-y divide-slate-100">
 
-                                <!-- Baris Data 1 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors">
-                                    <td class="px-5 py-3 text-center text-slate-600 font-medium">20</td>
-                                    <td class="px-5 py-3 text-center">
-                                        <!-- Dummy QR Code -->
-                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=BK-2020" alt="QR Code" class="w-10 h-10 mx-auto mix-blend-multiply">
+                                <!-- Baris 1 -->
+                                <tr class="hover:bg-slate-50 transition-colors group">
+                                    <td class="px-6 py-4 text-center font-medium text-slate-500">1</td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-mono text-slate-800 font-bold mb-1">BK-40012</div>
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=BK-40012" alt="QR Code" class="w-10 h-10 mix-blend-multiply border border-slate-200 p-0.5 rounded bg-white">
                                     </td>
-                                    <td class="px-5 py-3 text-slate-800">
-                                        Aplikasi Penginderaan Jauh dan Sistem Informasi Geografis Untuk Pemodelan dan Pemetaan Data Biofisik
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-800 mb-0.5 line-clamp-1">Buku Siswa Tema 1: Indahnya Kebersamaan</div>
+                                        <div class="text-[11px] text-slate-500 font-medium">Pengarang: Kemendikbud | Tahun: 2017</div>
                                     </td>
-                                    <td class="px-5 py-3 text-slate-600">Wirastuti Widyatmanti, Sigit Heru Murti, Prima Wid</td>
-                                    <td class="px-5 py-3 text-slate-600">UGM PRESS</td>
-                                    <td class="px-5 py-3 text-center text-slate-600">2020</td>
-                                    <td class="px-5 py-3 text-center">
-                                        <!-- Thumbnail Buku -->
-                                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=150&q=80" alt="Cover" class="w-10 h-14 object-cover mx-auto border border-slate-200 shadow-sm">
+                                    <td class="px-6 py-4 text-slate-600">Buku Pelajaran Pokok</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span class="bg-blue-50 text-blue-600 font-bold px-2 py-1 rounded">35</span>
                                     </td>
-                                    <td class="px-5 py-3 text-center">
-                                        <button class="w-8 h-7 rounded bg-[#198754] hover:bg-[#157347] text-white flex items-center justify-center mx-auto transition-colors shadow-sm" title="Cetak Label Buku">
-                                            <i class="fa-solid fa-tags text-[11px]"></i>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-[#198754] hover:bg-[#157347] text-white w-9 h-8 rounded flex items-center justify-center mx-auto transition-colors shadow-sm tooltip" title="Cetak Label Buku">
+                                            <i class="fa-solid fa-tags"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Baris 2 -->
+                                <tr class="hover:bg-slate-50 transition-colors group">
+                                    <td class="px-6 py-4 text-center font-medium text-slate-500">2</td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-mono text-slate-800 font-bold mb-1">BK-60084</div>
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=BK-60084" alt="QR Code" class="w-10 h-10 mix-blend-multiply border border-slate-200 p-0.5 rounded bg-white">
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-800 mb-0.5 line-clamp-1">Senang Belajar Matematika SD/MI</div>
+                                        <div class="text-[11px] text-slate-500 font-medium">Pengarang: Puskurbuk | Tahun: 2018</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-600">Buku Pelajaran Pokok</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span class="bg-blue-50 text-blue-600 font-bold px-2 py-1 rounded">20</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-[#198754] hover:bg-[#157347] text-white w-9 h-8 rounded flex items-center justify-center mx-auto transition-colors shadow-sm tooltip" title="Cetak Label Buku">
+                                            <i class="fa-solid fa-tags"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <!-- Baris 3 -->
+                                <tr class="hover:bg-slate-50 transition-colors group">
+                                    <td class="px-6 py-4 text-center font-medium text-slate-500">3</td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-mono text-slate-800 font-bold mb-1">BK-00192</div>
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=BK-00192" alt="QR Code" class="w-10 h-10 mix-blend-multiply border border-slate-200 p-0.5 rounded bg-white">
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-slate-800 mb-0.5 line-clamp-1">Kamus Pintar Bergambar (Bilingual)</div>
+                                        <div class="text-[11px] text-slate-500 font-medium">Pengarang: Tim Erlangga | Tahun: 2020</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-600">Referensi</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span class="bg-blue-50 text-blue-600 font-bold px-2 py-1 rounded">5</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="bg-[#198754] hover:bg-[#157347] text-white w-9 h-8 rounded flex items-center justify-center mx-auto transition-colors shadow-sm tooltip" title="Cetak Label Buku">
+                                            <i class="fa-solid fa-tags"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -228,27 +376,26 @@
                         </table>
                     </div>
 
-                    <!-- Pagination (Sesuai Referensi) -->
-                    <div class="px-5 py-4 border-t border-slate-100 bg-white flex justify-center">
-                        <ul class="flex items-center -space-x-px">
+                    <!-- Pagination -->
+                    <div class="px-6 py-4 border-t border-slate-100 bg-white flex justify-center">
+                        <ul class="flex items-center -space-x-px shadow-sm rounded-md">
                             <li>
-                                <button class="w-8 h-8 flex items-center justify-center bg-white border border-slate-300 text-slate-400 hover:bg-slate-50 transition-colors text-sm">
+                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-l-md font-bold text-lg">
                                     &laquo;
                                 </button>
                             </li>
                             <li>
-                                <button class="w-8 h-8 flex items-center justify-center bg-white border border-slate-300 text-slate-500 hover:bg-slate-50 transition-colors text-sm font-medium">
+                                <button class="w-9 h-9 flex items-center justify-center border border-blue-600 bg-blue-600 text-white font-medium text-sm z-10 relative">
                                     1
                                 </button>
                             </li>
                             <li>
-                                <!-- Halaman Aktif Biru -->
-                                <button class="w-8 h-8 flex items-center justify-center bg-[#3b5998] border border-[#3b5998] text-white text-sm font-medium">
+                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 transition-colors font-medium text-sm">
                                     2
                                 </button>
                             </li>
                             <li>
-                                <button class="w-8 h-8 flex items-center justify-center bg-white border border-slate-300 text-slate-400 hover:bg-slate-50 transition-colors text-sm">
+                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-r-md font-bold text-lg">
                                     &raquo;
                                 </button>
                             </li>
@@ -256,13 +403,39 @@
                     </div>
                 </div>
 
-                <div class="pt-2 pb-6">
-                    <p class="text-[13px] font-semibold text-slate-400">2026 &copy; Perpustakaan Online</p>
+                <div class="pt-2 pb-6 text-center md:text-left">
+                    <p class="text-[13px] font-semibold text-slate-400">2026 &copy; SMARTPERPUS System. All rights reserved.</p>
                 </div>
 
             </div>
         </main>
     </div>
 
+    <!-- Script Interaksi Form Dropdown -->
+    <script>
+        // Fungsi untuk filter Cetak Label Barcode Buku
+        function toggleSubFilterLabel() {
+            const kriteria = document.getElementById('filterKriteriaLabel').value;
+            const subFilterKategori = document.getElementById('subFilterKategoriLabel');
+
+            if (kriteria === 'kategori') {
+                subFilterKategori.classList.remove('hidden');
+            } else {
+                subFilterKategori.classList.add('hidden');
+            }
+        }
+
+        // Fungsi untuk filter Cetak Laporan Inventaris Buku
+        function toggleSubFilterLaporan() {
+            const kriteria = document.getElementById('filterKriteriaLaporan').value;
+            const subFilterKategori = document.getElementById('subFilterKategoriLaporan');
+
+            if (kriteria === 'kategori') {
+                subFilterKategori.classList.remove('hidden');
+            } else {
+                subFilterKategori.classList.add('hidden');
+            }
+        }
+    </script>
 </body>
 </html>

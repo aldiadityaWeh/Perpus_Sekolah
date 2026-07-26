@@ -18,23 +18,23 @@
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans antialiased text-gray-800 flex h-screen overflow-hidden selection:bg-blue-200 selection:text-blue-900">
+<body class="bg-slate-50 font-sans antialiased text-slate-800 flex h-screen overflow-hidden selection:bg-blue-200 selection:text-blue-900">
 
     <!-- SIDEBAR -->
     <aside class="w-64 bg-[#0f172a] text-slate-300 flex flex-col h-full shadow-2xl shrink-0 transition-all duration-300 z-20">
 
-        <!-- Logo Area -->
+        <!-- Logo Area (Diperbarui menggunakan Logo SD) -->
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
-            <i class="fa-solid fa-book-open-reader text-blue-400 text-2xl mr-3 drop-shadow-md"></i>
+            <img src="logo-sd.png" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
             <span class="font-bold text-lg tracking-wider text-white">SMART<span class="text-blue-400">PERPUS</span></span>
         </div>
 
-        <!-- Menu Navigasi -->
+        <!-- Menu Navigasi Lengkap -->
         <nav class="flex-1 overflow-y-auto py-6 custom-scrollbar">
             <ul class="space-y-1.5 px-3">
                 <!-- Dashboard Active -->
                 <li>
-                    <a href="#" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
+                    <a href="/admin/dashboard" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
                         <i class="fa-solid fa-gauge-high w-6 text-center mr-2"></i> Dashboard
                     </a>
                 </li>
@@ -42,18 +42,37 @@
                 <!-- Section: Master Data -->
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Master Data</li>
                 <li>
-                    <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-book w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Buku
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/ddc" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-list-ol w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Klasifikasi DDC
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/sumber-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-boxes-packing w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Sumber Buku
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/jenis-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-bookmark w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Jenis Buku
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/kategori-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-tags w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Kategori Buku
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-users w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Anggota
                     </a>
                 </li>
-                <!-- Menu Baru: Data Kelas -->
                 <li>
-                    <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/kelas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-school w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Kelas
                     </a>
                 </li>
@@ -61,29 +80,39 @@
                 <!-- Section: Transaksi -->
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Transaksi</li>
                 <li>
-                    <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-barcode w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Scan Peminjaman
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between">
+                    <a href="/admin/transaksi/pengembalian" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between">
                         <div class="flex items-center">
                             <i class="fa-solid fa-clipboard-check w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Verifikasi Kembali
                         </div>
-                        <span class="bg-red-500/10 text-red-400 border border-red-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">3</span>
+                        <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">3</span>
                     </a>
                 </li>
 
                 <!-- Section: Laporan -->
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Laporan</li>
                 <li>
-                    <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-chart-pie w-6 text-center mr-2 group-hover:text-purple-400 transition-colors"></i> Laporan Bulanan
+                    <a href="/admin/laporan/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-address-card w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Laporan Anggota
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2 group-hover:text-rose-400 transition-colors"></i> Laporan Denda
+                    <a href="/admin/laporan/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-book-open w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Laporan Buku
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/laporan/kas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2 group-hover:text-rose-400 transition-colors"></i> Laporan Kas (Denda)
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/laporan/pengunjung" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-users-viewfinder w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Laporan Pengunjung
                     </a>
                 </li>
             </ul>
@@ -97,23 +126,22 @@
         <header class="h-20 bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center justify-between px-8 z-10 shrink-0">
             <div>
                 <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Dashboard Overview</h2>
-                <p class="text-sm text-slate-500 font-medium mt-0.5">Ringkasan aktivitas hari ini.</p>
+                <p class="text-sm text-slate-500 font-medium mt-0.5">Ringkasan aktivitas sirkulasi hari ini.</p>
             </div>
 
             <div class="flex items-center gap-4 md:gap-6">
                 <!-- Search Bar -->
                 <div class="hidden md:flex relative text-slate-400 focus-within:text-blue-500">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2"></i>
-                    <input type="text" placeholder="Cari buku, anggota..." class="bg-slate-100 border-none rounded-full py-2 pl-10 pr-4 text-sm w-64 focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all text-slate-700">
+                    <input type="text" placeholder="Cari buku, anggota..." class="bg-slate-100 border-none rounded-full py-2 pl-10 pr-4 text-sm w-64 focus:ring-2 focus:ring-blue-500/20 focus:bg-white transition-all text-slate-700 outline-none">
                 </div>
 
                 <!-- Notification Bell -->
                 <button class="relative text-slate-400 hover:text-blue-500 transition-colors">
                     <i class="fa-solid fa-bell text-xl"></i>
-                    <!-- Notification Dot -->
                     <span class="absolute top-0 -right-0.5 flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 border-2 border-white"></span>
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-rose-500 border-2 border-white"></span>
                     </span>
                 </button>
 
@@ -127,7 +155,7 @@
                 <div class="flex items-center gap-3 pl-4 md:pl-6 border-l border-slate-200 cursor-pointer group">
                     <div class="relative shrink-0">
                         <img src="https://ui-avatars.com/api/?name=Admin+Perpus&background=0f172a&color=fff&bold=true" alt="Admin" class="w-10 h-10 rounded-full ring-2 ring-slate-100 group-hover:ring-blue-200 transition-all object-cover">
-                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></div>
                     </div>
                     <div class="hidden sm:block">
                         <p class="text-sm font-bold text-slate-700 group-hover:text-blue-600 transition-colors">Budi Santoso</p>
@@ -157,7 +185,7 @@
                             <p class="text-sm text-slate-500 font-medium mb-0.5">Total Koleksi Buku</p>
                             <div class="flex items-baseline gap-2">
                                 <p class="text-2xl font-bold text-slate-800">1,248</p>
-                                <span class="text-xs font-bold text-emerald-500 bg-emerald-50 px-1.5 py-0.5 rounded">+12 mg ini</span>
+                                <span class="text-xs font-bold text-emerald-500 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100">+12 br ini</span>
                             </div>
                         </div>
                     </div>
@@ -218,6 +246,16 @@
                 </div>
             </div>
 
+            <!-- Quick Actions -->
+            <div class="flex flex-wrap gap-4 mb-6">
+                <a href="/admin/transaksi/peminjaman" class="bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 px-5 rounded-xl shadow-sm transition-colors text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-barcode text-emerald-400"></i> Scan Peminjaman Baru
+                </a>
+                <a href="/admin/buku/create" class="bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700 font-medium py-2.5 px-5 rounded-xl shadow-sm transition-colors text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-plus text-blue-500"></i> Tambah Koleksi Buku
+                </a>
+            </div>
+
             <!-- TABEL TRANSAKSI TERBARU -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
 
@@ -255,12 +293,12 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="font-semibold text-slate-800 text-sm">Matematika Diskrit</div>
-                                    <div class="text-[11px] text-slate-500 mt-0.5">BK-99212</div>
+                                    <div class="font-semibold text-slate-800 text-sm line-clamp-1">Matematika Diskrit</div>
+                                    <div class="text-[11px] text-slate-500 mt-0.5 font-mono">BK-99212</div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="text-xs text-slate-600"><span class="text-slate-400 w-12 inline-block">Pinjam:</span> 12 Nov 2023</div>
-                                    <div class="text-xs text-rose-600 font-semibold mt-1"><span class="text-rose-400 w-12 inline-block">Batas:</span> 19 Nov 2023 <span class="bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded text-[10px] ml-1">Telat</span></div>
+                                    <div class="text-xs text-slate-600"><span class="text-slate-400 w-12 inline-block">Pinjam:</span> 12 Jul 2026</div>
+                                    <div class="text-xs text-rose-600 font-semibold mt-1"><span class="text-rose-400 w-12 inline-block">Batas:</span> 19 Jul 2026 <span class="bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded text-[10px] ml-1">Telat</span></div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-50 border border-amber-200 text-amber-700 rounded-lg text-xs font-bold">
@@ -268,9 +306,9 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 text-right">
-                                    <button class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors">
+                                    <a href="/admin/transaksi/pengembalian" class="inline-block bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-sm transition-colors border border-transparent">
                                         Verifikasi
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
 
@@ -286,12 +324,12 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="font-semibold text-slate-800 text-sm">Laskar Pelangi</div>
-                                    <div class="text-[11px] text-slate-500 mt-0.5">BK-88321</div>
+                                    <div class="font-semibold text-slate-800 text-sm line-clamp-1">Dongeng Kancil</div>
+                                    <div class="text-[11px] text-slate-500 mt-0.5 font-mono">BK-88321</div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="text-xs text-slate-600"><span class="text-slate-400 w-12 inline-block">Pinjam:</span> 18 Nov 2023</div>
-                                    <div class="text-xs text-emerald-600 font-semibold mt-1"><span class="text-emerald-400 w-12 inline-block">Batas:</span> 25 Nov 2023</div>
+                                    <div class="text-xs text-slate-600"><span class="text-slate-400 w-12 inline-block">Pinjam:</span> 20 Jul 2026</div>
+                                    <div class="text-xs text-emerald-600 font-semibold mt-1"><span class="text-emerald-400 w-12 inline-block">Batas:</span> 27 Jul 2026</div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 border border-blue-200 text-blue-700 rounded-lg text-xs font-bold">
@@ -304,13 +342,14 @@
                                     </button>
                                 </td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
             </div>
 
             <div class="mt-8 text-center text-xs text-slate-400 font-medium">
-                &copy; 2023 SMARTPERPUS System. All rights reserved.
+                &copy; 2026 SMARTPERPUS System. All rights reserved.
             </div>
 
         </main>
@@ -342,7 +381,7 @@
                     <i class="fa-solid fa-robot text-sm"></i>
                 </div>
                 <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-sm text-slate-700">
-                    Halo, Admin! Saya SMART AI. Ada yang bisa saya bantu?
+                    Halo, Admin! Saya SMART AI. Ada yang bisa saya bantu hari ini?
                 </div>
             </div>
         </div>
@@ -437,7 +476,7 @@
             const loadingId = appendLoading();
 
             try {
-                // Konfigurasi Gemini API (Biarkan apiKey kosong untuk injeksi environment otomatis)
+                // Biarkan string API key kosong untuk injeksi otomatis environment di framework
                 const apiKey = "";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
 
