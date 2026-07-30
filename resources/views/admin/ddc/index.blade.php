@@ -25,7 +25,7 @@
 
         <!-- Logo Area (Logo SD) -->
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
-            <img src="logo-sd.png" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
+            <img src="{{ asset('images/logo-sd.png') }}" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
             <span class="font-bold text-lg tracking-wider text-white">SMART<span class="text-blue-400">PERPUS</span></span>
         </div>
 
@@ -143,7 +143,15 @@
 
             <div class="max-w-[1400px] mx-auto space-y-5">
 
-                <!-- Info Banner (Sesuai Referensi) -->
+                <!-- Alert Sukses (jika ada *flash session* dari controller) -->
+                @if (session('success'))
+                    <div class="bg-emerald-50 border-l-4 border-emerald-500 text-emerald-700 p-4 rounded shadow-sm flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-xl"></i>
+                        <span class="font-medium">{{ session('success') }}</span>
+                    </div>
+                @endif
+
+                <!-- Info Banner -->
                 <div class="bg-[#4eb4f5] text-white rounded-lg p-5 shadow-sm border border-[#3ba0de]">
                     <div class="flex items-center gap-2 mb-2">
                         <i class="fa-solid fa-circle-info text-xl opacity-90"></i>
@@ -155,7 +163,7 @@
                 <!-- MAIN CARD TABEL -->
                 <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
 
-                    <!-- Card Header (Sesuai Gambar) -->
+                    <!-- Card Header -->
                     <div class="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-database text-slate-800 text-lg"></i>
@@ -167,7 +175,7 @@
                         </a>
                     </div>
 
-                    <!-- Search Bar Area (Sesuai Gambar: Kanan Atas Tabel) -->
+                    <!-- Search Bar Area -->
                     <div class="px-6 py-4 bg-white flex justify-end">
                         <div class="relative w-full md:w-72">
                             <input type="text" placeholder="Cari kode DDC / kategori..." class="w-full bg-white border border-slate-300 rounded py-2 px-3 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm placeholder:text-slate-400">
@@ -179,103 +187,65 @@
                         <table class="w-full text-left border-collapse">
                             <thead>
                                 <tr class="bg-slate-200/80 text-slate-800 text-[13px] border-y border-slate-300">
-                                    <th class="px-6 py-3.5 font-bold w-16">No</th>
+                                    <th class="px-6 py-3.5 font-bold w-16 text-center">No</th>
                                     <th class="px-6 py-3.5 font-bold w-32">Kode DDC</th>
                                     <th class="px-6 py-3.5 font-bold">Kategori</th>
+                                    <th class="px-6 py-3.5 font-bold w-40">Warna Label</th>
                                     <th class="px-6 py-3.5 font-bold w-32 text-center">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-slate-700 text-[13px]">
+                            <tbody class="text-slate-700 text-[13px]" id="tableBody">
 
-                                <!-- Baris 1 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">1</td>
-                                    <td class="px-6 py-3">000</td>
-                                    <td class="px-6 py-3 text-slate-600">Komputer, Informasi, & Karya Umum</td>
-                                    <td class="px-6 py-3">
-                                        <div class="flex justify-center gap-1.5">
-                                            <!-- Tombol Kuning (Edit) -->
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm" title="Edit Data">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
-                                            </button>
-                                            <!-- Tombol Merah (Hapus) -->
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm" title="Hapus Data">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @forelse ($data_ddc as $index => $item)
+                                    <!-- Logika untuk membuat baris *striped* selang-seling -->
+                                    <tr class="border-b border-slate-100 transition-colors {{ $loop->iteration % 2 == 0 ? 'bg-slate-100/50 hover:bg-slate-100' : 'bg-white hover:bg-slate-50' }}">
 
-                                <!-- Baris 2 (Gaya Striped Abu-abu) -->
-                                <tr class="bg-slate-100/50 hover:bg-slate-100 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">2</td>
-                                    <td class="px-6 py-3">111</td>
-                                    <td class="px-6 py-3 text-slate-600">Fiksi</td>
-                                    <td class="px-6 py-3">
-                                        <div class="flex justify-center gap-1.5">
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
-                                            </button>
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <!-- Nomor Urut -->
+                                        <td class="px-6 py-3 text-center font-medium text-slate-500">{{ $index + 1 }}</td>
 
-                                <!-- Baris 3 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">3</td>
-                                    <td class="px-6 py-3">500</td>
-                                    <td class="px-6 py-3 text-slate-600">Sains & Matematika</td>
-                                    <td class="px-6 py-3">
-                                        <div class="flex justify-center gap-1.5">
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
-                                            </button>
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <!-- Kode DDC -->
+                                        <td class="px-6 py-3 font-bold text-slate-800">{{ $item->kode_ddc }}</td>
 
-                                <!-- Baris 4 (Gaya Striped Abu-abu) -->
-                                <tr class="bg-slate-100/50 hover:bg-slate-100 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">4</td>
-                                    <td class="px-6 py-3">100</td>
-                                    <td class="px-6 py-3 text-slate-600">Filsafat dan Psikologi</td>
-                                    <td class="px-6 py-3">
-                                        <div class="flex justify-center gap-1.5">
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
-                                            </button>
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <!-- Kategori -->
+                                        <td class="px-6 py-3 text-slate-600">{{ $item->kategori }}</td>
 
-                                <!-- Baris 5 -->
-                                <tr class="bg-white hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-3 font-medium text-slate-500">5</td>
-                                    <td class="px-6 py-3">200</td>
-                                    <td class="px-6 py-3 text-slate-600">Agama</td>
-                                    <td class="px-6 py-3">
-                                        <div class="flex justify-center gap-1.5">
-                                            <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[11px]"></i>
-                                            </button>
-                                            <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[11px]"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        <!-- Warna Label -->
+                                        <td class="px-6 py-3">
+                                            <div class="flex items-center gap-2">
+                                                <span class="w-5 h-5 rounded-full border border-slate-200 shadow-sm" style="background-color: {{ $item->warna_label }};"></span>
+                                                <span class="text-xs font-mono text-slate-500 uppercase">{{ $item->warna_label }}</span>
+                                            </div>
+                                        </td>
+
+                                        <!-- Tombol Aksi (Tampilan dummy, fungsi akan ditambahkan kemudian jika diperlukan) -->
+                                        <td class="px-6 py-3">
+                                            <div class="flex justify-center gap-1.5">
+                                                <button class="w-7 h-7 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm" title="Edit Data">
+                                                    <i class="fa-solid fa-pen-to-square text-[11px]"></i>
+                                                </button>
+                                                <button class="w-7 h-7 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm" title="Hapus Data">
+                                                    <i class="fa-solid fa-trash-can text-[11px]"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <!-- Tampilan jika tidak ada data sama sekali -->
+                                    <tr>
+                                        <td colspan="5" class="px-6 py-8 text-center text-slate-500">
+                                            Belum ada data klasifikasi DDC yang tersimpan.
+                                        </td>
+                                    </tr>
+                                @endforelse
 
                             </tbody>
                         </table>
+
+                        <!-- Pesan jika data tidak ditemukan saat pencarian -->
+                        <div id="noMatchMessage" class="hidden text-center py-8 text-slate-500 font-medium bg-white">
+                            <i class="fa-solid fa-folder-open text-3xl mb-3 text-slate-300"></i>
+                            <p>Data klasifikasi DDC tidak ditemukan.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -283,5 +253,7 @@
         </main>
     </div>
 
+    <!-- Script Pencarian Interaktif yang dipanggil dari folder public/js -->
+    <script src="{{ asset('js/search-ddc.js') }}"></script>
 </body>
 </html>

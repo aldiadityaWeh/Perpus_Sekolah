@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DdcController;
+use App\Http\Controllers\BookController;
 
 // 1. ROUTE PUBLIK (FRONT-END)
-
 
 // Halaman Beranda
 Route::get('/', function () {
@@ -62,15 +63,10 @@ Route::prefix('admin')->group(function () {
         return view('admin.kelas.create'); // resources/views/admin/kelas/create.blade.php
     })->name('admin.kelas.create');
 
-     // TAMBAH KLASIFIKASI DDC
-
-    Route::get('/ddc', function () {
-        return view('admin.ddc.index'); // resources/views/admin/ddc/index.blade.php
-    })->name('admin.ddc.index');
-
-    Route::get('/ddc/create', function () {
-        return view('admin.ddc.create'); // resources/views/admin/ddc/create.blade.php
-    })->name('admin.ddc.create');
+    // === MODUL KLASIFIKASI DDC (Terhubung ke Controller) ===
+    Route::get('/ddc', [DdcController::class, 'index'])->name('admin.ddc.index');           // Menampilkan Tabel Data
+    Route::get('/ddc/create', [DdcController::class, 'create'])->name('admin.ddc.create');  // Menampilkan Form Tambah
+    Route::post('/ddc', [DdcController::class, 'store'])->name('admin.ddc.store');          // Proses Simpan Data dari Form
 
     // Sumber Buku
     Route::get('/sumber-buku', function () {
@@ -82,7 +78,6 @@ Route::prefix('admin')->group(function () {
     })->name('admin.sumber_buku.create');
 
     // Jenis Buku
-
     Route::get('/jenis-buku', function () {
         return view('admin.jenis_buku.index');
     })->name('admin.jenis_buku.index');
@@ -101,9 +96,9 @@ Route::prefix('admin')->group(function () {
     })->name('admin.kategori_buku.create');
 
     // Data Buku
-    Route::get('/buku', function () {
-        return view('admin.buku.index'); // resources/views/admin/buku/index.blade.php
-    })->name('admin.buku.index');
+    Route::get('/buku', [BookController::class, 'index'])->name('admin.buku.index');
+    Route::get('/buku/create', [BookController::class, 'create'])->name('admin.buku.create');
+    Route::post('/buku', [BookController::class, 'store'])->name('admin.buku.store');
 
     // Tambah Data Buku
     Route::get('/buku/create', function () {
@@ -135,7 +130,7 @@ Route::prefix('admin')->group(function () {
     })->name('admin.transaksi.pengembalian');
 
 
-    // LAPORAN
+    // LAPORAN (Lama)
     // Laporan Bulanan
     Route::get('/laporan/bulanan', function () {
         return view('admin.laporan.bulanan'); // resources/views/admin/laporan/bulanan.blade.php
@@ -147,7 +142,7 @@ Route::prefix('admin')->group(function () {
     })->name('admin.laporan.denda');
 
 
-    // LAPORAN
+    // LAPORAN (Struktur Baru)
     // -------------------------
     Route::prefix('laporan')->name('laporan.')->group(function () {
 

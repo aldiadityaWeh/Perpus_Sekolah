@@ -24,7 +24,7 @@
 
         <!-- Logo Area (Logo SD) -->
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
-            <img src="logo-sd.png" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
+            <img src="{{ asset('images/logo-sd.png') }}" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
             <span class="font-bold text-lg tracking-wider text-white">SMART<span class="text-blue-400">PERPUS</span></span>
         </div>
 
@@ -160,6 +160,18 @@
                     <p class="text-sm text-white/90">Silahkan isi formulir <strong>KLASIFIKASI DDC</strong> di bawah ini dengan baik dan benar.</p>
                 </div>
 
+                <!-- Menampilkan Error Validasi (jika ada) -->
+                @if ($errors->any())
+                    <div class="bg-rose-50 border-l-4 border-rose-500 text-rose-700 p-4 rounded shadow-sm">
+                        <div class="font-bold mb-1">Terjadi Kesalahan:</div>
+                        <ul class="list-disc list-inside text-sm">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <!-- Form Card -->
                 <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col">
 
@@ -170,23 +182,34 @@
                     </div>
 
                     <!-- Form Body -->
-                    <form action="#" method="POST" class="p-6 md:p-8">
+                    <form action="{{ route('admin.ddc.store') }}" method="POST" class="p-6 md:p-8">
+                        @csrf
 
                         <div class="space-y-6 max-w-3xl">
                             <!-- Input Kode Klasifikasi DDC -->
                             <div class="grid grid-cols-1 md:grid-cols-4 md:gap-4 items-center">
-                                <label class="text-sm font-semibold text-slate-600 mb-1 md:mb-0">Kode DDC</label>
+                                <label class="text-sm font-semibold text-slate-600 mb-1 md:mb-0">Kode DDC <span class="text-rose-500">*</span></label>
                                 <div class="md:col-span-3">
                                     <!-- Memakai pattern nomor -->
-                                    <input type="number" name="kode_ddc" placeholder="Contoh: 000, 100, 500..." class="w-full bg-slate-50 border border-slate-200 rounded py-2.5 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 shadow-sm" autofocus required>
+                                    <input type="number" name="kode_ddc" placeholder="Contoh: 000, 100, 500..." value="{{ old('kode_ddc') }}" class="w-full bg-slate-50 border border-slate-200 rounded py-2.5 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 shadow-sm" autofocus required>
                                 </div>
                             </div>
 
                             <!-- Input Kategori Klasifikasi DDC -->
                             <div class="grid grid-cols-1 md:grid-cols-4 md:gap-4 items-center">
-                                <label class="text-sm font-semibold text-slate-600 mb-1 md:mb-0">Kategori</label>
+                                <label class="text-sm font-semibold text-slate-600 mb-1 md:mb-0">Kategori <span class="text-rose-500">*</span></label>
                                 <div class="md:col-span-3">
-                                    <input type="text" name="kategori" placeholder="Contoh: Sains & Matematika, Agama, Fiksi..." class="w-full bg-slate-50 border border-slate-200 rounded py-2.5 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 shadow-sm" required>
+                                    <input type="text" name="kategori" placeholder="Contoh: Sains & Matematika, Agama, Fiksi..." value="{{ old('kategori') }}" class="w-full bg-slate-50 border border-slate-200 rounded py-2.5 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 shadow-sm" required>
+                                </div>
+                            </div>
+
+                            <!-- Input Warna Label -->
+                            <div class="grid grid-cols-1 md:grid-cols-4 md:gap-4 items-center">
+                                <label class="text-sm font-semibold text-slate-600 mb-1 md:mb-0">Warna Label <span class="text-rose-500">*</span></label>
+                                <div class="md:col-span-3 flex items-center gap-3">
+                                    <!-- Input Tipe Color HTML5 -->
+                                    <input type="color" name="warna_label" value="{{ old('warna_label', '#22c55e') }}" class="h-10 w-16 rounded cursor-pointer border border-slate-200 p-0.5 bg-white shadow-sm" required>
+                                    <p class="text-[11px] text-slate-500 font-medium leading-tight">Pilih warna penanda untuk kategori ini.<br>Warna ini akan dicetak pada bagian atas label punggung buku.</p>
                                 </div>
                             </div>
                         </div>
@@ -228,3 +251,4 @@
     </div>
 </body>
 </html>
+
