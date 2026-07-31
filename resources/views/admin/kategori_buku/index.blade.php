@@ -20,7 +20,7 @@
 </head>
 <body class="bg-[#f8f9fc] font-sans antialiased text-slate-800 flex h-screen overflow-hidden selection:bg-blue-200 selection:text-blue-900">
 
-    <!-- SIDEBAR -->
+    <!-- SIDEBAR LENGKAP -->
     <aside class="w-64 bg-[#0f172a] text-slate-300 flex flex-col h-full shadow-2xl shrink-0 transition-all duration-300 z-20">
 
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
@@ -31,7 +31,7 @@
         <nav class="flex-1 overflow-y-auto py-6 custom-scrollbar">
             <ul class="space-y-1.5 px-3">
                 <li>
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-gauge-high w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Dashboard
                     </a>
                 </li>
@@ -39,39 +39,76 @@
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Master Data</li>
 
                 <li>
-                    <a href="{{ route('admin.buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-book w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Buku
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.ddc.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/ddc" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-list-ol w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Klasifikasi DDC
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.sumber_buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/sumber-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-boxes-packing w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Sumber Buku
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.jenis_buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/jenis-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-bookmark w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Jenis Buku
                     </a>
                 </li>
                 <!-- Kategori Buku Active -->
                 <li>
-                    <a href="{{ route('admin.kategori_buku.index') }}" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
+                    <a href="/admin/kategori-buku" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
                         <i class="fa-solid fa-tags w-6 text-center mr-2"></i> Kategori Buku
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.anggota.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-users w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Anggota
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.kelas.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/kelas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-school w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Kelas
+                    </a>
+                </li>
+
+                <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Transaksi</li>
+                <li>
+                    <a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-barcode w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Scan Peminjaman
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/transaksi/pengembalian" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-clipboard-check w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Verifikasi Kembali
+                        </div>
+                        <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">3</span>
+                    </a>
+                </li>
+
+                <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Laporan</li>
+                <li>
+                    <a href="/laporan/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-address-card w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Laporan Anggota
+                    </a>
+                </li>
+                <li>
+                    <a href="/laporan/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-book-open w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Laporan Buku
+                    </a>
+                </li>
+                <li>
+                    <a href="/laporan/kas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2 group-hover:text-rose-400 transition-colors"></i> Laporan Kas (Denda)
+                    </a>
+                </li>
+                <li>
+                    <a href="/laporan/pengunjung" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                        <i class="fa-solid fa-users-viewfinder w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Laporan Pengunjung
                     </a>
                 </li>
             </ul>
@@ -80,7 +117,6 @@
 
     <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative bg-[#f4f7f6]">
 
-        <!-- Header Atas -->
         <header class="h-20 bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center justify-between px-8 z-10 shrink-0">
             <div>
                 <div class="flex items-center text-sm text-slate-500 mb-1 font-semibold gap-2">
@@ -92,6 +128,7 @@
             </div>
 
             <div class="flex items-center gap-4 md:gap-6">
+                <!-- User Profile -->
                 <div class="flex items-center gap-3 cursor-pointer group">
                     <div class="relative shrink-0">
                         <img src="https://ui-avatars.com/api/?name=Admin+Perpus&background=0f172a&color=fff&bold=true" alt="Admin" class="w-10 h-10 rounded-full ring-2 ring-slate-100 group-hover:ring-blue-200 transition-all object-cover">
@@ -117,6 +154,7 @@
                     </div>
                 @endif
 
+                <!-- Info Banner -->
                 <div class="bg-[#4eb4f5] text-white rounded-lg p-5 shadow-sm border border-[#3ba0de]">
                     <div class="flex items-center gap-2 mb-2">
                         <i class="fa-solid fa-circle-info text-xl opacity-90"></i>
@@ -125,8 +163,10 @@
                     <p class="text-[13px] text-white/90">Berikut ini adalah data <strong>KATEGORI BUKU</strong> yang sudah tersimpan dalam database.</p>
                 </div>
 
+                <!-- MAIN CARD TABEL -->
                 <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
 
+                    <!-- Card Header -->
                     <div class="px-6 py-4 flex items-center justify-between bg-white border-b border-slate-100">
                         <div class="flex items-center gap-3">
                             <i class="fa-solid fa-database text-slate-800 text-lg"></i>
@@ -137,6 +177,7 @@
                         </a>
                     </div>
 
+                    <!-- Search Bar Area -->
                     <div class="px-6 py-4 bg-slate-50/50 flex justify-end border-b border-slate-100">
                         <div class="relative w-full md:w-72">
                             <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
@@ -144,6 +185,7 @@
                         </div>
                     </div>
 
+                    <!-- Area Tabel -->
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
@@ -168,7 +210,6 @@
                                             </a>
 
                                             <!-- Tombol Hapus (Pemicu Modal Pop-up) -->
-                                            <!-- Kita sisipkan id kategori dan rute hapusnya melalui data attributes -->
                                             <button type="button"
                                                 class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm btn-delete"
                                                 title="Hapus Data"
@@ -207,48 +248,35 @@
         </main>
     </div>
 
-    <!-- ============================================== -->
-    <!-- MODAL POP-UP KONFIRMASI HAPUS (Gaya Dashboard) -->
-    <!-- ============================================== -->
+    <!-- MODAL POP-UP KONFIRMASI HAPUS -->
     <div id="deleteModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-
         <div id="deleteModalContent" class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 sm:p-8 transform scale-95 opacity-0 transition-all duration-300 m-4">
-
             <div class="flex flex-col items-center text-center">
-                <!-- Icon Peringatan -->
                 <div class="w-20 h-20 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mb-5 shadow-[0_0_20px_rgba(244,63,94,0.15)] relative">
                     <div class="absolute inset-0 border-2 border-rose-200 rounded-full animate-ping opacity-20"></div>
                     <i class="fa-solid fa-trash-can text-3xl relative z-10"></i>
                 </div>
-
                 <h3 class="text-xl font-bold text-slate-800 mb-2 tracking-tight">Hapus Kategori?</h3>
                 <p class="text-sm text-slate-500 mb-8 font-medium leading-relaxed">
                     Anda yakin ingin menghapus kategori <br><strong id="kategoriNameDisplay" class="text-slate-700"></strong>? Tindakan ini tidak dapat dibatalkan.
                 </p>
-
-                <!-- Form Hapus & Tombol Aksi -->
                 <form id="deleteForm" method="POST" class="w-full flex gap-3">
                     @csrf
                     @method('DELETE')
-
                     <button type="button" onclick="closeDeleteModal()" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors text-sm">
                         Batal
                     </button>
-
                     <button type="submit" id="btnConfirmDelete" class="flex-1 py-3 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl transition-all shadow-md shadow-rose-500/20 text-sm flex items-center justify-center gap-2 group">
                         <span>Ya, Hapus</span>
                         <i class="fa-solid fa-check text-[10px] group-hover:scale-125 transition-transform"></i>
                     </button>
                 </form>
             </div>
-
         </div>
     </div>
 
-
     <!-- Script JavaScript untuk Search dan Modal -->
     <script>
-        // 1. Script Modal Pop-up Hapus Data
         const deleteModal = document.getElementById('deleteModal');
         const deleteModalContent = document.getElementById('deleteModalContent');
         const deleteForm = document.getElementById('deleteForm');
@@ -256,46 +284,33 @@
         const deleteButtons = document.querySelectorAll('.btn-delete');
         const btnConfirmDelete = document.getElementById('btnConfirmDelete');
 
-        // Menambahkan event click ke semua tombol hapus (merah) di tabel
         deleteButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // Ambil data dari atribut tombol yang diklik
                 const url = this.getAttribute('data-url');
                 const nama = this.getAttribute('data-nama');
-
-                // Setel action form dan nama kategori di modal
                 deleteForm.setAttribute('action', url);
                 kategoriNameDisplay.textContent = '"' + nama + '"';
-
-                // Tampilkan Modal
                 deleteModal.classList.remove('opacity-0', 'pointer-events-none');
                 deleteModalContent.classList.remove('scale-95', 'opacity-0');
                 deleteModalContent.classList.add('scale-100', 'opacity-100');
             });
         });
 
-        // Fungsi Menutup Modal
         function closeDeleteModal() {
             deleteModal.classList.add('opacity-0', 'pointer-events-none');
             deleteModalContent.classList.remove('scale-100', 'opacity-100');
             deleteModalContent.classList.add('scale-95', 'opacity-0');
         }
 
-        // Efek Loading Saat Proses Penghapusan
         deleteForm.addEventListener('submit', function() {
             btnConfirmDelete.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin"></i> Proses...';
             btnConfirmDelete.classList.add('opacity-80', 'cursor-not-allowed');
         });
 
-        // Tutup modal jika user mengklik area abu-abu (backdrop)
         deleteModal.addEventListener('click', function(e) {
-            if (e.target === deleteModal) {
-                closeDeleteModal();
-            }
+            if (e.target === deleteModal) closeDeleteModal();
         });
 
-
-        // 2. Script Fitur Pencarian Data di Tabel
         document.addEventListener("DOMContentLoaded", function() {
             const searchInput = document.getElementById("searchInput");
             const tableBody = document.getElementById("tableBody");
@@ -303,17 +318,12 @@
 
             if(searchInput && tableBody) {
                 const rows = tableBody.getElementsByTagName("tr");
-
                 searchInput.addEventListener("keyup", function() {
                     const filter = searchInput.value.toLowerCase();
                     let matchFound = false;
-
                     for (let i = 0; i < rows.length; i++) {
-                        // Lewati baris "Belum ada data" jika kosong
                         if (rows[i].cells.length === 1) continue;
-
                         const kategoriCell = rows[i].querySelector('.nama-kategori');
-
                         if (kategoriCell) {
                             const textValue = kategoriCell.textContent || kategoriCell.innerText;
                             if (textValue.toLowerCase().indexOf(filter) > -1) {
@@ -324,8 +334,6 @@
                             }
                         }
                     }
-
-                    // Tampilkan pesan kosong jika tidak ada yg cocok
                     if(!matchFound && filter !== "" && rows.length > 0 && rows[0].cells.length > 1) {
                         noMatchMessage.classList.remove('hidden');
                     } else {
@@ -337,3 +345,4 @@
     </script>
 </body>
 </html>
+```eof

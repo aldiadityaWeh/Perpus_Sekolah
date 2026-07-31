@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Data Anggota - SMARTPERPUS</title>
+    <!-- Menghilangkan favicon default -->
     <link rel="icon" href="data:,">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,7 +33,6 @@
     <!-- SIDEBAR -->
     <aside class="w-64 bg-[#0f172a] text-slate-300 flex flex-col h-full shadow-2xl shrink-0 transition-all duration-300 z-20">
 
-        <!-- Logo Area -->
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
             <img src="{{ asset('images/logo-sd.png') }}" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
             <span class="font-bold text-lg tracking-wider text-white">SMART<span class="text-blue-400">PERPUS</span></span>
@@ -85,14 +85,15 @@
                     </a>
                 </li>
 
+                <!-- Section: Transaksi -->
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Transaksi</li>
                 <li>
-                    <a href="{{ route('admin.transaksi.peminjaman') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-barcode w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Scan Peminjaman
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.transaksi.pengembalian') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between">
+                    <a href="/admin/transaksi/pengembalian" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between">
                         <div class="flex items-center">
                             <i class="fa-solid fa-clipboard-check w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Verifikasi Kembali
                         </div>
@@ -102,22 +103,22 @@
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Laporan</li>
                 <li>
-                    <a href="{{ route('laporan.anggota.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/laporan/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-address-card w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Laporan Anggota
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('laporan.buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/laporan/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-book-open w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Laporan Buku
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('laporan.kas.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/laporan/kas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2 group-hover:text-rose-400 transition-colors"></i> Laporan Kas (Denda)
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('laporan.pengunjung.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/laporan/pengunjung" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-users-viewfinder w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Laporan Pengunjung
                     </a>
                 </li>
@@ -125,8 +126,10 @@
         </nav>
     </aside>
 
+    <!-- KONTEN UTAMA -->
     <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative">
 
+        <!-- Header Atas (Top Navbar) -->
         <header class="h-20 bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center justify-between px-8 z-10 shrink-0">
             <div>
                 <div class="flex items-center text-sm text-slate-500 mb-1 font-semibold gap-2">
@@ -144,7 +147,7 @@
                 <div class="flex items-center gap-3 pl-4 md:pl-6 border-l border-slate-200 cursor-pointer group">
                     <div class="relative shrink-0">
                         <img src="https://ui-avatars.com/api/?name=Admin+Perpus&background=0f172a&color=fff&bold=true" alt="Admin" class="w-10 h-10 rounded-full ring-2 ring-slate-100 group-hover:ring-blue-200 transition-all object-cover">
-                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></div>
+                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
                     </div>
                     <div class="hidden sm:block">
                         <p class="text-sm font-bold text-slate-700 group-hover:text-blue-600 transition-colors">Budi Santoso</p>
@@ -154,22 +157,24 @@
             </div>
         </header>
 
+        <!-- MAIN CONTENT (Form Area) -->
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 p-6 md:p-8 custom-scrollbar">
 
-            <!-- Notifikasi Error Validasi -->
-            @if ($errors->any())
-                <div class="max-w-6xl mx-auto mb-6 bg-rose-50 border-l-4 border-rose-500 text-rose-700 p-4 rounded shadow-sm">
-                    <div class="font-bold mb-1">Peringatan: Terdapat kesalahan input!</div>
-                    <ul class="list-disc list-inside text-sm">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <form action="{{ route('admin.anggota.store') }}" method="POST" enctype="multipart/form-data" class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                <!-- Tambahkan Direktif CSRF (Penting untuk Laravel Form) -->
                 @csrf
+
+                <!-- Notifikasi Error Validasi -->
+                @if ($errors->any())
+                    <div class="lg:col-span-12 mb-2 bg-rose-50 border-l-4 border-rose-500 text-rose-700 p-4 rounded shadow-sm">
+                        <div class="font-bold mb-1">Peringatan: Terdapat kesalahan input!</div>
+                        <ul class="list-disc list-inside text-sm">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <!-- KOLOM KIRI: Foto Anggota -->
                 <div class="lg:col-span-3 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden sticky top-0">
@@ -180,6 +185,8 @@
 
                     <div class="p-5 flex flex-col items-center justify-center">
                         <div class="w-full aspect-[3/4] border-2 border-dashed border-slate-300 rounded-xl flex flex-col items-center justify-center bg-slate-50 hover:bg-blue-50 hover:border-blue-300 transition-colors cursor-pointer group relative overflow-hidden">
+
+                            <!-- Input File (Opsional, tergantung skema database) -->
                             <input type="file" id="foto" name="foto" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
 
                             <div class="text-center p-4">
@@ -187,6 +194,7 @@
                                 <p class="text-xs text-slate-500 font-medium leading-relaxed group-hover:text-blue-600">Drag atau drop<br>untuk memilih gambar</p>
                             </div>
                         </div>
+
                         <p class="text-[11px] font-semibold text-rose-500 mt-4 text-center">Ukuran gambar 3x4 (Maks. 2MB)</p>
                     </div>
                 </div>
@@ -223,7 +231,6 @@
                             <div class="grid grid-cols-1 md:grid-cols-3 md:gap-4 items-center">
                                 <label class="text-sm font-semibold text-slate-600 mb-1 md:mb-0">Kelas / Kategori <span class="text-rose-500">*</span></label>
                                 <div class="md:col-span-2 relative">
-                                    <!-- Jika database Anda sudah memiliki tabel kelas, Anda bisa melakukan perulangan dari controller seperti pada DDC -->
                                     <select name="kelas_id" required class="w-full bg-slate-50 border border-slate-200 rounded-lg py-2.5 pl-4 pr-10 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm cursor-pointer">
                                         <option value="" disabled {{ old('kelas_id') ? '' : 'selected' }}>-== Pilih Disini ==-</option>
                                         <option value="1" {{ old('kelas_id') == '1' ? 'selected' : '' }}>Kelas 1 A</option>
@@ -285,7 +292,6 @@
                                 </div>
                             </div>
 
-                            <!-- Nomor Telepon (Untuk Integrasi Pengingat WA jika ada) -->
                             <div class="grid grid-cols-1 md:grid-cols-3 md:gap-4 items-center">
                                 <label class="text-sm font-semibold text-slate-600 mb-1 md:mb-0">No. HP / WA</label>
                                 <div class="md:col-span-2">

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Anggota - SMARTPERPUS</title>
+    <!-- Menghilangkan favicon default -->
+    <link rel="icon" href="data:,">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -19,60 +21,56 @@
 </head>
 <body class="bg-slate-50 font-sans antialiased text-slate-800 flex h-screen overflow-hidden selection:bg-blue-200 selection:text-blue-900">
 
-    <!-- SIDEBAR -->
+    <!-- SIDEBAR LENGKAP -->
     <aside class="w-64 bg-[#0f172a] text-slate-300 flex flex-col h-full shadow-2xl shrink-0 transition-all duration-300 z-20">
-
-        <!-- Logo Area -->
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
-            <img src="logo-sd.png" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
+            <img src="{{ asset('images/logo-sd.png') }}" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
             <span class="font-bold text-lg tracking-wider text-white">SMART<span class="text-blue-400">PERPUS</span></span>
         </div>
 
-        <!-- Menu Navigasi Lengkap -->
         <nav class="flex-1 overflow-y-auto py-6 custom-scrollbar">
             <ul class="space-y-1.5 px-3">
                 <li>
-                    <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-gauge-high w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Dashboard
                     </a>
                 </li>
 
-                <!-- Section: Master Data -->
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Master Data</li>
 
                 <li>
-                    <a href="/admin/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="{{ route('admin.buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-book w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Buku
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/ddc" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="{{ route('admin.ddc.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-list-ol w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Klasifikasi DDC
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/sumber-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="{{ route('admin.sumber_buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-boxes-packing w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Sumber Buku
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/jenis-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="{{ route('admin.jenis_buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-bookmark w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Jenis Buku
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/kategori-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="{{ route('admin.kategori_buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-tags w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Kategori Buku
                     </a>
                 </li>
                 <!-- Data Anggota Active -->
                 <li>
-                    <a href="/admin/anggota" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
+                    <a href="{{ route('admin.anggota.index') }}" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
                         <i class="fa-solid fa-users w-6 text-center mr-2"></i> Data Anggota
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/kelas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="{{ route('admin.kelas.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-school w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Kelas
                     </a>
                 </li>
@@ -121,7 +119,7 @@
 
     <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative">
 
-        <!-- Header Atas -->
+        <!-- HEADER ATAS -->
         <header class="h-20 bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center justify-between px-8 z-10 shrink-0">
             <div>
                 <h2 class="text-2xl font-bold text-slate-800 tracking-tight leading-none">Data Anggota</h2>
@@ -143,27 +141,34 @@
             </div>
         </header>
 
-        <!-- MAIN CONTENT (Tabel Area) -->
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50/50 p-6 md:p-8 custom-scrollbar">
 
             <div class="max-w-7xl mx-auto">
 
+                <!-- Notifikasi Pesan Sukses -->
+                @if (session('success'))
+                    <div class="bg-emerald-50 border-l-4 border-emerald-500 text-emerald-700 p-4 rounded shadow-sm flex items-center gap-3 mb-6">
+                        <i class="fa-solid fa-circle-check text-xl"></i>
+                        <span class="font-medium">{{ session('success') }}</span>
+                    </div>
+                @endif
+
                 <!-- Toolbar Area -->
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
-                    <!-- Title Data -->
                     <div class="flex items-center gap-2 bg-white px-4 py-2.5 rounded-lg border border-slate-200 shadow-sm shrink-0">
                         <i class="fa-solid fa-database text-slate-700"></i>
-                        <span class="font-bold text-slate-800 text-sm">Data Anggota</span>
+                        <span class="font-bold text-slate-800 text-sm">Daftar Anggota</span>
                     </div>
 
-                    <!-- Search Bar & Add Button -->
                     <div class="flex items-center gap-3 w-full md:w-auto">
                         <div class="relative w-full md:w-64">
-                            <input type="text" placeholder="Cari..." class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm">
+                            <!-- Input Search -->
+                            <input type="text" id="searchInput" placeholder="Cari NISN atau Nama..." class="w-full bg-white border border-slate-200 rounded-lg py-2.5 px-4 pl-10 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                         </div>
 
-                        <!-- Tombol Tambah yang mengarah ke create.blade.php -->
-                        <a href="/admin/anggota/create" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-lg shadow-sm text-sm font-semibold transition-colors flex items-center gap-2 shrink-0">
+                        <!-- Tombol Tambah Data -->
+                        <a href="{{ route('admin.anggota.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-lg shadow-sm text-sm font-semibold transition-colors flex items-center gap-2 shrink-0">
                             <i class="fa-solid fa-plus"></i> Tambah
                         </a>
                     </div>
@@ -176,124 +181,137 @@
                             <thead>
                                 <tr class="bg-slate-100 text-slate-700 text-sm border-b border-slate-200">
                                     <th class="px-6 py-4 font-bold w-16 text-center">No</th>
-                                    <th class="px-6 py-4 font-bold">NISN</th>
+                                    <th class="px-6 py-4 font-bold">NISN / NIP</th>
                                     <th class="px-6 py-4 font-bold">Nama Anggota</th>
                                     <th class="px-6 py-4 font-bold">Jenis Kelamin</th>
                                     <th class="px-6 py-4 font-bold">Kelas</th>
                                     <th class="px-6 py-4 font-bold text-center">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-slate-700 text-sm">
+                            <!-- Tambahkan ID tableBody -->
+                            <tbody id="tableBody" class="text-slate-700 text-sm">
 
-                                <!-- Baris 1 -->
+                                @forelse ($data_anggota as $index => $anggota)
                                 <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-4 text-center text-slate-500 font-medium">1</td>
-                                    <td class="px-6 py-4 font-mono text-slate-600">010141414</td>
-                                    <td class="px-6 py-4 font-medium text-slate-800">Ahmad Fauzi</td>
-                                    <td class="px-6 py-4 text-slate-600">Laki-laki</td>
-                                    <td class="px-6 py-4 text-slate-600">Kelas 5 A</td>
+                                    <td class="px-6 py-4 text-center text-slate-500 font-medium">{{ $index + 1 }}</td>
+
+                                    <!-- Class pencarian-data digunakan oleh Javascript -->
+                                    <td class="px-6 py-4 font-mono text-slate-600 font-semibold pencarian-data">{{ $anggota->nisn }}</td>
+                                    <td class="px-6 py-4 font-bold text-slate-800 pencarian-data">{{ $anggota->nama }}</td>
+
+                                    <td class="px-6 py-4 text-slate-600">{{ $anggota->jenis_kelamin }}</td>
+
+                                    <!-- MENGUBAH TAMPILAN KELAS DI SINI -->
+                                    <td class="px-6 py-4 text-slate-600">
+                                        <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded text-xs font-semibold border border-blue-100">
+                                            <!-- Panggil relasi 'kelas' lalu ambil 'nama_kelas' -->
+                                            {{ $anggota->kelas->nama_kelas ?? 'Tanpa Kelas' }}
+                                        </span>
+                                    </td>
+                                    <!-- INI BAGIAN TOMBOL AKSI YANG DIUBAH -->
                                     <td class="px-6 py-4">
                                         <div class="flex justify-center gap-1.5">
-                                            <!-- Tombol Detail (Biru/Cyan) -->
+
+                                            <!-- Tombol Detail (Biru) - Biarkan dulu -->
                                             <button class="w-8 h-8 rounded bg-cyan-500 hover:bg-cyan-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Detail Peminjaman">
                                                 <i class="fa-solid fa-cloud"></i>
                                             </button>
-                                            <!-- Tombol Edit (Kuning/Amber) -->
-                                            <button class="w-8 h-8 rounded bg-amber-500 hover:bg-amber-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Edit Data">
-                                                <i class="fa-solid fa-pen-to-square text-[13px]"></i>
-                                            </button>
-                                            <!-- Tombol Hapus (Merah/Rose) -->
-                                            <button class="w-8 h-8 rounded bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Hapus Data">
-                                                <i class="fa-solid fa-trash-can text-[13px]"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
 
-                                <!-- Baris 2 -->
-                                <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-4 text-center text-slate-500 font-medium">2</td>
-                                    <td class="px-6 py-4 font-mono text-slate-600">020252525</td>
-                                    <td class="px-6 py-4 font-medium text-slate-800">Siti Aminah</td>
-                                    <td class="px-6 py-4 text-slate-600">Perempuan</td>
-                                    <td class="px-6 py-4 text-slate-600">Kelas 3 B</td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex justify-center gap-1.5">
-                                            <button class="w-8 h-8 rounded bg-cyan-500 hover:bg-cyan-600 text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-cloud"></i>
-                                            </button>
-                                            <button class="w-8 h-8 rounded bg-amber-500 hover:bg-amber-600 text-white flex items-center justify-center transition-colors shadow-sm">
+                                            <!-- 1. Tombol Edit (Kuning) -->
+                                            <!-- Ubah tag <button> menjadi <a> dan arahkan href ke route edit -->
+                                            <a href="{{ route('admin.anggota.edit', $anggota->id) }}" class="w-8 h-8 rounded bg-amber-500 hover:bg-amber-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Edit Data">
                                                 <i class="fa-solid fa-pen-to-square text-[13px]"></i>
-                                            </button>
-                                            <button class="w-8 h-8 rounded bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[13px]"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                            </a>
 
-                                <!-- Baris 3 (Sesuai dengan referensi gambar) -->
-                                <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                    <td class="px-6 py-4 text-center text-slate-500 font-medium">3</td>
-                                    <td class="px-6 py-4 font-mono text-slate-600">141414</td>
-                                    <td class="px-6 py-4 font-medium text-slate-800">anitas</td>
-                                    <td class="px-6 py-4 text-slate-600">Perempuan</td>
-                                    <td class="px-6 py-4 text-slate-600">Kelas 1 A</td>
-                                    <td class="px-6 py-4">
-                                        <div class="flex justify-center gap-1.5">
-                                            <button class="w-8 h-8 rounded bg-cyan-500 hover:bg-cyan-600 text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-cloud"></i>
-                                            </button>
-                                            <button class="w-8 h-8 rounded bg-amber-500 hover:bg-amber-600 text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-pen-to-square text-[13px]"></i>
-                                            </button>
-                                            <button class="w-8 h-8 rounded bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-colors shadow-sm">
-                                                <i class="fa-solid fa-trash-can text-[13px]"></i>
-                                            </button>
+                                            <!-- 2. Tombol Hapus (Merah) -->
+                                            <!-- Wajib dibungkus dengan <form> dan @method('DELETE') -->
+                                            <form action="{{ route('admin.anggota.destroy', $anggota->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus anggota ini?');" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="w-8 h-8 rounded bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Hapus Data">
+                                                    <i class="fa-solid fa-trash-can text-[13px]"></i>
+                                                </button>
+                                            </form>
+
                                         </div>
                                     </td>
                                 </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="6" class="px-6 py-12 text-center">
+                                        <div class="flex flex-col items-center justify-center text-slate-400">
+                                            <i class="fa-solid fa-users-slash text-4xl mb-3"></i>
+                                            <p class="font-medium text-slate-500">Belum ada data anggota yang terdaftar.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforelse
 
                             </tbody>
                         </table>
-                    </div>
 
-                    <!-- Pagination -->
-                    <div class="px-6 py-5 border-t border-slate-100 bg-white flex justify-center">
-                        <ul class="flex items-center -space-x-px shadow-sm rounded-md">
-                            <li>
-                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-l-md font-bold text-lg">
-                                    &laquo;
-                                </button>
-                            </li>
-                            <li>
-                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 transition-colors font-medium text-sm">
-                                    1
-                                </button>
-                            </li>
-                            <li>
-                                <!-- Halaman Aktif (Biru) -->
-                                <button class="w-9 h-9 flex items-center justify-center border border-blue-600 bg-blue-600 text-white font-medium text-sm z-10 relative">
-                                    2
-                                </button>
-                            </li>
-                            <li>
-                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 transition-colors font-medium text-sm">
-                                    3
-                                </button>
-                            </li>
-                            <li>
-                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-r-md font-bold text-lg">
-                                    &raquo;
-                                </button>
-                            </li>
-                        </ul>
+                        <!-- Pesan Jika Search Tidak Ketemu -->
+                        <div id="noMatchMessage" class="hidden text-center py-8 text-slate-500 font-medium bg-white">
+                            <i class="fa-solid fa-user-xmark text-3xl mb-3 text-slate-300"></i>
+                            <p>Data anggota tidak ditemukan.</p>
+                        </div>
                     </div>
+                </div>
+
+                <div class="pt-4 pb-8 text-center md:text-left">
+                    <p class="text-[13px] font-semibold text-slate-400">2026 &copy; SMARTPERPUS System. All rights reserved.</p>
                 </div>
 
             </div>
         </main>
     </div>
 
+    <!-- Script Search Live Data Tabel Anggota -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById("searchInput");
+            const tableBody = document.getElementById("tableBody");
+            const noMatchMessage = document.getElementById("noMatchMessage");
+
+            if(searchInput && tableBody) {
+                const rows = tableBody.getElementsByTagName("tr");
+
+                searchInput.addEventListener("keyup", function() {
+                    const filter = searchInput.value.toLowerCase();
+                    let matchFound = false;
+
+                    for (let i = 0; i < rows.length; i++) {
+                        // Lewati baris "Belum ada data" jika tabel kosong dari awal
+                        if (rows[i].cells.length === 1) continue;
+
+                        let rowHasMatch = false;
+                        // Cari data berdasarkan class pencarian-data (NISN dan NAMA)
+                        const cells = rows[i].querySelectorAll('.pencarian-data');
+
+                        cells.forEach(function(cell) {
+                            if (cell.textContent.toLowerCase().indexOf(filter) > -1) {
+                                rowHasMatch = true;
+                            }
+                        });
+
+                        if (rowHasMatch) {
+                            rows[i].style.display = "";
+                            matchFound = true;
+                        } else {
+                            rows[i].style.display = "none";
+                        }
+                    }
+
+                    // Logika memunculkan pesan "Data tidak ditemukan"
+                    if (!matchFound && filter !== "" && rows.length > 0 && rows[0].cells.length > 1) {
+                        noMatchMessage.classList.remove('hidden');
+                    } else {
+                        noMatchMessage.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
+```eof

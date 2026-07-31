@@ -5,162 +5,61 @@ use App\Http\Controllers\DdcController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\KategoriBukuController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\KelasController;
 
-// 1. ROUTE PUBLIK (FRONT-END)
+// 1. ROUTE PUBLIK
+Route::get('/', function () { return view('beranda'); })->name('beranda');
+Route::get('/tentang', function () { return view('tentang'); })->name('tentang');
+Route::get('/absen', function () { return view('absen'); })->name('absen');
+Route::get('/koleksi', function () { return view('koleksi'); })->name('koleksi');
 
-// Halaman Beranda
-Route::get('/', function () {
-    return view('beranda'); // Merujuk ke resources/views/beranda.blade.php
-})->name('beranda');
+// 2. ROUTE AUTH
+Route::get('/login', function () { return view('auth.login'); })->name('login');
+Route::get('/register', function () { return view('auth.register'); })->name('register');
 
-// Halaman Tentang Perpustakaan
-Route::get('/tentang', function () {
-    return view('tentang'); // Merujuk ke resources/views/tentang.blade.php
-})->name('tentang');
+// 3. ROUTE PANEL ADMIN
+Route::prefix('admin')->name('admin.')->group(function () {
 
-// Halaman Kiosk Absen Pengunjung
-Route::get('/absen', function () {
-    return view('absen'); // Merujuk ke resources/views/absen.blade.php
-})->name('absen');
-
-// Halaman Koleksi Buku Publik
-Route::get('/koleksi', function () {
-    return view('koleksi'); // Merujuk ke resources/views/koleksi.blade.php
-})->name('koleksi');
-
-
-// 2. ROUTE AUTENTIKASI (LOGIN & REGISTER)
-
-// Halaman Login Admin (Mencari ke resources/views/auth/login.blade.php)
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-// Halaman Register Admin (Mencari ke resources/views/auth/register.blade.php)
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
-
-
-// 3. ROUTE PANEL ADMIN (BACK-END)
-
-Route::prefix('admin')->group(function () {
-
-    // Dashboard Utama Admin
     Route::get('/dashboard', function () {
-        return view('admin.dashboard'); // resources/views/admin/dashboard.blade.php
-    })->name('admin.dashboard');
+        return view('admin.dashboard');
+    })->name('dashboard');
 
+    // Data Kelas (Resource)
+    Route::resource('kelas', KelasController::class);
 
-    // MASTER DATA
+    // Data Buku
+    Route::get('/buku', [BookController::class, 'index'])->name('buku.index');
+    Route::get('/buku/create', [BookController::class, 'create'])->name('buku.create');
+    Route::post('/buku', [BookController::class, 'store'])->name('buku.store');
 
-    // Data Kelas
-    Route::get('/kelas', function () {
-        return view('admin.kelas.index'); // resources/views/admin/kelas/index.blade.php
-    })->name('admin.kelas.index');
+    // Kategori Buku
+    Route::resource('kategori_buku', KategoriBukuController::class);
 
-    // Tambah Data Kelas
-    Route::get('/kelas/create', function () {
-        return view('admin.kelas.create'); // resources/views/admin/kelas/create.blade.php
-    })->name('admin.kelas.create');
+    // Data Anggota (Resource)
+    Route::resource('anggota', AnggotaController::class);
 
-    // === MODUL KLASIFIKASI DDC (Terhubung ke Controller) ===
-    Route::get('/ddc', [DdcController::class, 'index'])->name('admin.ddc.index');           // Menampilkan Tabel Data
-    Route::get('/ddc/create', [DdcController::class, 'create'])->name('admin.ddc.create');  // Menampilkan Form Tambah
-    Route::post('/ddc', [DdcController::class, 'store'])->name('admin.ddc.store');          // Proses Simpan Data dari Form
+    // DDC
+    Route::get('/ddc', [DdcController::class, 'index'])->name('ddc.index');
+    Route::get('/ddc/create', [DdcController::class, 'create'])->name('ddc.create');
+    Route::post('/ddc', [DdcController::class, 'store'])->name('ddc.store');
 
     // Sumber Buku
-    Route::get('/sumber-buku', function () {
-        return view('admin.sumber_buku.index'); // resources/views/admin/sumber_buku/index.blade.php
-    })->name('admin.sumber_buku.index');
-
-    Route::get('/sumber-buku/create', function () {
-        return view('admin.sumber_buku.create'); // resources/views/admin/sumber_buku/create.blade.php
-    })->name('admin.sumber_buku.create');
+    Route::get('/sumber-buku', function () { return view('admin.sumber_buku.index'); })->name('sumber_buku.index');
+    Route::get('/sumber-buku/create', function () { return view('admin.sumber_buku.create'); })->name('sumber_buku.create');
 
     // Jenis Buku
-    Route::get('/jenis-buku', function () {
-        return view('admin.jenis_buku.index');
-    })->name('admin.jenis_buku.index');
+    Route::get('/jenis-buku', function () { return view('admin.jenis_buku.index'); })->name('jenis_buku.index');
+    Route::get('/jenis-buku/create', function () { return view('admin.jenis_buku.create'); })->name('jenis_buku.create');
 
-    Route::get('/jenis-buku/create', function () {
-        return view('admin.jenis_buku.create');
-    })->name('admin.jenis_buku.create');
+    // Transaksi
+    Route::get('/transaksi/peminjaman', function () { return view('admin.transaksi.peminjaman'); })->name('transaksi.peminjaman');
+    Route::get('/transaksi/pengembalian', function () { return view('admin.transaksi.pengembalian'); })->name('transaksi.pengembalian');
 
-   // Kategori Buku
-    Route::get('/kategori-buku', [KategoriBukuController::class, 'index'])->name('admin.kategori_buku.index');
-    Route::get('/kategori-buku/create', [KategoriBukuController::class, 'create'])->name('admin.kategori_buku.create');
-    Route::post('/kategori-buku', [KategoriBukuController::class, 'store'])->name('admin.kategori_buku.store');
-
-    // Update & Deleate
-    Route::get('/kategori-buku/{id}/edit', [KategoriBukuController::class, 'edit'])->name('admin.kategori_buku.edit');
-    Route::put('/kategori-buku/{id}', [KategoriBukuController::class, 'update'])->name('admin.kategori_buku.update');
-    Route::delete('/kategori-buku/{id}', [KategoriBukuController::class, 'destroy'])->name('admin.kategori_buku.destroy');
-    // Data Buku
-    Route::get('/buku', [BookController::class, 'index'])->name('admin.buku.index');
-    Route::get('/buku/create', [BookController::class, 'create'])->name('admin.buku.create');
-    Route::post('/buku', [BookController::class, 'store'])->name('admin.buku.store');
-
-    // Data Anggota
-   Route::get('/anggota', [AnggotaController::class, 'index'])->name('admin.anggota.index');
-    Route::get('/anggota/create', [AnggotaController::class, 'create'])->name('admin.anggota.create');
-    Route::post('/anggota', [AnggotaController::class, 'store'])->name('admin.anggota.store'); // <-- INI SOLUSI ERRORNYA
-
-    // Tambah Data Anggota
-    Route::get('/anggota/create', function () {
-        return view('admin.anggota.create'); // resources/views/admin/anggota/create.blade.php
-    })->name('admin.anggota.create');
-
-    // TRANSAKSI (SIRKULASI)
-
-    // Scan Peminjaman
-    Route::get('/transaksi/peminjaman', function () {
-        return view('admin.transaksi.peminjaman'); // resources/views/admin/transaksi/peminjaman.blade.php
-    })->name('admin.transaksi.peminjaman');
-
-    // Verifikasi Pengembalian (Kembali)
-    Route::get('/transaksi/pengembalian', function () {
-        return view('admin.transaksi.pengembalian'); // resources/views/admin/transaksi/pengembalian.blade.php
-    })->name('admin.transaksi.pengembalian');
-
-
-    // LAPORAN (Lama)
-    // Laporan Bulanan
-    Route::get('/laporan/bulanan', function () {
-        return view('admin.laporan.bulanan'); // resources/views/admin/laporan/bulanan.blade.php
-    })->name('admin.laporan.bulanan');
-
-    // Laporan Denda
-    Route::get('/laporan/denda', function () {
-        return view('admin.laporan.denda'); // resources/views/admin/laporan/denda.blade.php
-    })->name('admin.laporan.denda');
-
-
-    // LAPORAN (Struktur Baru)
-    // -------------------------
+    // Laporan
     Route::prefix('laporan')->name('laporan.')->group(function () {
-
-        // Laporan Anggota (Cetak Kartu)
-        Route::get('/anggota', function () {
-            return view('admin.laporan.laporan_anggota.index');
-        })->name('anggota.index');
-
-        // Laporan Buku
-        Route::get('/buku', function () {
-            return view('admin.laporan.laporan_buku.index');
-        })->name('buku.index');
-
-        // Laporan Kas (Denda/Pemasukan)
-        Route::get('/kas', function () {
-            return view('admin.laporan.laporan_kas.index');
-        })->name('kas.index');
-
-        // Laporan Pengunjung (Buku Tamu)
-        Route::get('/pengunjung', function () {
-            return view('admin.laporan.laporan_pengunjung.index');
-        })->name('pengunjung.index');
-
+        Route::get('/anggota', function () { return view('admin.laporan.laporan_anggota.index'); })->name('anggota.index');
+        Route::get('/buku', function () { return view('admin.laporan.laporan_buku.index'); })->name('buku.index');
+        Route::get('/kas', function () { return view('admin.laporan.laporan_kas.index'); })->name('kas.index');
+        Route::get('/pengunjung', function () { return view('admin.laporan.laporan_pengunjung.index'); })->name('pengunjung.index');
     });
-
 });
