@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DdcController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\KategoriBukuController;
+use App\Http\Controllers\AnggotaController;
 
 // 1. ROUTE PUBLIK (FRONT-END)
 
@@ -86,36 +88,29 @@ Route::prefix('admin')->group(function () {
         return view('admin.jenis_buku.create');
     })->name('admin.jenis_buku.create');
 
-    // Kategori Buku
-    Route::get('/kategori-buku', function () {
-        return view('admin.kategori_buku.index');
-    })->name('admin.kategori_buku.index');
+   // Kategori Buku
+    Route::get('/kategori-buku', [KategoriBukuController::class, 'index'])->name('admin.kategori_buku.index');
+    Route::get('/kategori-buku/create', [KategoriBukuController::class, 'create'])->name('admin.kategori_buku.create');
+    Route::post('/kategori-buku', [KategoriBukuController::class, 'store'])->name('admin.kategori_buku.store');
 
-    Route::get('/kategori-buku/create', function () {
-        return view('admin.kategori_buku.create');
-    })->name('admin.kategori_buku.create');
-
+    // Update & Deleate
+    Route::get('/kategori-buku/{id}/edit', [KategoriBukuController::class, 'edit'])->name('admin.kategori_buku.edit');
+    Route::put('/kategori-buku/{id}', [KategoriBukuController::class, 'update'])->name('admin.kategori_buku.update');
+    Route::delete('/kategori-buku/{id}', [KategoriBukuController::class, 'destroy'])->name('admin.kategori_buku.destroy');
     // Data Buku
     Route::get('/buku', [BookController::class, 'index'])->name('admin.buku.index');
     Route::get('/buku/create', [BookController::class, 'create'])->name('admin.buku.create');
     Route::post('/buku', [BookController::class, 'store'])->name('admin.buku.store');
 
-    // Tambah Data Buku
-    Route::get('/buku/create', function () {
-        return view('admin.buku.create'); // resources/views/admin/buku/create.blade.php
-    })->name('admin.buku.create');
-
-
     // Data Anggota
-    Route::get('/anggota', function () {
-        return view('admin.anggota.index'); // resources/views/admin/anggota/index.blade.php
-    })->name('admin.anggota.index');
+   Route::get('/anggota', [AnggotaController::class, 'index'])->name('admin.anggota.index');
+    Route::get('/anggota/create', [AnggotaController::class, 'create'])->name('admin.anggota.create');
+    Route::post('/anggota', [AnggotaController::class, 'store'])->name('admin.anggota.store'); // <-- INI SOLUSI ERRORNYA
 
     // Tambah Data Anggota
     Route::get('/anggota/create', function () {
         return view('admin.anggota.create'); // resources/views/admin/anggota/create.blade.php
     })->name('admin.anggota.create');
-
 
     // TRANSAKSI (SIRKULASI)
 
