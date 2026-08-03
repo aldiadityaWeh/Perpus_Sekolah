@@ -48,16 +48,28 @@ class AnggotaController extends Controller
                          ->with('success', 'Data Anggota berhasil ditambahkan!');
     }
 
+     // Menampilkan detail spesifik satu anggota
+    // Menampilkan detail spesifik satu anggota
+    public function show($id)
+    {
+        // Ambil data anggota berdasarkan ID beserta relasi kelasnya
+        $anggota = Anggota::with('kelas')->findOrFail($id);
+
+        // Kembalikan ke halaman view detail (show.blade.php)
+        return view('admin.anggota.show', compact('anggota'));
+    }
+
     // Menampilkan form edit Anggota
     public function edit($id)
     {
-        $anggota = Anggota::findOrFail($id);$data_kelas = Kelas::all(); // Perlu mengirim data kelas lagi untuk dropdown edit
+        $anggota = Anggota::findOrFail($id);
+        $data_kelas = Kelas::all(); // Perlu mengirim data kelas lagi untuk dropdown edit
 
         return view('admin.anggota.edit', compact('anggota', 'data_kelas'));
     }
 
     // Memproses update data Anggota
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         // Validasi input (perhatikan pengecualian unique untuk ID yang sedang diedit)
         $request->validate([
@@ -67,7 +79,9 @@ class AnggotaController extends Controller
             'jenis_kelamin' => 'required',
         ]);
 
-        $anggota = Anggota::findOrFail($id);$anggota->update([
+        $anggota = Anggota::findOrFail($id);
+
+        $anggota->update([
             'nisn' => $request->nisn,
             'nama' => $request->nama,
             'kelas_id' => $request->kelas_id,
@@ -81,7 +95,9 @@ class AnggotaController extends Controller
     // Menghapus data Anggota
     public function destroy($id)
     {
-        $anggota = Anggota::findOrFail($id);$anggota->delete();
+        $anggota = Anggota::findOrFail($id);
+
+        $anggota->delete();
 
         return redirect()->route('admin.anggota.index')
                          ->with('success', 'Data Anggota berhasil dihapus!');

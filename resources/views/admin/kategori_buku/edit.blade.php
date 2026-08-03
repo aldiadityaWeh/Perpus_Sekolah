@@ -34,7 +34,6 @@
                         <i class="fa-solid fa-gauge-high w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Dashboard
                     </a>
                 </li>
-
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Master Data</li>
 
                 <li>
@@ -57,13 +56,14 @@
                         <i class="fa-solid fa-bookmark w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Jenis Buku
                     </a>
                 </li>
+
                 <!-- Kategori Buku Active -->
                 <li>
-                    <a href="{{ route('admin.kategori_buku.index') }}" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
+                    <a href="/admin/kategori-buku" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
                         <i class="fa-solid fa-tags w-6 text-center mr-2"></i> Kategori Buku
                     </a>
                 </li>
-                <li>
+                 <li>
                     <a href="/admin/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-users w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Anggota
                     </a>
@@ -215,4 +215,4 @@
     </div>
 </body>
 </html>
-```eof
+

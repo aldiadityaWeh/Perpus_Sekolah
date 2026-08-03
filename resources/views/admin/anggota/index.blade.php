@@ -188,11 +188,10 @@
                                     <th class="px-6 py-4 font-bold text-center">Aksi</th>
                                 </tr>
                             </thead>
-                            <!-- Tambahkan ID tableBody -->
                             <tbody id="tableBody" class="text-slate-700 text-sm">
 
                                 @forelse ($data_anggota as $index => $anggota)
-                                <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100">
+                                <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100 table-row-item">
                                     <td class="px-6 py-4 text-center text-slate-500 font-medium">{{ $index + 1 }}</td>
 
                                     <!-- Class pencarian-data digunakan oleh Javascript -->
@@ -201,37 +200,28 @@
 
                                     <td class="px-6 py-4 text-slate-600">{{ $anggota->jenis_kelamin }}</td>
 
-                                    <!-- MENGUBAH TAMPILAN KELAS DI SINI -->
                                     <td class="px-6 py-4 text-slate-600">
                                         <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded text-xs font-semibold border border-blue-100">
-                                            <!-- Panggil relasi 'kelas' lalu ambil 'nama_kelas' -->
                                             {{ $anggota->kelas->nama_kelas ?? 'Tanpa Kelas' }}
                                         </span>
                                     </td>
-                                    <!-- INI BAGIAN TOMBOL AKSI YANG DIUBAH -->
                                     <td class="px-6 py-4">
                                         <div class="flex justify-center gap-1.5">
 
-                                            <!-- Tombol Detail (Biru) - Biarkan dulu -->
-                                            <button class="w-8 h-8 rounded bg-cyan-500 hover:bg-cyan-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Detail Peminjaman">
-                                                <i class="fa-solid fa-cloud"></i>
-                                            </button>
+                                            <!-- Tombol Lihat Detail (Biru - Ikon Mata) -->
+                                            <a href="{{ route('admin.anggota.show', $anggota->id) }}" class="w-8 h-8 rounded bg-cyan-500 hover:bg-cyan-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Lihat Detail">
+                                                <i class="fa-solid fa-eye text-[13px]"></i>
+                                            </a>
 
-                                            <!-- 1. Tombol Edit (Kuning) -->
-                                            <!-- Ubah tag <button> menjadi <a> dan arahkan href ke route edit -->
+                                            <!-- Tombol Edit (Kuning - Ikon Pensil) -->
                                             <a href="{{ route('admin.anggota.edit', $anggota->id) }}" class="w-8 h-8 rounded bg-amber-500 hover:bg-amber-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Edit Data">
                                                 <i class="fa-solid fa-pen-to-square text-[13px]"></i>
                                             </a>
 
-                                            <!-- 2. Tombol Hapus (Merah) -->
-                                            <!-- Wajib dibungkus dengan <form> dan @method('DELETE') -->
-                                            <form action="{{ route('admin.anggota.destroy', $anggota->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus anggota ini?');" class="inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="w-8 h-8 rounded bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Hapus Data">
-                                                    <i class="fa-solid fa-trash-can text-[13px]"></i>
-                                                </button>
-                                            </form>
+                                            <!-- Tombol Hapus (Merah - Memicu Modal Kustom) -->
+                                            <button type="button" onclick="openGlobalDeleteModal('{{ route('admin.anggota.destroy', $anggota->id) }}', '{{ $anggota->nama }}')" class="w-8 h-8 rounded bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Hapus Data">
+                                                <i class="fa-solid fa-trash-can text-[13px]"></i>
+                                            </button>
 
                                         </div>
                                     </td>
@@ -251,8 +241,8 @@
                         </table>
 
                         <!-- Pesan Jika Search Tidak Ketemu -->
-                        <div id="noMatchMessage" class="hidden text-center py-8 text-slate-500 font-medium bg-white">
-                            <i class="fa-solid fa-user-xmark text-3xl mb-3 text-slate-300"></i>
+                        <div id="noMatchMessage" class="hidden text-center py-12 text-slate-500 font-medium bg-white">
+                            <i class="fa-solid fa-user-xmark text-4xl mb-3 text-slate-300"></i>
                             <p>Data anggota tidak ditemukan.</p>
                         </div>
                     </div>
@@ -266,47 +256,101 @@
         </main>
     </div>
 
-    <!-- Script Search Live Data Tabel Anggota -->
+    <!-- MODAL HAPUS KUSTOM (YES/NO POP-UP) -->
+    <div id="globalDeleteModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="globalDeleteModalContent" class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 sm:p-8 transform scale-95 opacity-0 transition-all duration-300 m-4">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-20 h-20 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mb-5 shadow-[0_0_20px_rgba(244,63,94,0.15)] relative">
+                    <div class="absolute inset-0 border-2 border-rose-200 rounded-full animate-ping opacity-20"></div>
+                    <i class="fa-solid fa-trash-can text-3xl relative z-10"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-800 mb-2">Hapus Data Anggota?</h3>
+                <p class="text-sm text-slate-500 mb-8 font-medium leading-relaxed">
+                    Apakah Anda yakin ingin menghapus <strong id="globalDeleteName" class="text-slate-800"></strong>? Data ini akan dihapus permanen.
+                </p>
+                <div class="flex gap-3 w-full">
+                    <button type="button" onclick="closeGlobalDeleteModal()" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors text-sm">
+                        Batal
+                    </button>
+                    <!-- Form eksekusi delete akan disuntik URL-nya lewat JS -->
+                    <form id="globalDeleteForm" method="POST" class="flex-1">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" id="btnConfirmGlobalDelete" class="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl transition-all shadow-md shadow-rose-500/20 text-sm flex items-center justify-center gap-2 group">
+                            Ya, Hapus
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT UNTUK MODAL HAPUS & PENCARIAN DATA -->
     <script>
+        // --- 1. SCRIPT MODAL HAPUS ---
+        const deleteModal = document.getElementById('globalDeleteModal');
+        const deleteContent = document.getElementById('globalDeleteModalContent');
+        const deleteForm = document.getElementById('globalDeleteForm');
+        const deleteNameLabel = document.getElementById('globalDeleteName');
+        const btnConfirmDelete = document.getElementById('btnConfirmGlobalDelete');
+
+        function openGlobalDeleteModal(actionUrl, itemName) {
+            deleteForm.action = actionUrl;
+            deleteNameLabel.textContent = itemName;
+            deleteModal.classList.remove('opacity-0', 'pointer-events-none');
+            deleteContent.classList.remove('scale-95', 'opacity-0');
+            deleteContent.classList.add('scale-100', 'opacity-100');
+        }
+
+        function closeGlobalDeleteModal() {
+            deleteModal.classList.add('opacity-0', 'pointer-events-none');
+            deleteContent.classList.remove('scale-100', 'opacity-100');
+            deleteContent.classList.add('scale-95', 'opacity-0');
+        }
+
+        deleteModal.addEventListener('click', function(e) {
+            if (e.target === deleteModal) closeGlobalDeleteModal();
+        });
+
+        deleteForm.addEventListener('submit', function() {
+            btnConfirmDelete.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin"></i> Menghapus...';
+            btnConfirmDelete.classList.add('opacity-80', 'cursor-not-allowed');
+        });
+
+        // --- 2. SCRIPT PENCARIAN DATA INSTAN ---
         document.addEventListener("DOMContentLoaded", function() {
             const searchInput = document.getElementById("searchInput");
-            const tableBody = document.getElementById("tableBody");
+            const tableRows = document.querySelectorAll(".table-row-item");
             const noMatchMessage = document.getElementById("noMatchMessage");
 
-            if(searchInput && tableBody) {
-                const rows = tableBody.getElementsByTagName("tr");
-
-                searchInput.addEventListener("keyup", function() {
-                    const filter = searchInput.value.toLowerCase();
+            if(searchInput) {
+                searchInput.addEventListener("input", function() {
+                    const filterValue = searchInput.value.toLowerCase();
                     let matchFound = false;
 
-                    for (let i = 0; i < rows.length; i++) {
-                        // Lewati baris "Belum ada data" jika tabel kosong dari awal
-                        if (rows[i].cells.length === 1) continue;
-
+                    tableRows.forEach(row => {
+                        // Ambil kolom NISN dan Nama
+                        const searchableCells = row.querySelectorAll(".pencarian-data");
                         let rowHasMatch = false;
-                        // Cari data berdasarkan class pencarian-data (NISN dan NAMA)
-                        const cells = rows[i].querySelectorAll('.pencarian-data');
 
-                        cells.forEach(function(cell) {
-                            if (cell.textContent.toLowerCase().indexOf(filter) > -1) {
+                        searchableCells.forEach(cell => {
+                            if (cell.textContent.toLowerCase().includes(filterValue)) {
                                 rowHasMatch = true;
                             }
                         });
 
                         if (rowHasMatch) {
-                            rows[i].style.display = "";
+                            row.style.display = "";
                             matchFound = true;
                         } else {
-                            rows[i].style.display = "none";
+                            row.style.display = "none";
                         }
-                    }
+                    });
 
-                    // Logika memunculkan pesan "Data tidak ditemukan"
-                    if (!matchFound && filter !== "" && rows.length > 0 && rows[0].cells.length > 1) {
-                        noMatchMessage.classList.remove('hidden');
+                    if (!matchFound && filterValue !== "") {
+                        noMatchMessage.classList.remove("hidden");
                     } else {
-                        noMatchMessage.classList.add('hidden');
+                        noMatchMessage.classList.add("hidden");
                     }
                 });
             }
@@ -314,4 +358,3 @@
     </script>
 </body>
 </html>
-```eof
