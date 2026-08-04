@@ -8,6 +8,7 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SumberBukuController;
 use App\Http\Controllers\JenisBukuController;
+use App\Http\Controllers\PeminjamanController;
 
 
 // 1. ROUTE PUBLIK
@@ -72,7 +73,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('/jenis-buku/{id}', [JenisBukuController::class, 'destroy'])->name('jenis_buku.destroy');
 
     // Transaksi
-    Route::get('/transaksi/peminjaman', function () { return view('admin.transaksi.peminjaman'); })->name('transaksi.peminjaman');
+    Route::get('/transaksi/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+    Route::post('/transaksi/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+    Route::delete('/transaksi/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
+
     Route::get('/transaksi/pengembalian', function () { return view('admin.transaksi.pengembalian'); })->name('transaksi.pengembalian');
 
     // Laporan

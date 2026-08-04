@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peminjaman - SMARTPERPUS</title>
+    <title>Peminjaman Buku - SMARTPERPUS</title>
+    <link rel="icon" href="data:,">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -13,10 +14,8 @@
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #f8fafc; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-
-        /* Animasi garis scanner untuk efek kamera aktif */
+        select { -webkit-appearance: none; appearance: none; }
         @keyframes scan-line {
             0% { transform: translateY(-100%); opacity: 0; }
             50% { opacity: 1; }
@@ -24,350 +23,214 @@
         }
     </style>
 </head>
-<body class="bg-[#f4f7f6] font-sans antialiased text-slate-800 flex h-screen overflow-hidden selection:bg-blue-200 selection:text-blue-900">
+<body class="bg-[#f4f7f6] font-sans antialiased text-slate-800 flex h-screen overflow-hidden selection:bg-emerald-200 selection:text-emerald-900">
 
-    <!-- SIDEBAR -->
     <aside class="w-64 bg-[#0f172a] text-slate-300 flex flex-col h-full shadow-2xl shrink-0 transition-all duration-300 z-20">
-
-        <!-- Logo Area (Menggunakan Logo SD) -->
         <div class="h-20 flex items-center px-6 border-b border-slate-700/50 bg-[#0f172a] shrink-0">
-            <img src="logo-sd.png" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
+            <img src="{{ asset('images/logo-sd.png') }}" alt="Logo SD" class="h-8 w-8 object-contain mr-3 bg-white rounded-full p-0.5 shadow-sm" onerror="this.src='https://placehold.co/100x100/ffffff/1e293b?text=SD'">
             <span class="font-bold text-lg tracking-wider text-white">SMART<span class="text-blue-400">PERPUS</span></span>
         </div>
 
-        <nav class="flex-1 overflow-y-auto py-6 custom-scrollbar">
-            <ul class="space-y-1.5 px-3">
-                <li>
-                    <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-gauge-high w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Dashboard
-                    </a>
-                </li>
-
+        <nav class="flex-1 overflow-y-auto py-6 custom-scrollbar px-3">
+            <ul class="space-y-1.5">
+                <li><a href="/admin/dashboard" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-gauge-high w-6 text-center mr-2"></i> Dashboard</a></li>
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Master Data</li>
-
-                <li>
-                    <a href="/admin/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-book w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Buku
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/ddc" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-list-ol w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Klasifikasi DDC
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/sumber-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-boxes-packing w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Sumber Buku
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/jenis-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-bookmark w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Jenis Buku
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/kategori-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-tags w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Kategori Buku
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-users w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Anggota
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/kelas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-school w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Kelas
-                    </a>
-                </li>
+                <li><a href="/admin/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-book w-6 text-center mr-2"></i> Data Buku</a></li>
+                <li><a href="/admin/ddc" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-list-ol w-6 text-center mr-2"></i> Klasifikasi DDC</a></li>
+                <li><a href="/admin/sumber-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-boxes-packing w-6 text-center mr-2"></i> Sumber Buku</a></li>
+                <li><a href="/admin/jenis-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-bookmark w-6 text-center mr-2"></i> Jenis Buku</a></li>
+                <li><a href="/admin/kategori-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-tags w-6 text-center mr-2"></i> Kategori Buku</a></li>
+                <li><a href="/admin/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-users w-6 text-center mr-2"></i> Data Anggota</a></li>
+                <li><a href="/admin/kelas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-school w-6 text-center mr-2"></i> Data Kelas</a></li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Transaksi</li>
 
-                <!-- Scan Peminjaman Active -->
+                <!-- Peminjaman Active -->
                 <li>
-                    <a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
+                    <a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 bg-emerald-600/10 text-emerald-400 border border-emerald-500/20 rounded-xl font-semibold shadow-inner transition-all">
                         <i class="fa-solid fa-barcode w-6 text-center mr-2"></i> Scan Peminjaman
                     </a>
                 </li>
 
-                <li>
-                    <a href="/admin/transaksi/pengembalian" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between">
-                        <div class="flex items-center">
-                            <i class="fa-solid fa-clipboard-check w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Verifikasi Kembali
-                        </div>
-                        <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full animate-pulse">3</span>
-                    </a>
-                </li>
+                <li><a href="/admin/transaksi/pengembalian" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all flex justify-between"><div class="flex items-center"><i class="fa-solid fa-clipboard-check w-6 text-center mr-2"></i> Verifikasi Kembali</div></a></li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Laporan</li>
-                <li>
-                    <a href="/admin/laporan/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-address-card w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Laporan Anggota
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/laporan/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-book-open w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Laporan Buku
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/laporan/kas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2 group-hover:text-rose-400 transition-colors"></i> Laporan Kas (Denda)
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/laporan/pengunjung" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
-                        <i class="fa-solid fa-users-viewfinder w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Laporan Pengunjung
-                    </a>
-                </li>
+                <li><a href="/admin/laporan/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-address-card w-6 text-center mr-2"></i> Laporan Anggota</a></li>
+                <li><a href="/admin/laporan/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-book-open w-6 text-center mr-2"></i> Laporan Buku</a></li>
+                <li><a href="/admin/laporan/kas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-file-invoice-dollar w-6 text-center mr-2"></i> Laporan Kas</a></li>
+                <li><a href="/admin/laporan/pengunjung" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all"><i class="fa-solid fa-users-viewfinder w-6 text-center mr-2"></i> Laporan Pengunjung</a></li>
             </ul>
         </nav>
     </aside>
 
-    <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative bg-[#f4f7f6]">
-
-        <!-- HEADER -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative">
         <header class="h-20 bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center justify-between px-8 z-10 shrink-0">
             <div>
-                <!-- Breadcrumb -->
-                <div class="flex items-center text-sm text-slate-500 mb-1 font-semibold gap-2">
-                    <span class="hover:text-blue-600 cursor-pointer transition-colors">Transaksi</span>
-                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    <span class="text-slate-800">Scan Peminjaman</span>
-                </div>
                 <h2 class="text-2xl font-bold text-slate-800 tracking-tight leading-none">Sirkulasi Peminjaman</h2>
+                <p class="text-sm text-slate-500 mt-1 font-medium">Catat peminjaman buku anggota secara cepat.</p>
             </div>
 
             <div class="flex items-center gap-4 md:gap-6">
-                <!-- User Profile -->
-                <div class="flex items-center gap-3 cursor-pointer group">
-                    <div class="relative shrink-0">
-                        <img src="https://ui-avatars.com/api/?name=Admin+Perpus&background=0f172a&color=fff&bold=true" alt="Admin" class="w-10 h-10 rounded-full ring-2 ring-slate-100 group-hover:ring-blue-200 transition-all object-cover">
-                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
-                    </div>
-                    <div class="hidden sm:block text-left">
-                        <p class="text-sm font-bold text-slate-700 group-hover:text-blue-600 transition-colors">Budi Santoso</p>
-                        <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Kepala Perpus</p>
-                    </div>
+                <div class="flex items-center gap-3 pl-4 md:pl-6 border-l border-slate-200 cursor-pointer group">
+                    <img src="https://ui-avatars.com/api/?name=Admin+Perpus&background=0f172a&color=fff&bold=true" class="w-10 h-10 rounded-full ring-2 ring-slate-100 object-cover">
                 </div>
             </div>
         </header>
 
         <main class="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6 custom-scrollbar">
-
             <div class="max-w-[1400px] mx-auto space-y-6">
 
-                <!-- Info Banner -->
-                <div class="bg-[#4eb4f5] text-white rounded-lg p-5 shadow-sm border border-[#3ba0de] flex flex-col justify-center">
-                    <div class="flex items-center gap-2 mb-1.5">
-                        <i class="fa-solid fa-circle-info text-xl opacity-90"></i>
-                        <h3 class="font-bold text-xl">Informasi</h3>
+                @if (session('success'))
+                    <div class="bg-emerald-50 border-l-4 border-emerald-500 text-emerald-700 p-4 rounded shadow-sm flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-xl"></i> <span class="font-medium">{{ session('success') }}</span>
                     </div>
-                    <p class="text-sm text-white/90">Silahkan scan barcode kartu anggota pada menu <strong>PEMINJAMAN</strong> dengan posisi yang baik dan benar.</p>
-                </div>
+                @endif
 
-                <!-- TOP SECTION: Scan QR & Data Table -->
+                @if ($errors->any())
+                    <div class="bg-rose-50 border-l-4 border-rose-500 text-rose-700 p-4 rounded shadow-sm flex items-center gap-3">
+                        <i class="fa-solid fa-circle-exclamation text-xl"></i>
+                        <span class="font-medium">{{ $errors->first() }}</span>
+                    </div>
+                @endif
+
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
-                    <!-- LEFT COLUMN: Scan QR Code -->
-                    <div class="lg:col-span-4 bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                    <!-- KIRI: Scanner & Form -->
+                    <div class="lg:col-span-5 space-y-6">
 
-                        <div class="px-5 py-4 border-b border-slate-100 flex items-center gap-2 bg-white">
-                            <i class="fa-solid fa-qrcode text-slate-700"></i>
-                            <h3 class="font-bold text-slate-800 text-sm">Scan QR Code Anggota</h3>
-                        </div>
-
-                        <div class="p-6 flex flex-col items-center gap-4">
-
-                            <!-- Camera View Box -->
-                            <div id="videoContainer" class="w-full aspect-square bg-slate-100 border-2 border-slate-200 shadow-inner rounded-xl relative overflow-hidden flex flex-col items-center justify-center group">
-
-                                <!-- State: Off -->
-                                <div id="cameraOffState" class="flex flex-col items-center justify-center text-slate-400 w-full h-full transition-all">
-                                    <i class="fa-solid fa-camera-slash text-5xl mb-3 opacity-60"></i>
-                                    <span class="text-sm font-semibold tracking-wide">Kamera Nonaktif</span>
-                                </div>
-
-                                <!-- State: On -->
-                                <div id="cameraOnState" class="hidden absolute inset-0 bg-slate-900">
-                                    <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&w=400&q=80" alt="Webcam Feed" class="w-full h-full object-cover opacity-80 mix-blend-luminosity">
-
-                                    <!-- Frame & Scanner Line -->
+                        <!-- Box Scanner -->
+                        <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <div class="px-5 py-4 border-b border-slate-100 flex items-center gap-2 bg-white">
+                                <i class="fa-solid fa-qrcode text-slate-700"></i>
+                                <h3 class="font-bold text-slate-800 text-sm">Pemindai Barcode (Simulasi)</h3>
+                            </div>
+                            <div class="p-5 flex flex-col items-center">
+                                <div class="w-full aspect-[4/3] max-w-sm bg-slate-900 border-2 border-slate-300 rounded-xl relative overflow-hidden flex items-center justify-center">
+                                    <i class="fa-solid fa-camera text-slate-600 text-4xl opacity-50 absolute"></i>
                                     <div class="absolute inset-0 z-10 pointer-events-none p-6 flex items-center justify-center">
-                                        <div class="w-full h-full max-w-[200px] max-h-[200px] relative">
-                                            <div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-emerald-400 rounded-tl-lg"></div>
-                                            <div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-emerald-400 rounded-tr-lg"></div>
-                                            <div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-emerald-400 rounded-bl-lg"></div>
-                                            <div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-emerald-400 rounded-br-lg"></div>
-
-                                            <!-- Scanner Line -->
+                                        <div class="w-full h-full max-w-[150px] max-h-[150px] relative">
+                                            <div class="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-emerald-400"></div>
+                                            <div class="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-emerald-400"></div>
+                                            <div class="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-emerald-400"></div>
+                                            <div class="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-emerald-400"></div>
                                             <div class="absolute left-0 w-full h-[2px] bg-red-500 shadow-[0_0_15px_rgba(239,68,68,1)] top-1/2" style="animation: scan-line 2.5s ease-in-out infinite;"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Camera Action Buttons -->
-                            <div class="flex flex-col gap-3 w-full mt-2">
-                                <button id="btnPlay" class="w-full bg-[#198754] hover:bg-[#157347] text-white py-2.5 rounded-lg flex items-center justify-center gap-2 text-sm shadow-sm transition-colors border border-[#146c43] font-medium">
-                                    <i class="fa-solid fa-play"></i> Nyalakan Kamera
-                                </button>
-                                <button id="btnStop" class="w-full bg-[#dc3545] hover:bg-[#c82333] text-white py-2.5 rounded-lg flex items-center justify-center gap-2 text-sm shadow-sm transition-colors border border-[#bd2130] font-medium">
-                                    <i class="fa-solid fa-stop"></i> Matikan Kamera
-                                </button>
+                                <p class="text-xs text-slate-500 mt-4 text-center">Arahkan scanner ke Kartu Anggota lalu ke Barcode Buku.</p>
                             </div>
                         </div>
+
+                        <!-- Form Input Peminjaman -->
+                        <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <div class="bg-blue-600 px-5 py-4 flex items-center gap-2 text-white">
+                                <i class="fa-solid fa-keyboard text-blue-200"></i>
+                                <h3 class="font-bold text-sm">Formulir Peminjaman Buku</h3>
+                            </div>
+
+                            <form action="/admin/transaksi/peminjaman" method="POST" class="p-5 space-y-4">
+                                @csrf
+                                <div>
+                                    <label class="text-xs font-bold text-slate-600 uppercase tracking-wider block mb-1">Pilih Anggota</label>
+                                    <div class="relative">
+                                        <select name="anggota_id" required class="w-full bg-slate-50 border border-slate-300 text-slate-800 rounded-lg py-2.5 pl-3 pr-8 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none text-sm font-medium">
+                                            <option value="" disabled selected>-- Pilih Anggota Peminjam --</option>
+                                            @foreach ($data_anggota as $anggota)
+                                                <option value="{{ $anggota->id }}">{{ $anggota->nisn }} - {{ $anggota->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-400"><i class="fa-solid fa-chevron-down text-xs"></i></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="text-xs font-bold text-slate-600 uppercase tracking-wider block mb-1">Pilih Buku</label>
+                                    <div class="relative">
+                                        <select name="buku_id" required class="w-full bg-slate-50 border border-slate-300 text-slate-800 rounded-lg py-2.5 pl-3 pr-8 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none text-sm font-medium">
+                                            <option value="" disabled selected>-- Pilih Buku Tersedia --</option>
+                                            @foreach ($data_buku as $buku)
+                                                <option value="{{ $buku->id }}">{{ $buku->kode_buku }} - {{ $buku->judul }} (Stok: {{ $buku->stok }})</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-slate-400"><i class="fa-solid fa-chevron-down text-xs"></i></div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-lg shadow-md transition-colors mt-2 flex justify-center items-center gap-2">
+                                    <i class="fa-solid fa-check"></i> Proses Peminjaman
+                                </button>
+                            </form>
+                        </div>
+
                     </div>
 
-                    <!-- RIGHT COLUMN: Recent Scans Data -->
-                    <div class="lg:col-span-8 bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col h-full">
-
-                        <div class="px-6 py-4 border-b border-slate-100 flex items-center gap-2 bg-white">
-                            <i class="fa-solid fa-database text-slate-800 text-lg"></i>
-                            <h3 class="font-bold text-slate-800 text-lg">Data Peminjaman</h3>
-                        </div>
-
-                        <!-- Search Bar -->
-                        <div class="px-6 py-4 bg-slate-50/50 flex justify-end border-b border-slate-100">
-                            <div class="relative w-full md:w-72">
-                                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                                <input type="text" placeholder="Cari Data Peminjaman..." class="w-full bg-white border border-slate-300 rounded py-2 pl-9 pr-3 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm placeholder:text-slate-400">
+                    <!-- KANAN: Tabel Riwayat -->
+                    <div class="lg:col-span-7 bg-white rounded-lg shadow-sm border border-slate-200 flex flex-col h-full min-h-[500px]">
+                        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-clock-rotate-left text-slate-600 text-lg"></i>
+                                <h3 class="font-bold text-slate-800 text-base">Riwayat Peminjaman Terbaru</h3>
                             </div>
                         </div>
 
-                        <!-- Table -->
-                        <div class="overflow-x-auto">
+                        <div class="overflow-x-auto flex-1 p-2">
                             <table class="w-full text-left border-collapse">
                                 <thead>
-                                    <tr class="bg-slate-200/80 text-slate-800 text-[13px] border-b border-slate-300">
-                                        <th class="px-6 py-3.5 font-bold w-16 text-center">No</th>
-                                        <th class="px-6 py-3.5 font-bold">Tgl Pinjam</th>
-                                        <th class="px-6 py-3.5 font-bold">Nama Anggota</th>
-                                        <th class="px-6 py-3.5 font-bold">Kelas</th>
-                                        <th class="px-6 py-3.5 font-bold w-24 text-center">Aksi</th>
+                                    <tr class="text-slate-500 text-[11px] uppercase tracking-widest border-b border-slate-200">
+                                        <th class="px-4 py-3 font-bold">Anggota</th>
+                                        <th class="px-4 py-3 font-bold">Buku</th>
+                                        <th class="px-4 py-3 font-bold">Tgl Batas</th>
+                                        <th class="px-4 py-3 font-bold text-center">Status</th>
+                                        <th class="px-4 py-3 font-bold text-center">Batal</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-slate-700 text-[13px] divide-y divide-slate-100">
-
-                                    <!-- Row 1 -->
-                                    <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                        <td class="px-6 py-3 text-center text-slate-500 font-medium">1</td>
-                                        <td class="px-6 py-3 font-semibold text-slate-800">27 Juli 2026</td>
-                                        <td class="px-6 py-3">Rahayu</td>
-                                        <td class="px-6 py-3 text-slate-600">XI Teknologi Informasi 1</td>
-                                        <td class="px-6 py-3">
-                                            <div class="flex flex-col gap-1.5 items-center">
-                                                <button class="w-8 h-8 rounded bg-[#0dcaf0] hover:bg-[#0bacce] text-white flex items-center justify-center transition-colors shadow-sm" title="Detail Peminjaman">
-                                                    <i class="fa-solid fa-book-open text-[13px]"></i>
-                                                </button>
-                                                <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm" title="Hapus Data">
-                                                    <i class="fa-solid fa-trash-can text-[13px]"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Row 2 -->
-                                    <tr class="bg-slate-50/50 hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                        <td class="px-6 py-3 text-center text-slate-500 font-medium">2</td>
-                                        <td class="px-6 py-3 font-semibold text-slate-800">26 Juli 2026</td>
-                                        <td class="px-6 py-3">Budi Santoso</td>
-                                        <td class="px-6 py-3 text-slate-600">X IPS 2</td>
-                                        <td class="px-6 py-3">
-                                            <div class="flex flex-col gap-1.5 items-center">
-                                                <button class="w-8 h-8 rounded bg-[#0dcaf0] hover:bg-[#0bacce] text-white flex items-center justify-center transition-colors shadow-sm" title="Detail Peminjaman">
-                                                    <i class="fa-solid fa-book-open text-[13px]"></i>
-                                                </button>
-                                                <button class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm" title="Hapus Data">
-                                                    <i class="fa-solid fa-trash-can text-[13px]"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
+                                    @forelse ($data_peminjaman as $trx)
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <td class="px-4 py-3">
+                                                <div class="font-bold text-slate-800">{{ $trx->anggota->nama ?? '-' }}</div>
+                                                <div class="text-[10px] text-slate-500">{{ $trx->anggota->kelas->nama_kelas ?? '-' }}</div>
+                                            </td>
+                                            <td class="px-4 py-3">
+                                                @if($trx->detail)
+                                                    @foreach ($trx->detail as $dt)
+                                                        <div class="font-semibold text-slate-700 line-clamp-1">{{ $dt->buku->judul ?? '-' }}</div>
+                                                        <div class="text-[10px] font-mono text-slate-400">{{ $dt->buku->kode_buku ?? '-' }}</div>
+                                                    @endforeach
+                                                @endif
+                                            </td>
+                                            <td class="px-4 py-3 text-slate-600 font-medium">
+                                                {{ \Carbon\Carbon::parse($trx->tgl_batas_kembali)->format('d M Y') }}
+                                            </td>
+                                            <td class="px-4 py-3 text-center">
+                                                <span class="bg-blue-50 text-blue-600 border border-blue-200 px-2 py-1 rounded text-[10px] font-bold uppercase">Dipinjam</span>
+                                            </td>
+                                            <td class="px-4 py-3 text-center">
+                                                <form action="/admin/transaksi/peminjaman/{{ $trx->id }}" method="POST" onsubmit="return confirm('Batalkan transaksi ini? Stok buku akan dikembalikan.');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="w-7 h-7 rounded bg-rose-100 hover:bg-rose-500 hover:text-white text-rose-500 transition-colors" title="Batalkan">
+                                                        <i class="fa-solid fa-xmark"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="py-12 text-center text-slate-400">
+                                                <i class="fa-solid fa-receipt text-3xl mb-2 opacity-50"></i>
+                                                <p>Belum ada transaksi peminjaman.</p>
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
                 </div>
-
-                <!-- BOTTOM SECTION: Manual Member Search -->
-                <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden mt-6">
-
-                    <!-- Blue Header -->
-                    <div class="bg-[#3b5998] px-6 py-4 flex items-center gap-2 text-white">
-                        <i class="fa-solid fa-plus font-bold"></i>
-                        <h3 class="font-bold text-sm">Pinjam Data Anggota Secara Manual</h3>
-                    </div>
-
-                    <div class="p-6">
-                        <div class="flex justify-end mb-4">
-                            <div class="relative w-full md:w-80">
-                                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                                <input type="text" placeholder="Cari Anggota Manual (NISN/Nama)..." class="w-full bg-white border border-slate-300 rounded py-2.5 pl-9 pr-3 text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm placeholder:text-slate-400">
-                            </div>
-                        </div>
-
-                        <div class="overflow-x-auto border border-slate-200 rounded-lg">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-slate-100/80 text-slate-800 text-[13px] border-b border-slate-300">
-                                        <th class="px-6 py-3.5 font-bold w-16 text-center">No</th>
-                                        <th class="px-6 py-3.5 font-bold">NISN</th>
-                                        <th class="px-6 py-3.5 font-bold">Nama Anggota</th>
-                                        <th class="px-6 py-3.5 font-bold">Jenis Kelamin</th>
-                                        <th class="px-6 py-3.5 font-bold">Kelas</th>
-                                        <th class="px-6 py-3.5 font-bold w-32 text-center">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-slate-700 text-[13px]">
-
-                                    <tr class="bg-white hover:bg-slate-50 transition-colors border-b border-slate-100">
-                                        <td class="px-6 py-3 text-center text-slate-500 font-medium">1</td>
-                                        <td class="px-6 py-3 font-mono text-slate-600">121212</td>
-                                        <td class="px-6 py-3 font-semibold text-slate-800">Ahmad Fauzi</td>
-                                        <td class="px-6 py-3 text-slate-600">Laki-Laki</td>
-                                        <td class="px-6 py-3 text-slate-600">Kelas 5 A</td>
-                                        <td class="px-6 py-3 text-center">
-                                            <button class="bg-[#0dcaf0] hover:bg-[#0bacce] text-white px-4 py-1.5 rounded flex items-center justify-center mx-auto transition-colors shadow-sm gap-2 text-xs font-semibold" title="Pilih Anggota">
-                                                <i class="fa-solid fa-lock-open"></i> Pilih
-                                            </button>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Footer Text -->
-                <div class="pt-2 pb-6 text-center md:text-left">
-                    <p class="text-[13px] font-semibold text-slate-400">2026 &copy; SMARTPERPUS System. All rights reserved.</p>
-                </div>
-
             </div>
         </main>
     </div>
-
-    <!-- Script untuk Toggle Kamera -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const btnPlay = document.getElementById('btnPlay');
-            const btnStop = document.getElementById('btnStop');
-            const cameraOffState = document.getElementById('cameraOffState');
-            const cameraOnState = document.getElementById('cameraOnState');
-
-            btnPlay.addEventListener('click', function() {
-                cameraOffState.classList.add('hidden');
-                cameraOnState.classList.remove('hidden');
-            });
-
-            btnStop.addEventListener('click', function() {
-                cameraOnState.classList.add('hidden');
-                cameraOffState.classList.remove('hidden');
-            });
-        });
-    </script>
 </body>
 </html>
