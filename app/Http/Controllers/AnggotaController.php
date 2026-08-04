@@ -2,104 +2,107 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Anggota;
-use App\Models\Kelas; // Pastikan Model Kelas dipanggil di sini
+use App\Models\Kelas;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AnggotaController extends Controller
 {
-    // Menampilkan halaman tabel Data Anggota
     public function index()
     {
-        // Menggunakan with('kelas') agar data relasi (nama kelas) ikut terpanggil
-        $data_anggota = Anggota::with('kelas')->get();
+        // Mengambil data anggota beserta relasi kelasnya agar query efisien
+        $data_anggota = Anggota::with('kelas')->orderBy('created_at', 'desc')->get();
         return view('admin.anggota.index', compact('data_anggota'));
     }
 
-    // Menampilkan form tambah Anggota
     public function create()
     {
-        // Mengambil semua data kelas untuk ditampilkan di dropdown form
-        $data_kelas = Kelas::all();
+        // Lempar data kelas untuk pilihan dropdown
+        $data_kelas = Kelas::orderBy('nama_kelas', 'asc')->get();
         return view('admin.anggota.create', compact('data_kelas'));
     }
 
-    // Memproses data dari form dan menyimpannya ke database
     public function store(Request $request)
     {
-        // Validasi input
+        // Validasi data input
         $request->validate([
-            'nisn' => 'required|unique:anggota,nisn',
-            'nama' => 'required',
-            'kelas_id' => 'required',
+            'nisn'          => 'required|unique:anggota,nisn',
+            'nama'          => 'required|string|max:255',
+            'kelas_id'      => 'required',
             'jenis_kelamin' => 'required',
+            'foto'          => 'nullable|image|mimes:jpeg,png,jpg|max:2048' // Maks 2MB
         ]);
 
-        // Simpan ke database
-        Anggota::create([
-            'nisn' => $request->nisn,
-            'nama' => $request->nama,
-            'kelas_id' => $request->kelas_id,
-            'jenis_kelamin' => $request->jenis_kelamin,
-        ]);
+        $data = $request->except('foto');
 
-        // Lempar kembali ke halaman tabel dengan pesan sukses
-        return redirect()->route('admin.anggota.index')
-                         ->with('success', 'Data Anggota berhasil ditambahkan!');
+        // Proses unggah foto (jika ada)
+        if ($request->hasFile('foto')) {
+            $path = $request->file('foto')->store('anggota_foto', 'public');
+            $data['foto'] = $path;
+        }
+
+        Anggota::create($data);
+
+        return redirect('/admin/anggota')->with('success', 'Data Anggota berhasil ditambahkan!');
     }
 
-     // Menampilkan detail spesifik satu anggota
-    // Menampilkan detail spesifik satu anggota
     public function show($id)
     {
-        // Ambil data anggota berdasarkan ID beserta relasi kelasnya
         $anggota = Anggota::with('kelas')->findOrFail($id);
-
-        // Kembalikan ke halaman view detail (show.blade.php)
         return view('admin.anggota.show', compact('anggota'));
     }
 
-    // Menampilkan form edit Anggota
     public function edit($id)
     {
         $anggota = Anggota::findOrFail($id);
-        $data_kelas = Kelas::all(); // Perlu mengirim data kelas lagi untuk dropdown edit
+        $data_kelas = Kelas::orderBy('nama_kelas', 'asc')->get();
 
         return view('admin.anggota.edit', compact('anggota', 'data_kelas'));
     }
 
-    // Memproses update data Anggota
     public function update(Request $request, $id)
     {
-        // Validasi input (perhatikan pengecualian unique untuk ID yang sedang diedit)
-        $request->validate([
-            'nisn' => 'required|unique:anggota,nisn,'.$id,
-            'nama' => 'required',
-            'kelas_id' => 'required',
-            'jenis_kelamin' => 'required',
-        ]);
-
         $anggota = Anggota::findOrFail($id);
 
-        $anggota->update([
-            'nisn' => $request->nisn,
-            'nama' => $request->nama,
-            'kelas_id' => $request->kelas_id,
-            'jenis_kelamin' => $request->jenis_kelamin,
+        $request->validate([
+            'nisn'          => 'required|unique:anggota,nisn,'.$id,
+            'nama'          => 'required|string|max:255',
+            'kelas_id'      => 'required',
+            'jenis_kelamin' => 'required',
+            'foto'          => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        return redirect()->route('admin.anggota.index')
-                         ->with('success', 'Data Anggota berhasil diperbarui!');
+        $data = $request->except('foto');
+
+        // Jika ada foto baru yang diunggah
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama dari storage jika ada
+            if ($anggota->foto && Storage::disk('public')->exists($anggota->foto)) {
+                Storage::disk('public')->delete($anggota->foto);
+            }
+
+            // Simpan foto baru
+            $path = $request->file('foto')->store('anggota_foto', 'public');
+            $data['foto'] = $path;
+        }
+
+        $anggota->update($data);
+
+        return redirect('/admin/anggota')->with('success', 'Data Anggota berhasil diperbarui!');
     }
 
-    // Menghapus data Anggota
     public function destroy($id)
     {
         $anggota = Anggota::findOrFail($id);
 
+        // Hapus file foto dari harddisk jika ada
+        if ($anggota->foto && Storage::disk('public')->exists($anggota->foto)) {
+            Storage::disk('public')->delete($anggota->foto);
+        }
+
         $anggota->delete();
 
-        return redirect()->route('admin.anggota.index')
-                         ->with('success', 'Data Anggota berhasil dihapus!');
+        return redirect('/admin/anggota')->with('success', 'Data Anggota berhasil dihapus!');
     }
 }

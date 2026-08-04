@@ -34,6 +34,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/buku', [BookController::class, 'index'])->name('buku.index');
     Route::get('/buku/create', [BookController::class, 'create'])->name('buku.create');
     Route::post('/buku', [BookController::class, 'store'])->name('buku.store');
+    Route::get('/buku/{id}/edit', [BookController::class, 'edit'])->name('buku.edit');
+    Route::put('/buku/{id}', [BookController::class, 'update'])->name('buku.update');
+    Route::delete('/buku/{id}', [BookController::class, 'destroy'])->name('buku.destroy');
+
 
   // Kategori Buku
     Route::get('/kategori-buku', [KategoriBukuController::class, 'index'])->name('kategori_buku.index');
@@ -44,9 +48,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('/kategori-buku/{id}', [KategoriBukuController::class, 'destroy'])->name('kategori_buku.destroy');
 
     // Data Anggota
-    Route::get('/anggota', function () {
-        return view('admin.anggota.index'); // resources/views/admin/anggota/index.blade.php
-    })->name('anggota.index');
+    Route::resource('anggota', AnggotaController::class)->names('anggota');
 
     // DDC
     Route::get('/ddc', [DdcController::class, 'index'])->name('ddc.index');
