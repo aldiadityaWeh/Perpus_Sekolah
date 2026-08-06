@@ -9,6 +9,9 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SumberBukuController;
 use App\Http\Controllers\JenisBukuController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PengembalianController;
+use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\LaporanController;
 
 
 // 1. ROUTE PUBLIK
@@ -16,6 +19,10 @@ Route::get('/', function () { return view('beranda'); })->name('beranda');
 Route::get('/tentang', function () { return view('tentang'); })->name('tentang');
 Route::get('/absen', function () { return view('absen'); })->name('absen');
 Route::get('/koleksi', function () { return view('koleksi'); })->name('koleksi');
+
+// Route Kiosk Absen Pengunjung
+Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
+Route::post('/absen', [AbsenController::class, 'store'])->name('absen.store');
 
 // 2. ROUTE AUTH
 Route::get('/login', function () { return view('auth.login'); })->name('login');
@@ -73,18 +80,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('/jenis-buku/{id}', [JenisBukuController::class, 'destroy'])->name('jenis_buku.destroy');
 
     // Transaksi
+
+    // peminjaman
     Route::get('/transaksi/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
     Route::post('/transaksi/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
     Route::delete('/transaksi/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
 
-    Route::get('/transaksi/pengembalian', function () { return view('admin.transaksi.pengembalian'); })->name('transaksi.pengembalian');
+    // pengembalian
+    Route::get('/transaksi/pengembalian', [PengembalianController::class, 'index'])->name('pengembalian.index');
+    Route::post('/transaksi/pengembalian/{id}', [PengembalianController::class, 'verify'])->name('pengembalian.verify');
 
     // Laporan
-    Route::prefix('laporan')->name('laporan.')->group(function () {
-        Route::get('/anggota', function () { return view('admin.laporan.laporan_anggota.index'); })->name('anggota.index');
-        Route::get('/buku', function () { return view('admin.laporan.laporan_buku.index'); })->name('buku.index');
-        Route::get('/kas', function () { return view('admin.laporan.laporan_kas.index'); })->name('kas.index');
-        Route::get('/pengunjung', function () { return view('admin.laporan.laporan_pengunjung.index'); })->name('pengunjung.index');
-    });
+
+    // Laporan (BARU)
+   Route::get('/laporan/pengunjung', [LaporanController::class, 'pengunjung'])->name('laporan.pengunjung');
+   Route::get('/laporan/kas', [LaporanController::class, 'kas'])->name('laporan.kas');
+   Route::get('/laporan/buku', [LaporanController::class, 'buku'])->name('laporan.buku');
+    Route::get('/laporan/anggota', [LaporanController::class, 'anggota'])->name('laporan.anggota');
+
+
+
+
 
 });
