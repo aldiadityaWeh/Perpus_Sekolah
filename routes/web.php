@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DdcController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\KategoriBukuController;
@@ -31,12 +32,17 @@ Route::get('/register', function () { return view('auth.register'); })->name('re
 // 3. ROUTE PANEL ADMIN
 Route::prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // Data Kelas
-    Route::resource('kelas', KelasController::class);
+    Route::resource('kelas', KelasController::class)->names([
+        'index' => 'admin.kelas.index',
+        'create' => 'admin.kelas.create',
+        'store' => 'admin.kelas.store',
+        'edit' => 'admin.kelas.edit',
+        'update' => 'admin.kelas.update',
+        'destroy' => 'admin.kelas.destroy',
+    ]);
 
     // Data Buku
     Route::get('/buku', [BookController::class, 'index'])->name('buku.index');

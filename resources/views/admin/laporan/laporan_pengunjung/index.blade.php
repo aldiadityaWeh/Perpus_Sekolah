@@ -51,19 +51,19 @@
         <nav class="flex-1 overflow-y-auto py-6 custom-scrollbar">
             <ul class="space-y-1.5 px-3">
                 <li>
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
+                    <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group">
                         <i class="fa-solid fa-gauge-high w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Dashboard
                     </a>
                 </li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Master Data</li>
-                <li><a href="{{ route('admin.buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-book w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Buku</a></li>
-                <li><a href="{{ route('admin.ddc.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-list-ol w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Klasifikasi DDC</a></li>
-                <li><a href="{{ route('admin.sumber_buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-boxes-packing w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Sumber Buku</a></li>
-                <li><a href="{{ route('admin.jenis_buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-bookmark w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Jenis Buku</a></li>
-                <li><a href="{{ route('admin.kategori_buku.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-tags w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Kategori Buku</a></li>
-                <li><a href="{{ route('admin.anggota.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-users w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Anggota</a></li>
-                <li><a href="{{ route('admin.kelas.index') }}" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-school w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Kelas</a></li>
+                <li><a href="/admin/buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-book w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Buku</a></li>
+                <li><a href="/admin/ddc" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-list-ol w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Klasifikasi DDC</a></li>
+                <li><a href="/admin/sumber-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-boxes-packing w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Sumber Buku</a></li>
+                <li><a href="/admin/jenis-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-bookmark w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Jenis Buku</a></li>
+                <li><a href="/admin/kategori-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-tags w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Kategori Buku</a></li>
+                <li><a href="/admin/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-users w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Anggota</a></li>
+                <li><a href="/admin/kelas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-school w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Kelas</a></li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Transaksi</li>
                 <li><a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-barcode w-6 text-center mr-2 group-hover:text-emerald-400 transition-colors"></i> Scan Peminjaman</a></li>
@@ -165,7 +165,7 @@
                                 </div>
                             </div>
 
-                            <!-- Filter Input Container (Dinamis disembunyikan/dimunculkan) -->
+                            <!-- Filter Input Container -->
                             <div id="dynamicFilterContainer" class="flex-1 w-full flex flex-col md:flex-row gap-4 {{ request('rentang') ? '' : 'hidden' }}">
 
                                 <!-- Input Harian -->
@@ -174,7 +174,7 @@
                                     <input type="date" name="tanggal" value="{{ request('tanggal') }}" class="w-full bg-white border border-slate-300 rounded-lg py-2.5 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all text-slate-700 shadow-sm cursor-pointer">
                                 </div>
 
-                                <!-- Input Bulanan (Tipe Month) -->
+                                <!-- Input Bulanan -->
                                 <div id="filterBulanan" class="relative w-full md:w-64 {{ request('rentang') == 'bulanan' ? '' : 'hidden' }}">
                                     <label class="text-xs font-semibold text-slate-500 mb-1.5 block">Pilih Bulan & Tahun</label>
                                     <input type="month" name="bulan" value="{{ request('bulan') }}" class="w-full bg-white border border-slate-300 rounded-lg py-2.5 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all text-slate-700 shadow-sm cursor-pointer">
@@ -195,7 +195,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Input Custom (Rentang Tanggal) -->
+                                <!-- Input Custom -->
                                 <div id="filterCustom" class="w-full md:w-auto flex flex-col sm:flex-row items-end gap-3 {{ request('rentang') == 'custom' ? '' : 'hidden' }}">
                                     <div class="w-full sm:w-auto">
                                         <label class="text-xs font-semibold text-slate-500 mb-1.5 block">Tanggal Mulai</label>
@@ -213,18 +213,13 @@
 
                             <!-- Tombol Eksekusi -->
                             <div class="flex gap-2 w-full xl:w-auto mt-4 xl:mt-0 xl:ml-auto shrink-0">
-                                <!-- Tombol Filter Data (Apply ke Tabel) -->
                                 <button type="submit" class="bg-slate-800 hover:bg-slate-900 text-white px-5 py-2.5 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 font-medium text-sm flex-1 md:flex-none">
                                     <i class="fa-solid fa-magnifying-glass"></i> Terapkan
                                 </button>
-
-                                <!-- Tombol Export PDF (Bisa dipisah dengan atribut formaction di Laravel) -->
-                                <button type="submit" formaction="#" formtarget="_blank" class="bg-[#dc3545] hover:bg-[#c82333] text-white px-5 py-2.5 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 font-medium text-sm flex-1 md:flex-none">
+                                <button type="button" class="bg-[#dc3545] hover:bg-[#c82333] text-white px-5 py-2.5 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 font-medium text-sm flex-1 md:flex-none">
                                     <i class="fa-solid fa-file-pdf"></i> PDF
                                 </button>
-
-                                <!-- Tombol Export Excel -->
-                                <button type="submit" formaction="#" class="bg-[#198754] hover:bg-[#157347] text-white px-5 py-2.5 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 font-medium text-sm flex-1 md:flex-none hidden sm:flex">
+                                <button type="button" class="bg-[#198754] hover:bg-[#157347] text-white px-5 py-2.5 rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 font-medium text-sm flex-1 md:flex-none hidden sm:flex">
                                     <i class="fa-solid fa-file-excel"></i> Excel
                                 </button>
                             </div>
@@ -241,7 +236,7 @@
                             <h3 class="font-bold text-slate-800 text-lg">Riwayat Kehadiran Pengunjung</h3>
                         </div>
 
-                        <!-- Search Bar Khusus Tabel (Opsional) -->
+                        <!-- Search Bar Khusus Tabel -->
                         <div class="relative w-full md:w-80">
                             <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                             <input type="text" placeholder="Cari Nama / Kelas..." class="w-full bg-slate-50 border border-slate-300 rounded-lg py-2 pl-9 pr-3 text-sm focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-all text-slate-700 outline-none shadow-sm placeholder:text-slate-400">
@@ -288,7 +283,6 @@
                                     </tr>
                                     @endforeach
                                 @else
-                                    <!-- Dummy Data untuk tampilan visualisasi jika $data_pengunjung kosong/tidak ada -->
                                     <tr class="hover:bg-slate-50 transition-colors group">
                                         <td class="px-6 py-4 text-center font-medium text-slate-500">1</td>
                                         <td class="px-6 py-4 text-slate-700 font-medium">05 Agu 2026</td>
@@ -339,28 +333,11 @@
 
                     <!-- Pagination -->
                     <div class="px-6 py-4 border-t border-slate-100 bg-white flex justify-center sm:justify-end">
-                        <!-- Jika menggunakan controller Laravel: {{-- $data_pengunjung->links() --}} -->
                         <ul class="flex items-center -space-x-px shadow-sm rounded-md">
-                            <li>
-                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-l-md font-bold text-lg">
-                                    &laquo;
-                                </button>
-                            </li>
-                            <li>
-                                <button class="w-9 h-9 flex items-center justify-center border border-amber-600 bg-amber-600 text-white font-medium text-sm z-10 relative">
-                                    1
-                                </button>
-                            </li>
-                            <li>
-                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 transition-colors font-medium text-sm">
-                                    2
-                                </button>
-                            </li>
-                            <li>
-                                <button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-r-md font-bold text-lg">
-                                    &raquo;
-                                </button>
-                            </li>
+                            <li><button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-l-md font-bold text-lg">&laquo;</button></li>
+                            <li><button class="w-9 h-9 flex items-center justify-center border border-amber-600 bg-amber-600 text-white font-medium text-sm z-10 relative">1</button></li>
+                            <li><button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 transition-colors font-medium text-sm">2</button></li>
+                            <li><button class="w-9 h-9 flex items-center justify-center border border-slate-300 bg-white text-slate-500 hover:bg-slate-50 transition-colors rounded-r-md font-bold text-lg">&raquo;</button></li>
                         </ul>
                     </div>
                 </div>
@@ -384,35 +361,22 @@
             const filterTahunan = document.getElementById('filterTahunan');
             const filterCustom = document.getElementById('filterCustom');
 
-            // Sembunyikan semua field terlebih dahulu
             filterHarian.classList.add('hidden');
             filterBulanan.classList.add('hidden');
             filterTahunan.classList.add('hidden');
             filterCustom.classList.add('hidden');
 
             if (rentang === "") {
-                // Jika pilih 'Semua Data'
                 container.classList.add('hidden');
             } else {
                 container.classList.remove('hidden');
-
-                // Tampilkan field yang sesuai dengan pilihan dropdown
-                if (rentang === 'harian') {
-                    filterHarian.classList.remove('hidden');
-                } else if (rentang === 'bulanan') {
-                    filterBulanan.classList.remove('hidden');
-                } else if (rentang === 'tahunan') {
-                    filterTahunan.classList.remove('hidden');
-                } else if (rentang === 'custom') {
-                    filterCustom.classList.remove('hidden');
-                }
+                if (rentang === 'harian') filterHarian.classList.remove('hidden');
+                else if (rentang === 'bulanan') filterBulanan.classList.remove('hidden');
+                else if (rentang === 'tahunan') filterTahunan.classList.remove('hidden');
+                else if (rentang === 'custom') filterCustom.classList.remove('hidden');
             }
         }
-
-        // Panggil fungsi saat halaman pertama dimuat untuk mengecek status dropdown saat ini (jika ada nilai 'old')
-        document.addEventListener('DOMContentLoaded', function() {
-            toggleFilterInputs();
-        });
+        document.addEventListener('DOMContentLoaded', toggleFilterInputs);
     </script>
 </body>
 </html>

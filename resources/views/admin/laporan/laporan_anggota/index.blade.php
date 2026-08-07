@@ -345,7 +345,7 @@
                     else { noMatchMessage.classList.add("hidden"); }
                 });
             }
-        });
+        }); 
     </script>
 </body>
 </html>
