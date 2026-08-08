@@ -134,10 +134,15 @@
                                     <td class="px-6 py-4">
                                         <div class="flex items-center gap-3">
                                             @if($anggota->foto)
+                                                <!-- Jika ada foto asli di DB -->
                                                 <img src="{{ asset('storage/' . $anggota->foto) }}" class="w-10 h-10 rounded-full object-cover border border-slate-200 shadow-sm shrink-0">
                                             @else
-                                                @php $bgColor = $anggota->jenis_kelamin == 'Laki-laki' ? '3b82f6' : 'ec4899'; @endphp
-                                                <img src="https://ui-avatars.com/api/?name={{ urlencode($anggota->nama) }}&background={{ $bgColor }}&color=fff&bold=true" class="w-10 h-10 rounded-full object-cover shadow-sm shrink-0">
+                                                <!-- Jika foto kosong, panggil ICON GENDER -->
+                                                @if(strtolower($anggota->jenis_kelamin) == 'laki-laki')
+                                                    <img src="{{ asset('images/avatar-laki.jpg') }}" class="w-10 h-10 rounded-full object-cover border border-slate-200 p-0.5 shadow-sm shrink-0 bg-blue-50" onerror="this.src='https://placehold.co/100x100/eff6ff/3b82f6?text=L'">
+                                                @else
+                                                    <img src="{{ asset('images/avatar-perempuan.jpg') }}" class="w-10 h-10 rounded-full object-cover border border-slate-200 p-0.5 shadow-sm shrink-0 bg-pink-50" onerror="this.src='https://placehold.co/100x100/fdf2f8/ec4899?text=P'">
+                                                @endif
                                             @endif
 
                                             <div>

@@ -84,9 +84,11 @@ class BookController extends Controller
      */
     public function show($id)
     {
+        // Ambil data buku beserta semua relasinya
         $buku = Buku::with(['ddc', 'kategori', 'jenis', 'sumber'])->findOrFail($id);
-        // Bisa diarahkan ke view detail (misal: view('admin.buku.show', compact('buku')))
-        // Karena belum ada view-nya, kita lewati atau biarkan kosong dulu
+
+        // Kembalikan ke halaman view detail buku
+        return view('admin.buku.show', compact('buku'));
     }
 
     /**

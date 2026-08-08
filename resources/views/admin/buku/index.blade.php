@@ -167,17 +167,21 @@
                                     </td>
                                     <td class="px-5 py-3 text-slate-600 font-medium">{{ $buku->pengarang ?? '-' }}</td>
                                     <td class="px-5 py-3 text-slate-600 font-medium">{{ $buku->penerbit ?? '-' }}</td>
-                                    <td class="px-5 py-3 text-center text-slate-600 font-medium">
+<td class="px-5 py-3 text-center text-slate-600 font-medium">
                                         <span class="bg-blue-50 text-blue-600 font-bold px-2 py-1 rounded">{{ $buku->stok }}</span>
                                     </td>
                                     <td class="px-5 py-3">
                                         <div class="flex justify-center gap-1.5">
+                                            <!-- Tombol Detail (BARU) -->
+                                            <a href="{{ route('admin.buku.show', $buku->id) }}" class="w-8 h-8 rounded bg-cyan-500 hover:bg-cyan-600 text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Detail Buku">
+                                                <i class="fa-solid fa-circle-info text-[13px]"></i>
+                                            </a>
                                             <!-- Tombol Edit -->
                                             <a href="{{ route('admin.buku.edit', $buku->id) }}" class="w-8 h-8 rounded bg-[#ffc107] hover:bg-[#e0a800] text-slate-800 flex items-center justify-center transition-colors shadow-sm tooltip" title="Edit Buku">
                                                 <i class="fa-solid fa-pen-to-square text-[13px]"></i>
                                             </a>
                                             <!-- Tombol Hapus Panggil Modal -->
-                                            <button type="button" onclick="openGlobalDeleteModal('{{ route('admin.buku.destroy', $buku->id) }}', '{{ $buku->judul }}')" class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Hapus Buku">
+                                            <button type="button" onclick="openGlobalDeleteModal('{{ route('admin.buku.destroy', $buku->id) }}', '{{$buku->judul }}')" class="w-8 h-8 rounded bg-[#dc3545] hover:bg-[#c82333] text-white flex items-center justify-center transition-colors shadow-sm tooltip" title="Hapus Buku">
                                                 <i class="fa-solid fa-trash-can text-[13px]"></i>
                                             </button>
                                         </div>
