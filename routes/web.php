@@ -9,10 +9,12 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SumberBukuController;
 use App\Http\Controllers\JenisBukuController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\AbsenController;
-use App\Http\Controllers\LaporanController;
+use App\Models\Anggota;
+use App\Models\Buku;
 
 
 // 1. ROUTE PUBLIK
@@ -92,6 +94,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/transaksi/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
     Route::post('/transaksi/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
     Route::delete('/transaksi/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
+
+    // 2 ROUTE API SCANNER INI 👇
+    Route::get('/api/cek-anggota/{nisn}', function($nisn) {
+        $anggota = App\Models\Anggota::with('kelas')->where('nisn', $nisn)->first();
+        if($anggota) {
+            return response()->json(['success' => true, 'data' => $anggota]);
+        }
+        return response()->json(['success' => false, 'message' => 'Anggota tidak terdaftar!']);
+    });
+
+    Route::get('/api/cek-buku/{kode}', function($kode) {
+        $buku = App\Models\Buku::where('kode_buku', $kode)->first();
+        if($buku) {
+            if($buku->stok > 0) {
+                return response()->json(['success' => true, 'data' => $buku]);
+            }
+            return response()->json(['success' => false, 'message' => 'Stok buku habis / sedang dipinjam!']);
+        }
+        return response()->json(['success' => false, 'message' => 'Kode Buku tidak dikenali!']);
+    });
 
     // pengembalian
     Route::get('/transaksi/pengembalian', [PengembalianController::class, 'index'])->name('pengembalian.index');

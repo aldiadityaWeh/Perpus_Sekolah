@@ -94,7 +94,7 @@
                         <div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></div>
                     </div>
                     <div class="hidden sm:block">
-                        <p class="text-sm font-bold text-slate-700 group-hover:text-blue-600 transition-colors">Budi Santoso</p>
+                        <p class="text-sm font-bold text-slate-700 group-hover:text-blue-600 transition-colors">ALDI</p>
                         <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Kepala Perpus</p>
                     </div>
                 </div>

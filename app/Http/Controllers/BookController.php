@@ -44,6 +44,13 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        // --- TAMBAHAN WAJIB: Paksa tambah BK- dari sisi Server ---
+        $kode = strtoupper(trim($request->kode_buku));
+        if ($kode !== '' && !str_starts_with($kode, 'BK-')) {
+            $request->merge(['kode_buku' => 'BK-' . $kode]);
+        }
+        // ---------------------------------------------------------
+
         // 1. Validasi Input dari Form
         $request->validate([
             'kode_buku'    => 'required|unique:buku,kode_buku',
@@ -59,6 +66,8 @@ class BookController extends Controller
             'cover'        => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Validasi file gambar
             'rak'          => 'nullable|string|max:50',
             'sinopsis'     => 'nullable|string'
+        ], [
+            'kode_buku.unique' => 'Kode Buku ini sudah terdaftar di sistem!',
         ]);
 
         // 2. Ambil semua data input
@@ -115,6 +124,11 @@ class BookController extends Controller
     {
         // Cari data buku yang akan diedit
         $buku = Buku::findOrFail($id);
+
+        $kode = strtoupper(trim($request->kode_buku));
+        if ($kode !== '' && !str_starts_with($kode, 'BK-')) {
+            $request->merge(['kode_buku' => 'BK-' . $kode]);
+        }
 
         // 1. Validasi Input (Pastikan kode_buku diabaikan validasi unique-nya untuk data ini sendiri)
         $request->validate([

@@ -138,10 +138,17 @@
                         </div>
 
                         <div class="p-6 md:p-8 space-y-5">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
                                     <label class="text-[13px] font-semibold text-slate-600 mb-1.5 block">Kode Buku / Barcode <span class="text-rose-500">*</span></label>
-                                    <input type="text" name="kode_buku" value="{{ old('kode_buku') }}" placeholder="Contoh: BK-40012" required class="w-full bg-slate-50 border border-slate-200 rounded-lg py-2.5 px-4 text-sm focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-700 outline-none shadow-sm uppercase font-mono">
+                                    <div class="flex">
+                                        <span class="inline-flex items-center px-4 text-sm font-bold text-slate-500 bg-slate-200 border border-r-0 border-slate-200 rounded-l shadow-sm select-none">
+                                            BK-
+                                        </span>
+                                        <!-- UBAH BAGIAN VALUE DI BAWAH INI -->
+                                        <input type="text" id="kode_buku_input" name="kode_buku" value="{{ str_replace('BK-', '', old('kode_buku')) }}" placeholder="Contoh: 10045" required class="w-full bg-slate-50 border border-slate-200 rounded-r py-2.5 px-4 text-sm focus:outline-none focus:border-blue-500 font-mono uppercase shadow-sm">
+                                    </div>
+                                    <p class="text-[11px] text-slate-400 mt-1">Ketik angkanya saja. Awalan "BK-" otomatis ditambahkan saat disimpan.</p>
                                 </div>
                             </div>
 
@@ -270,7 +277,6 @@
             </form>
         </main>
     </div>
-
     <script>
         function updateDdcColor() {
             const select = document.getElementById('ddcSelect');
@@ -284,6 +290,23 @@
 
         // Panggil saat halaman diload untuk menangani nilai (old) dari validasi error
         document.addEventListener("DOMContentLoaded", updateDdcColor);
+
+        // TAMBAHAN: Script ini yang akan memaksa huruf "BK-" terkirim ke database dengan aman
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const inputKode = document.getElementById('kode_buku_input');
+
+            if (form && inputKode) {
+                form.addEventListener('submit', function(e) {
+                    let val = inputKode.value.trim().toUpperCase();
+
+                    // Jika user belum mengetik "BK-", tambahkan secara gaib sebelum disimpan
+                    if (val !== '' && !val.startsWith('BK-')) {
+                        inputKode.value = 'BK-' + val;
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>

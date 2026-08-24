@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- LIBRARY HTML5-QRCODE (Wajib untuk akses kamera & baca barcode) -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
@@ -18,7 +18,7 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-        
+
         /* Animasi garis scanner untuk efek kamera aktif */
         @keyframes scan-line {
             0% { transform: translateY(-100%); opacity: 0; }
@@ -55,16 +55,16 @@
                 <li><a href="/admin/kategori-buku" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-tags w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Kategori Buku</a></li>
                 <li><a href="/admin/anggota" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-users w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Anggota</a></li>
                 <li><a href="/admin/kelas" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group"><i class="fa-solid fa-school w-6 text-center mr-2 group-hover:text-blue-400 transition-colors"></i> Data Kelas</a></li>
-                
+
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Transaksi</li>
-                
+
                 <!-- Scan Peminjaman Active -->
                 <li>
                     <a href="/admin/transaksi/peminjaman" class="flex items-center px-4 py-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl font-semibold shadow-inner transition-all">
                         <i class="fa-solid fa-barcode w-6 text-center mr-2"></i> Scan Peminjaman
                     </a>
                 </li>
-                
+
                 <li><a href="/admin/transaksi/pengembalian" class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all group flex justify-between"><div class="flex items-center"><i class="fa-solid fa-clipboard-check w-6 text-center mr-2 group-hover:text-amber-400 transition-colors"></i> Verifikasi Kembali</div></a></li>
 
                 <li class="pt-5 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Laporan</li>
@@ -77,7 +77,7 @@
     </aside>
 
     <div class="flex-1 flex flex-col h-full overflow-hidden w-full relative bg-[#f4f7f6]">
-        
+
         <header class="h-20 bg-white shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center justify-between px-4 md:px-8 z-10 shrink-0">
             <div class="flex items-center gap-3">
                 <button class="md:hidden text-slate-500 hover:text-blue-600"><i class="fa-solid fa-bars text-xl"></i></button>
@@ -90,7 +90,7 @@
                     <h2 class="text-xl md:text-2xl font-bold text-slate-800 tracking-tight leading-none">Sirkulasi Peminjaman</h2>
                 </div>
             </div>
-            
+
             <div class="flex items-center gap-4 md:gap-6">
                 <div class="flex items-center gap-3 cursor-pointer group">
                     <div class="relative shrink-0">
@@ -106,19 +106,19 @@
         </header>
 
         <main class="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6 custom-scrollbar">
-            
+
             <div class="max-w-[1400px] mx-auto space-y-6">
-                
+
                 <div class="bg-[#4eb4f5] text-white rounded-lg p-5 shadow-sm border border-[#3ba0de] flex flex-col justify-center">
                     <div class="flex items-center gap-2 mb-1.5"><i class="fa-solid fa-circle-info text-xl opacity-90"></i><h3 class="font-bold text-xl">Informasi</h3></div>
                     <p class="text-sm text-white/90">Silahkan scan Barcode Buku (Kode Buku) atau QR Code Kartu Anggota (NISN) secara bergantian pada alat scanner.</p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    
+
                     <!-- LEFT COLUMN: Kamera Scanner Asli -->
                     <div class="lg:col-span-4 bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col h-full">
-                        
+
                         <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-800 text-white">
                             <div class="flex items-center gap-2">
                                 <i class="fa-solid fa-qrcode text-slate-300"></i>
@@ -131,10 +131,10 @@
                         </div>
 
                         <div class="p-5 flex flex-col items-center gap-4 flex-1">
-                            
+
                             <!-- Area Output Kamera (Akan diisi oleh HTML5-QRCode) -->
                             <div class="w-full aspect-square bg-slate-100 border-2 border-slate-200 shadow-inner rounded-xl relative overflow-hidden flex flex-col items-center justify-center group" id="cameraWrapper">
-                                
+
                                 <!-- Pesan Awal (Saat Kamera Mati) -->
                                 <div id="cameraOffMessage" class="flex flex-col items-center justify-center text-slate-400 w-full h-full absolute inset-0 z-10 bg-slate-100">
                                     <i class="fa-solid fa-camera-slash text-5xl mb-3 opacity-60"></i>
@@ -180,7 +180,7 @@
 
                     <!-- RIGHT COLUMN: Data Panel Peminjaman -->
                     <div class="lg:col-span-8 bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col h-full">
-                        
+
                         <div class="px-6 py-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between bg-white gap-4">
                             <div class="flex items-center gap-2">
                                 <i class="fa-solid fa-clipboard-list text-blue-600 text-lg"></i>
@@ -209,7 +209,7 @@
                         <!-- Panel Buku yang Dipinjam -->
                         <div class="p-6 flex-1">
                             <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">2. Buku yang Akan Dipinjam</h4>
-                            
+
                             <div class="overflow-x-auto border border-slate-200 rounded-xl">
                                 <table class="w-full text-left border-collapse bg-white">
                                     <thead>
